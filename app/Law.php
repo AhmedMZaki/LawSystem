@@ -10,7 +10,7 @@ class Law extends Model
       'lawtype','lawno','lawyear','lawrelation','lawcategory','lawfile','slug'
     ];
 
-  protected $with = ['LawArticles'];
+  //protected $with = ['LawArticles'];
 
     public function LawArticles()
     {

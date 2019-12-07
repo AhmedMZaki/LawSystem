@@ -23,11 +23,15 @@ Route::get('judgments/addnotes/{judgmentid}','JudgmentsController@addnotes')->na
 
 Route::post('/judgments/saveNotes/store','JudgmentNotesController@store')->name('storeNotes');
 
-
-Route::get('/test',function (){
-    $test = \App\Law::find(1);
-    return dd($test);
-});
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::get('/test',function (){
+  $reault = \App\judgments::find(1)->Articls;
+  foreach ($reault as $value) {
+    $test[]=$value->Law;
+  }
+    return $test;
+});
