@@ -1,0 +1,107 @@
+.inline-icon {
+display: inline-block;
+mask-repeat: repeat;
+mask-size: auto;
+-webkit-mask-size: contain;
+mask-size: contain;
+mask-repeat: no-repeat;
+-webkit-mask-repeat: no-repeat;
+mask-position: center;
+-webkit-mask-position: center;
+}
+.white-icon {background-color: #fff; }
+.gray-icon {background-color: #444; }
+.black-icon {background-color: #222; }
+.green-icon {background-color: #28a745; }
+.red-icon {background-color: #e32336; }
+.blue-icon {background-color: #1ea4c0; }
+.header-large-icon {height: 19px;width: 24px;}
+.menu-icon {height: 14px;width: 20px;}
+.menu-small-icon {height: 10px;width: 10px;}
+.header-small-icon {height: 16px;width: 16px;}
+.action-icon {height: 16px;width: 16px;}
+.btn-icon-width{
+    width: 18px;height: 16px; margin: 0  auto;
+}
+.dashboard-icon-width {
+    width: 24px;
+    height: 24px;
+}
+.shopping-icon {
+    -webkit-mask-image: url(../images/shopping.svg);
+    mask-image: url(../images/shopping.svg);
+}
+.search-icon {
+    -webkit-mask-image: url(../images/search.svg);
+    mask-image: url(../images/search.svg);
+}
+.key-icon {
+    -webkit-mask-image: url(../images/key.svg);
+    mask-image: url(../images/key.svg);
+}
+.cogs-icon {
+    -webkit-mask-image: url(../images/cogs.svg);
+    mask-image: url(../images/cogs.svg);
+}
+.flag-icon {
+    -webkit-mask-image: url(../images/flag.svg);
+    mask-image: url(../images/flag.svg);
+}
+.bell-icon {
+    -webkit-mask-image: url(../images/bell.svg);
+    mask-image: url(../images/bell.svg);
+}
+.plus-icon {
+    -webkit-mask-image: url(../images/plus.svg);
+    mask-image: url(../images/plus.svg);
+
+}
+.envelope-icon {
+    -webkit-mask-image: url(../images/envelope.svg);
+    mask-image: url(../images/envelope.svg);
+}
+.users-icon {
+    -webkit-mask-image: url(../images/users.svg);
+    mask-image: url(../images/users.svg);
+}
+.user-icon {
+    -webkit-mask-image: url(../images/user.svg);
+    mask-image: url(../images/user.svg);
+}
+.clock-icon {
+    -webkit-mask-image: url(../images/clock.svg);
+    mask-image: url(../images/clock.svg);
+}
+.edit-icon {
+    -webkit-mask-image: url(../images/edit.svg);
+    mask-image: url(../images/edit.svg);
+}
+.times-icon {
+    -webkit-mask-image: url(../images/times.svg);
+    mask-image: url(../images/times.svg);
+}
+.sms-icon {
+    -webkit-mask-image: url(../images/sms.svg);
+    mask-image: url(../images/sms.svg);
+}
+.print-icon {
+    -webkit-mask-image: url(../images/print.svg);
+    mask-image: url(../images/print.svg);
+    width: 35px;
+    height: 35.6px;
+    margin: 0px;
+}
+.window-close-icon {
+    -webkit-mask-image: url(../images/window-close.svg);
+    mask-image: url(../images/window-close.svg);
+    width: 20.8px;
+    height: 20.8px;
+    margin: 0  auto;
+}
+.check-square-icon {
+    -webkit-mask-image: url(../images/check-square.svg);
+    mask-image: url(../images/check-square.svg);
+    width: 20.8px;
+    height: 20.8px;
+    margin: 0  auto;
+}

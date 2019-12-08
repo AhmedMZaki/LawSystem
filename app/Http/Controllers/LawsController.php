@@ -13,7 +13,7 @@ class LawsController extends Controller
     public function index()
     {
 
-        return view('laws.addNewLaw');
+        return view('SystemLaws.AddNewLaw');
     }
 
     public static function make_slug($string, $separator = '-')

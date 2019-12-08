@@ -5,10 +5,13 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
+ // law Rotes
 Route::get('/AddLaw','LawsController@index')->name('addNewLaw');
 Route::post('/law/store','LawsController@store')->name('saveLaw');
 
+
+
+//
 Route::get('/law/addLawArticles/{lawNo}/{lawSlug}','LawArticlesController@addLawArticlesForm')->name('addArticle');
 Route::post('/law/addLawArticles/store/{lawid}','LawArticlesController@store')->name('SaveArticle');
 
@@ -31,7 +34,9 @@ Route::get('/searchArticle','LawsController@searchArticle');
 Route::get('/searchArticle/{articleNo}','LawsController@getsearchArticle')->name('getsearchArticle');
 
 
-
+Route::get('/testview',function (){
+return view('SystemLaws.AddNewLaw');
+});
 
 Route::get('/test/{no}',function ($no){
 
