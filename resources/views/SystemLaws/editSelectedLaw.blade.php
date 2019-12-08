@@ -41,7 +41,7 @@
                 <div class="col-lg-12 tbl-new-brdr">
                   <div class="panel panel-default no-brdr">
 
-                        <form method="post" action="{{route('updateLaw',['lawID'=>$lawID])}}"  enctype="multipart/form-data">
+                        <form method="post" action="{{route('updateLaw',['lawID'=>$lawID->id])}}"  enctype="multipart/form-data">
                           @csrf
                           {{method_field('PATCH')}}
                         <div id="errors">

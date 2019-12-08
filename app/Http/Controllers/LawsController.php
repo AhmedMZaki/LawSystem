@@ -70,7 +70,7 @@ class LawsController extends Controller
       return view('SystemLaws.editSelectedLaw',compact('lawID'));
     }
 
-    public function update(Request $request,Law $lawID)
+    public function update(Request $request,$lawID)
     {
       $request->validate([
           'lawtype' => 'required',
@@ -79,7 +79,7 @@ class LawsController extends Controller
           'lawyear' => 'required',
           'lawrelation' => 'required',
       ]);
-
+      $lawID = Law::find($lawID);
       $lawID->lawtype = $request['lawtype'];
       $lawID->lawcategory = $request['lawcategory'];
       $lawID->lawno = $request['lawno'];
@@ -90,7 +90,8 @@ class LawsController extends Controller
       if (request()->hasFile('lawfile')) {
 
         if (($request->file('lawfile')->getClientOriginalExtension()) != $lawID->lawfile) {
-          Storage::move(('public/Law_PDF/'.$lawID->lawfile),('public/files/'.$lawID->lawfile));
+          Storage::move(('public/Law_PDF/'.$lawID->lawfile), ('public/files/'.$lawID->lawfile));
+        }
           // adding the new file
           $covernamewithEXT=$request->file('lawfile')->getClientOriginalName();
           // get just the file name
@@ -102,10 +103,8 @@ class LawsController extends Controller
           // upload image
           $path=$request->file('lawfile')->storeAs('public/Law_PDF',$fileNmaeToStore);
           $lawID->lawfile = $fileNmaeToStore;
-
-        }
-
       }
+
       $lawID->save();
       return redirect()->route('getLaws')->with('laws',Law::latest()->paginate(10));
 
