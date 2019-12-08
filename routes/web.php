@@ -27,11 +27,29 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/searchArticle','LawsController@searchArticle');
+Route::get('/searchArticle/{articleNo}','LawsController@getsearchArticle')->name('getsearchArticle');
 
-Route::get('/test',function (){
-  $reault = \App\judgments::find(1)->Articls;
-  foreach ($reault as $value) {
-    $test[]=$value->Law;
-  }
-    return $test;
+
+
+
+Route::get('/test/{no}',function ($no){
+
+  $formatedData = [];
+  $laws = [];
+  $results =DB::table('law_articls')
+                ->where('articleno', 'like', $no.'%')
+                ->get();
+                foreach ($results as $article) {
+                  $attr = \App\LawArticl::find($article->id);
+                  $somedata = [
+                    'articleID'=>$attr->id,
+                    'articleNO'=>$attr->articleno,
+                    'lawID'=>$attr->law->id,
+                    'lawCategory'=>$attr->law->lawcategory,
+                    'lawSlug' =>$attr->law->slug,
+                  ];
+                  $formatedData[] = $somedata;
+                }
+  return $formatedData;
 });

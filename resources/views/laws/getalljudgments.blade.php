@@ -50,7 +50,6 @@
                         <th scope="col"> عدد المبادى الغير مكتملة </th>
                         <th scope="col">نص الحكم </th>
                         <th scope="col">اضافة مبادئ</th>
-                        <th scope="col">المبادئ الخاصة بالحكم</th>
                         <th scope="col">تعديل الحكم</th>
                     </tr>
                     </thead>
@@ -88,10 +87,7 @@
                             <td>
                                 <a href="{{route('Judgmentaddnotes',['judgmentid'=>$judgment->id])}}" class="btn btn-outline-primary">اضافة مبادئ الحكم</a>
                             </td>
-                            <td>
-                                <a href="#" class="btn btn-outline-primary"> المبادئ الخاصة بالحكم</a>
 
-                            </td>
                             <td>
                                 <a href="#" class="btn btn-outline-primary">  تعديل الحكم </a>
                             </td>

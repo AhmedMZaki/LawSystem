@@ -9,12 +9,12 @@ class LawArticl extends Model
 {
     protected $fillable =
         [
-            'law_id','articleno','articlebody'
+            'laws_id','articleno','articlebody'
         ];
-        
-    public function Law()
+        //protected $with = ['Law'];
+    public function law()
     {
-        return $this->belongsTo(Law::class,'law_id');
+        return $this->belongsTo(Law::class,'laws_id');
     }
 
     public function Judgments()

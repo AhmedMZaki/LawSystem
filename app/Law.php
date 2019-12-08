@@ -12,9 +12,9 @@ class Law extends Model
 
   //protected $with = ['LawArticles'];
 
-    public function LawArticles()
+    public function lawArticles()
     {
-      return $this->hasMany(LawArticl::class);
+      return $this->hasMany(LawArticl::class,'laws_id');
     }
 
 

@@ -22,7 +22,7 @@ class LawArticlesController extends Controller
 
 
         $articleLaw = new LawArticl;
-        $articleLaw->law_id = $request['lawid'];
+        $articleLaw->laws_id = $request['lawid'];
         $articleLaw->articleno =$request['articleno'];
         $articleLaw->articlebody =$request['articlebody'];
         $articleLaw->subjectid = $request['subjectid'];
@@ -33,7 +33,7 @@ class LawArticlesController extends Controller
         $articleLaw->sectiontitle = $request['sectiontitle'];
         $articleLaw->articletitle = $request['articletitle'];
         $articleLaw->save();
-        
+
         if ($articleLaw)
         {
             return response()->json([

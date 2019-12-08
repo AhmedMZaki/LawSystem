@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Law;
 use Storage;
+use App\LawArticl;
+use DB;
 use Illuminate\Http\Request;
 
 class LawsController extends Controller
@@ -70,6 +72,32 @@ class LawsController extends Controller
         }
 
     }
+
+    public function searchArticle()
+    {
+      return view('searchArticle');
+    }
+
+      public function getsearchArticle(Request $request,$articleNo)
+      {
+        $formatedData = [];
+        $laws = [];
+        $results =DB::table('law_articls')
+                      ->where('articleno', 'like', $articleNo.'%')
+                      ->get();
+                      foreach ($results as $article) {
+                        $attr = \App\LawArticl::find($article->id);
+                        $somedata = [
+                          'articleID'=>$attr->id,
+                          'articleNO'=>$attr->articleno,
+                          'lawID'=>$attr->law->id,
+                          'lawCategory'=>$attr->law->lawcategory,
+                          'lawSlug' =>$attr->law->slug,
+                        ];
+                        $formatedData[] = $somedata;
+                      }
+        return $formatedData;
+      }
 
 
 

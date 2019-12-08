@@ -15,7 +15,7 @@ class CreateLawArticlsTable extends Migration
     {
         Schema::create('law_articls', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedInteger('law_id');
+            $table->unsignedInteger('laws_id');
             $table->string('subjectid')->nullable();
             $table->string('subjectitle')->nullable();
             $table->string('chaptertitle')->nullable();
