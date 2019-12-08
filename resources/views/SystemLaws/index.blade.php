@@ -83,7 +83,9 @@
                               <a href="{{route('editLaw',['lawID'=>$law->id])}}" class="btn general_btn btn_1"
                                 title="تعديل القانون رقم {{$law->lawno}}"
                                 >
-                                تعديل القانون
+                                تعديل
+                                <img src="{{asset('lawSystem/assets/images/cogs.svg')}}" alt="">
+
                               </a>
                             </td>
                           </tr>

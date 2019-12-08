@@ -10,6 +10,8 @@ Route::get('/laws','LawsController@index')->name('getLaws');
 Route::get('/laws/create','LawsController@create')->name('addNewLaw');
 Route::post('/laws/store','LawsController@store')->name('saveLaw');
 Route::get('/laws/{lawID}/edit','LawsController@edit')->name('editLaw');
+Route::patch('/laws/{lawID}/update','LawsController@update')->name('updateLaw');
+
 
 // //
 // Route::get('/law/addLawArticles/{lawNo}/{lawSlug}','LawArticlesController@addLawArticlesForm')->name('addArticle');

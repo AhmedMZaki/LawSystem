@@ -19,8 +19,6 @@ class LawsController extends Controller
     }
     public function store(Request $request)
     {
-      dd($request);
-
         $request->validate([
             'lawtype' => 'required',
             'lawcategory' => 'required',
@@ -54,10 +52,16 @@ class LawsController extends Controller
 //          $path = Storage::putFis le('public/files', $request->file('lawfile'),'public');
             $lawId->lawfile = $fileNmaeToStore;
             $lawId->save();
-            return redirect()->route('addArticle', ['lawNo'=>$lawId->lawno,'lawSlug'=>$lawId->slug])->with('message','تم إضافة القانون بنجاح');
+            return redirect()->route('addArticle', ['lawNo'=>$lawId->lawno,'lawSlug'=>$lawId->slug])->with([
+              'type'=> 'success',
+              'message' => 'تم إضافة القانون بنجاح'
+            ]);
         } else {
 
-            return redirect()->route('addArticle', ['lawNo'=>$lawId->lawno,'lawSlug'=>$lawId->slug]);
+            return redirect()->route('addArticle', ['lawNo'=>$lawId->lawno,'lawSlug'=>$lawId->slug])->with([
+              'type'=> 'success',
+              'message' => 'تم إضافة القانون بنجاح'
+            ]);
         }
 
     }
@@ -68,9 +72,59 @@ class LawsController extends Controller
       return view('SystemLaws.createNewLaw');
     }
 
-    public function edit(Request $request,$lawID)
+    public function edit(Law $lawID)
     {
-      return $lawID;
+      return view('SystemLaws.editSelectedLaw',compact('lawID'));
+    }
+
+    public function update(Request $request,Law $lawID)
+    {
+      $request->validate([
+          'lawtype' => 'required',
+          'lawcategory' => 'required',
+          'lawno' => 'required|unique:laws|max:255',
+          'lawyear' => 'required',
+          'lawrelation' => 'required',
+      ]);
+
+      $lawID->lawtype = $request['lawtype'];
+      $lawID->lawcategory = $request['lawtype'];
+      $lawID->lawno = $request['lawtype'];
+      $lawID->lawyear = $request['lawtype'];
+      $lawID->lawrelation = $request['lawtype'];
+
+      if (request()->hasFile('lawfile')) {
+
+        if ($request->file('lawfile')->getClientOriginalExtension() != $lawID->lawfile) {
+          // move old file before adding new one
+          Storage::move(('public/Law_PDF/'.$lawID->lawfile), ('public/files/'
+              .$lawID->lawfile);
+
+          // adding the new file
+          $covernamewithEXT=$request->file('lawfile')->getClientOriginalName();
+          // get just the file name
+          $filename=pathinfo($covernamewithEXT,PATHINFO_FILENAME);
+          // get just the extention
+          $extention=$request->file('lawfile')->getClientOriginalExtension();
+          // file to store
+          $fileNmaeToStore= $lawId->slug.'_'.time().'.'.$extention;
+          // upload image
+          $path=$request->file('lawfile')->storeAs('public/Law_PDF',$fileNmaeToStore);
+          $lawID->lawfile = $fileNmaeToStore;
+          $lawID->save();
+          return redirect()->route('getLaws')->with([
+            'type'=> 'success',
+            'message' => 'تم إضافة القانون بنجاح'
+          ]);
+        } else {
+
+          $lawID->save();
+          return redirect()->route('getLaws')->with([
+            'type'=> 'success',
+            'message' => 'تم إضافة القانون بنجاح'
+          ]);
+        }
+
     }
 
     public function searchArticle()
