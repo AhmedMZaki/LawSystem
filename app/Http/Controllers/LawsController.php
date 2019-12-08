@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Law;
 use Storage;
 use App\LawArticl;
+use Session;
 use DB;
 use Illuminate\Http\Request;
 
@@ -16,14 +17,10 @@ class LawsController extends Controller
         $laws = Law::latest()->paginate(10);
         return view('SystemLaws.index',compact('laws'));
     }
-
-    // return view to create / add new law
-    public function create()
-    {
-      return view('SystemLaws.createNewLaw');
-    }
     public function store(Request $request)
     {
+      dd($request);
+
         $request->validate([
             'lawtype' => 'required',
             'lawcategory' => 'required',
@@ -57,12 +54,18 @@ class LawsController extends Controller
 //          $path = Storage::putFis le('public/files', $request->file('lawfile'),'public');
             $lawId->lawfile = $fileNmaeToStore;
             $lawId->save();
-            return redirect()->route('addArticle', ['lawNo'=>$lawId->lawno,'lawSlug'=>$lawId->slug]);
+            return redirect()->route('addArticle', ['lawNo'=>$lawId->lawno,'lawSlug'=>$lawId->slug])->with('message','تم إضافة القانون بنجاح');
         } else {
 
             return redirect()->route('addArticle', ['lawNo'=>$lawId->lawno,'lawSlug'=>$lawId->slug]);
         }
 
+    }
+
+    // return view to create / add new law
+    public function create()
+    {
+      return view('SystemLaws.createNewLaw');
     }
 
     public function edit(Request $request,$lawID)

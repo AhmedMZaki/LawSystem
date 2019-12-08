@@ -40,7 +40,8 @@
             <div class="col-lg-12 tbl-new-brdr">
               <div class="panel panel-default no-brdr">
 
-                  <form action="{{route('saveLaw')}}" method="post" enctype="multipart/form-data">
+                    <form method="post" action="{{route('saveLaw')}}"  enctype="multipart/form-data">
+                      @csrf
                     <div id="errors">
                         <div class="form-group">
                             @if (count($errors))
@@ -54,6 +55,7 @@
                             @endif
                         </div>
                     </div>
+
                       <div class="form-row">
                         <div class="form-group col-md-2">
                           <label>النوع<span class="redstar">*</span></label>
@@ -79,16 +81,16 @@
 
                         <div class="form-group col-md-2">
                           <label>رقم القانون</label>
-                          <input type="text" name="lawno" id="lawno" lang="ar" class="form-control" placeholder="رقم القانون" required {{old('lawno')}} dir="rtl">
+                          <input type="num" name="lawno" id="lawno" lang="ar" class="form-control" placeholder="رقم القانون" required {{old('lawno')}} dir="rtl">
                         </div>
                         <div class="form-group col-md-2">
                           <label>لسنة</label>
-                          <input type="text" name="lawyear" id="lawyear" lang="ar" class="form-control" placeholder="القانون لسنة" required {{old('lawyear')}} dir="rtl">
+                          <input type="num" name="lawyear" id="lawyear" lang="ar" class="form-control" placeholder="القانون لسنة" required {{old('lawyear')}} dir="rtl">
                         </div>
 
                         <div class="form-group col-md-4">
                           <label> بشأن <span class="redstar">*</span></label>
-                          <input type="text" class="form-control" placeholder="القانون بشأن"
+                          <input type="num" class="form-control" placeholder="القانون بشأن"
                           id="lawrelation" name="lawrelation"
                           required {{old('lawyear')}}>
                         </div>
@@ -111,9 +113,6 @@
                       <input type="reset" class="btn general_btn btn_1" value="إلغاء">
                     </div>
                     </form>
-
-
-
 {{-- onclick="return toast('عملية ناجحة','تم تعديل المستخدم','success')" --}}
               </div>
             </div>
