@@ -10,26 +10,18 @@ use Illuminate\Http\Request;
 
 class LawsController extends Controller
 {
+  // index methos gets all laws to show them in index page
     public function index()
     {
-
-        return view('SystemLaws.AddNewLaw');
+        $laws = Law::latest()->paginate(10);
+        return view('SystemLaws.index',compact('laws'));
     }
 
-    public static function make_slug($string, $separator = '-')
+    // return view to create / add new law
+    public function create()
     {
-        $string = trim($string);
-        $string = mb_strtolower($string, 'UTF-8');
-
-        $string = preg_replace("/[^a-z0-9_\s-۰۱۲۳۴۵۶۷۸۹ءاآؤئبپتثجچحخدذرزژسشصضطظعغفقکكگگلمنوهی]/u", '', $string);
-
-        $string = preg_replace("/[\s-_]+/", ' ', $string);
-
-        $string = preg_replace("/[\s_]/", $separator, $string);
-
-        return $string;
+      return view('SystemLaws.createNewLaw');
     }
-
     public function store(Request $request)
     {
         $request->validate([
@@ -73,6 +65,11 @@ class LawsController extends Controller
 
     }
 
+    public function edit(Request $request,$lawID)
+    {
+      return $lawID;
+    }
+
     public function searchArticle()
     {
       return view('searchArticle');
@@ -99,6 +96,18 @@ class LawsController extends Controller
         return $formatedData;
       }
 
+      public static function make_slug($string, $separator = '-')
+      {
+          $string = trim($string);
+          $string = mb_strtolower($string, 'UTF-8');
 
+          $string = preg_replace("/[^a-z0-9_\s-۰۱۲۳۴۵۶۷۸۹ءاآؤئبپتثجچحخدذرزژسشصضطظعغفقکكگگلمنوهی]/u", '', $string);
+
+          $string = preg_replace("/[\s-_]+/", ' ', $string);
+
+          $string = preg_replace("/[\s_]/", $separator, $string);
+
+          return $string;
+      }
 
 }

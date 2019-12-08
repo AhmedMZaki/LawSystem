@@ -6,8 +6,10 @@ Route::get('/', function () {
     return view('welcome');
 });
  // law Rotes
-Route::get('/AddLaw','LawsController@index')->name('addNewLaw');
+Route::get('/laws','LawsController@index')->name('getLaws');
+Route::get('/laws/create','LawsController@create')->name('addNewLaw');
 Route::post('/law/store','LawsController@store')->name('saveLaw');
+Route::get('/laws/{lawID}/edit','LawsController@edit')->name('editLaw');
 
 
 

@@ -5,6 +5,7 @@
 @endsection
 
 @section('stylesheets')
+
   <link rel="stylesheet" href="{{asset('lawSystem/assets/css/dataTables.bootstrap4.min.css')}}">
   <link rel="stylesheet" href="{{asset('lawSystem/assets/css/bootstrap.min.css')}}" />
   <link rel="stylesheet" href="{{asset('lawSystem/assets/css/main.css')}}" />
@@ -14,6 +15,7 @@
 @endsection
 
 @section('content')
+
   <!-- start content-wrapper -->
        <div class="content-wrapper">
         <div class="main_content">
@@ -24,13 +26,13 @@
             <div class="d-flex align-items-center flex-wrap">
             <ol class="breadcrumb">
               <li><a href="#">الرئيسية</a></li>
-              <li>القوانين</li>
+              <li><a href="{{route('getLaws')}}">القوانين</a></li>
             </ol>
           </div>
           </div>
           <div class="col-lg-6">
             <div class="navbar d-flex flex-wrap align-items-center justify-content-start justify-content-lg-end rec-counts">
-              <a href="new.html">
+              <a href="{{route('addNewLaw')}}">
                 <button  class="general_btn btn_1 ml-2">
                     <i class="plus-icon btn-icon-width inline-icon green-icon"></i><span>اضافة جديد</span>
                   </button>
@@ -48,31 +50,51 @@
                     <thead>
                       <tr>
                         <th class="w_40 pr-2">م</th>
+                        <th class="w_170 text-center">النوع</th>
                         <th class="w_170 text-center">التصنيف</th>
                         <th class="w_170 text-center">رقم القانون</th>
                         <th class="w_200 text-center">سنة الاصدار</th>
                         <th class="w_70 text-center">بشأن</th>
+                        <th class="w_70 text-center">تعديل</th>
                       </tr>
                     </thead>
                     <tfoot>
                         <tr>
                             <th></th>
+                            <th><input id="Name" class="form-control" type="text" placeholder="النوع" /></th>
                             <th><input id="Name" class="form-control" type="text" placeholder="القانون" /></th>
                             <th><input id="Name2" class="form-control" type="text" placeholder="رقم القانون" /></th>
                            <th><input id="Name2" class="form-control" type="text" placeholder="سنة الاصدار" /></th>
                             <th><input id="Name2" class="form-control" type="text" placeholder="بشأن" /></th>
+                            <th>###########</th>
                           </tr>
                     </tfoot>
                     <tbody>
-                      <tr>
-                        <td></td>
-                        <td>جنائي</td>
-                        <td>48</td>
-                        <td>2005</td>
-                        <td>التعديلات القانونية</td>
-
-                      </tr>
-
+                      @if (count($laws))
+                        @foreach ($laws as $law)
+                          <tr>
+                            <td>{{$law->id}}</td>
+                            <td>{{$law->lawtype}}</td>
+                            <td>{{$law->lawcategory}}</td>
+                            <td>{{$law->lawno}}</td>
+                            <td>{{$law->lawyear}} </td>
+                            <td>{{$law->lawrelation}} </td>
+                            <td>
+                              <a href="{{route('editLaw',['lawID'=>$law->id])}}" class="btn general_btn btn_1"
+                                title="تعديل القانون رقم {{$law->lawno}}"
+                                >
+                                تعديل القانون
+                              </a>
+                            </td>
+                          </tr>
+                        @endforeach
+                      @else
+                        <h3>
+                          <strong>
+                            لا توجد قوانين الأن
+                        </strong>
+                      </h3>
+                      @endif
                     </tbody>
                   </table>
                 </div>
