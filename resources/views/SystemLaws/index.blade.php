@@ -5,7 +5,6 @@
 @endsection
 
 @section('stylesheets')
-
   <link rel="stylesheet" href="{{asset('lawSystem/assets/css/dataTables.bootstrap4.min.css')}}">
   <link rel="stylesheet" href="{{asset('lawSystem/assets/css/bootstrap.min.css')}}" />
   <link rel="stylesheet" href="{{asset('lawSystem/assets/css/main.css')}}" />
@@ -30,6 +29,13 @@
             </ol>
           </div>
           </div>
+
+          <template id="alert_template">
+                <div :class="alertClasses" v-show="show">
+                    <slot></slot>
+                    <span class="alert_close" @click="show=false">X</span>
+                </div>
+            </template>
           <div class="col-lg-6">
             <div class="navbar d-flex flex-wrap align-items-center justify-content-start justify-content-lg-end rec-counts">
               <a href="{{route('addNewLaw')}}">
@@ -111,6 +117,7 @@
 @endsection
 
 @section('secripts')
+
   <script src="{{asset('lawSystem/assets/js/jquery.js')}}"></script>
   <script src="{{asset('lawSystem/assets/js/popper.js')}}"></script>
   <script src="{{asset('lawSystem/assets/js/bootstrap.min.js')}}"></script>
@@ -122,4 +129,5 @@
   <script src="{{asset('lawSystem/assets/js/jquery.toast.js')}}"></script>
   <script src="{{asset('lawSystem/assets/js/users.js')}}"></script>
   <script src="{{asset('lawSystem/assets/js/alertfunction.js')}}"></script>
+
 @endsection

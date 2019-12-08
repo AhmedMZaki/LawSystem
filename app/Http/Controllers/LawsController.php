@@ -22,7 +22,7 @@ class LawsController extends Controller
         $request->validate([
             'lawtype' => 'required',
             'lawcategory' => 'required',
-            'lawno' => 'required|unique:laws|max:255',
+            'lawno' => 'required|unique:laws',
             'lawyear' => 'required',
             'lawrelation' => 'required',
         ]);
@@ -51,19 +51,12 @@ class LawsController extends Controller
 
 //          $path = Storage::putFis le('public/files', $request->file('lawfile'),'public');
             $lawId->lawfile = $fileNmaeToStore;
-            $lawId->save();
-            return redirect()->route('addArticle', ['lawNo'=>$lawId->lawno,'lawSlug'=>$lawId->slug])->with([
-              'type'=> 'success',
-              'message' => 'تم إضافة القانون بنجاح'
-            ]);
-        } else {
 
-            return redirect()->route('addArticle', ['lawNo'=>$lawId->lawno,'lawSlug'=>$lawId->slug])->with([
-              'type'=> 'success',
-              'message' => 'تم إضافة القانون بنجاح'
-            ]);
         }
 
+        $lawId->save();
+        return redirect()
+        ->route('getLaws')->with('laws',Law::latest()->paginate(10));
     }
 
     // return view to create / add new law
@@ -82,24 +75,22 @@ class LawsController extends Controller
       $request->validate([
           'lawtype' => 'required',
           'lawcategory' => 'required',
-          'lawno' => 'required|unique:laws|max:255',
+          'lawno' => 'required',
           'lawyear' => 'required',
           'lawrelation' => 'required',
       ]);
 
       $lawID->lawtype = $request['lawtype'];
-      $lawID->lawcategory = $request['lawtype'];
-      $lawID->lawno = $request['lawtype'];
-      $lawID->lawyear = $request['lawtype'];
-      $lawID->lawrelation = $request['lawtype'];
+      $lawID->lawcategory = $request['lawcategory'];
+      $lawID->lawno = $request['lawno'];
+      $lawID->lawyear = $request['lawyear'];
+      $lawID->lawrelation = $request['lawrelation'];
+
 
       if (request()->hasFile('lawfile')) {
 
-        if ($request->file('lawfile')->getClientOriginalExtension() != $lawID->lawfile) {
-          // move old file before adding new one
-          Storage::move(('public/Law_PDF/'.$lawID->lawfile), ('public/files/'
-              .$lawID->lawfile);
-
+        if (($request->file('lawfile')->getClientOriginalExtension()) != $lawID->lawfile) {
+          Storage::move(('public/Law_PDF/'.$lawID->lawfile),('public/files/'.$lawID->lawfile));
           // adding the new file
           $covernamewithEXT=$request->file('lawfile')->getClientOriginalName();
           // get just the file name
@@ -107,23 +98,16 @@ class LawsController extends Controller
           // get just the extention
           $extention=$request->file('lawfile')->getClientOriginalExtension();
           // file to store
-          $fileNmaeToStore= $lawId->slug.'_'.time().'.'.$extention;
+          $fileNmaeToStore= $lawID->lawno.'_'.time().'.'.$extention;
           // upload image
           $path=$request->file('lawfile')->storeAs('public/Law_PDF',$fileNmaeToStore);
           $lawID->lawfile = $fileNmaeToStore;
-          $lawID->save();
-          return redirect()->route('getLaws')->with([
-            'type'=> 'success',
-            'message' => 'تم إضافة القانون بنجاح'
-          ]);
-        } else {
 
-          $lawID->save();
-          return redirect()->route('getLaws')->with([
-            'type'=> 'success',
-            'message' => 'تم إضافة القانون بنجاح'
-          ]);
         }
+
+      }
+      $lawID->save();
+      return redirect()->route('getLaws')->with('laws',Law::latest()->paginate(10));
 
     }
 
