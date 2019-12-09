@@ -103,7 +103,7 @@
                 @foreach ($files as $fileName)
                    <label>
                      <input type="radio"
-                      onclick = "openPdf({{json_encode($fileName)}})" name="judgmentfile" id="judgmentfile" value="{{$fileName}}">
+                      onclick = "openPdf({{json_encode($fileName)}})" name="judgmentfile" id="judgmentfile" value="{{$fileName}}" required>
                       {{$fileName}}
                     </label>
                 @endforeach

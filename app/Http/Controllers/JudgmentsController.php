@@ -70,7 +70,7 @@ class JudgmentsController extends Controller
 
     public function saveLastInput(Request $request,judgments $lastJudgment)
     {
-      return $lastJudgment;
+      return $request;
     }
 
     public function getalljudgments()
