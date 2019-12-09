@@ -12,7 +12,15 @@
   <link rel="stylesheet" href="{{asset('lawSystem/assets/css/select2.min.css')}}" />
   <link rel="stylesheet" href="{{asset('lawSystem/assets/css/icons.css')}}" />
   <link rel="stylesheet" href="{{asset('lawSystem/assets/css/jquery.toast.css')}}" />
-</head>
+<style>
+.table-right td
+{
+  text-align: center;
+}
+.general_btn {
+  margin-right: -4px;
+}
+</style>
 
 @endsection
 
@@ -88,13 +96,12 @@
                                 <a href="#" class="btn general_btn btn_1"
                                   >
                                    إضافة مبادئ
-                                  <img src="{{asset('lawSystem/assets/images/plus.svg')}}" alt="">
-
+                                <img src="{{asset('lawSystem/assets/images/plus.svg')}}" width="20px" height="20px">
                                 </a>
                               </td>
                               <td>
 
-                                <a href="#"
+                                <a href="#" class="btn general_btn btn_1"
                                   >
                                   تعديل
                                   <img src="{{asset('lawSystem/assets/images/edit.svg')}}" alt="">
@@ -106,8 +113,11 @@
 
                                   @csrf
                                   @method('DELETE')
-                                  <button type="submit" class="btn general_btn btn_1"
-                                  onclick="return confirm(();" name="submit">
+                                  <button type="submit"
+                                  onclick="return confirm(();" name="submit"
+                                  class="btn general_btn btn_1"
+                                  style="height:28px;"
+                                  >
                                   حذف
                                   <img src="{{asset('lawSystem/assets/images/times.svg')}}">
                                 </button>

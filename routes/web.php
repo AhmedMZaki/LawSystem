@@ -16,7 +16,7 @@ Route::post('/laws/{lawID}/SaveLawArticle','LawsController@SaveLawArticle')->nam
 ////////////////////////////////////////////
 Route::get('/judgments','JudgmentsController@index')->name('getJudgments');
 Route::get('/judgments/create','JudgmentsController@create')->name('addJudgments');
-Route::get('/judgments/store','JudgmentsController@store')->name('saveJudgments');
+Route::post('/judgments/store','JudgmentsController@store')->name('saveJudgments');
 
 ////////////////////////////////////////
 

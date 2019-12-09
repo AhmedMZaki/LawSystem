@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use App\judgments;
 use Storage;
+use Session;
 class JudgmentsController extends Controller
 {
   public function index()
@@ -22,6 +23,7 @@ class JudgmentsController extends Controller
 
     public function store(Request $request)
     {
+
         $request->validate([
             'judgmentfile' => 'required',
             'judgmentcategory' => 'required',
@@ -42,23 +44,17 @@ class JudgmentsController extends Controller
 
         if ($Judgment)
         {
-            $suuccess = Storage::move(('public/files/'.$request['judgmentfile']), ('public/Finished_Judgments/'
+            $suuccess = Storage::move(('public/unfinished_judgments/'.$request['judgmentfile']), ('public/Finished_Judgments/'
                 .$request['judgmentfile']));
             if ($suuccess)
             {
-                return redirect()->back();
-//            return response()->json([
-//                "message" => "ok chack your file directory"
-//            ]);
-            } else {
-                return redirect()->back();
+            session()->flash('message','ok i am done there');
+                return back();
+
             }
-
-
         } else {
-            return response()->json([
-                "message" => "error"
-            ]);
+            session()->flash('message','error i am not done');
+            return back();
         }
 
     }

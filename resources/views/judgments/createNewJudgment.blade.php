@@ -12,9 +12,11 @@
   <link rel="stylesheet" href="{{asset('lawSystem/assets/css/select2.min.css')}}" />
   <link rel="stylesheet" href="{{asset('lawSystem/assets/css/icons.css')}}" />
   <link rel="stylesheet" href="{{asset('lawSystem/assets/css/jquery.toast.css')}}" />
+
 @endsection
 
 @section('content')
+
   <!-- start content-wrapper -->
       <div class="content-wrapper">
        <div class="main_content">
@@ -41,7 +43,7 @@
            <div class="col-lg-12 tbl-new-brdr">
              <div class="panel panel-default no-brdr">
 
-                 <form action="{{route('saveJudgments')}}" method="post" enctype="multipart/form-data">
+                 <form action="{{route('saveJudgments')}}" method="POST" enctype="multipart/form-data">
                    @csrf
                      <div class="col-md-6 float-right">
                          <div class="form-row">
@@ -74,15 +76,19 @@
 
                        <div class="form-group col-md-4">
                          <label> عدد المبادئ <span class="redstar">*</span></label>
-                         <input type="text" class="form-control" id="notes" name="notes">
+                         <input type="text" class="form-control" id="notes" name="notes" />
                        </div>
                      </div>
-                     <button type="submit" data-dismiss="modal" class="btn general_btn btn_1">حفظ</button>
-                     <form>
-                       <button type="submit" class="btn general_btn btn_1">
-                         تعديل الإدخال الأخير
-                       </button>
-                     </form>
+                     @if ($files)
+                       <button type="submit" data-dismiss="modal" class="btn general_btn btn_1">حفظ</button>
+
+                         <button type="submit" class="btn general_btn btn_1">
+                           تعديل الإدخال الأخير
+                         </button>
+                     @else
+                       <a href="{{route('getJudgments')}}" data-dismiss="modal" class="btn general_btn btn_1">العودة</a>
+                     @endif
+
                    </div>
 
                    <div class="col-md-6 float-right">
@@ -92,8 +98,8 @@
              <div class="radio">
                 @foreach ($files as $fileName)
                    <label>
-                     <input type="radio" name="pdf"
-                      onclick = "openPdf({{json_encode($fileName)}})">
+                     <input type="radio"
+                      onclick = "openPdf({{json_encode($fileName)}})" name="judgmentfile" id="judgmentfile" value="{{$fileName}}">
                       {{$fileName}}
                     </label>
                 @endforeach
@@ -141,3 +147,9 @@
   <script src="{{asset('lawSystem/assets/js/alertfunction.js')}}"></script>
   <scirp></scirp>
 @endsection
+
+@if(Session::has('message'))
+  <script>
+  toast({{Session::get('message')}},{{Session::get('type')}});
+  </script>
+@endif
