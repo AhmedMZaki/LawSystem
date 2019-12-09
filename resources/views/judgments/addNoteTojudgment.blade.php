@@ -73,7 +73,7 @@
                                   <label for="inputAddress">المواد المرتبطة</label>
 
                                   <select class="SelectWithSearch full-width" multiple="multiple"
-
+                                  onkeyup="" 
                                   >
                                       <option value="36">مادة 84 من قانون العقوبات بشأن تعديل القرار</option>
                                       <option value="45">مادة 84 من قانون الجنايات بشأن......</option>
