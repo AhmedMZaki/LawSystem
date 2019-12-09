@@ -91,7 +91,7 @@
                               <td>{{$judgment->year}}</td>
                               <td>{{$judgment->objectionNo}} </td>
                               <td>{{$judgment->notes}} </td>
-                                <td>{{$judgment->notes}} </td>
+                              <td>{{$judgment->incompletednotes}} </td>
                               <td>
                                 <a href="#" class="btn general_btn btn_1"
                                   >

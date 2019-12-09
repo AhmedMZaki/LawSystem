@@ -21,7 +21,7 @@ class CreateJudgmentsTable extends Migration
             $table->string('year');
             $table->string('judgmentFile');
             $table->integer('notes');
-            $table->integer('incompletednotes')->default(0);
+            $table->integer('incompletednotes');
             $table->timestamps();
         });
     }

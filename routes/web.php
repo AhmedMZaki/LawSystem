@@ -15,8 +15,10 @@ Route::post('/laws/{lawID}/SaveLawArticle','LawsController@SaveLawArticle')->nam
 
 ////////////////////////////////////////////
 Route::get('/judgments','JudgmentsController@index')->name('getJudgments');
-Route::get('/judgments/create','JudgmentsController@create')->name('addJudgments');
+Route::get('/judgments/create/{lastJudgment?}','JudgmentsController@create')->name('addJudgments');
 Route::post('/judgments/store','JudgmentsController@store')->name('saveJudgments');
+Route::get('/judgments/{lastJudgment}/updateLastInput','JudgmentsController@updateLastInput')->name('updateLastInput');
+Route::get('/judgments/saveLastInput','JudgmentsController@saveLastInput')->name('saveLastInput');
 
 ////////////////////////////////////////
 

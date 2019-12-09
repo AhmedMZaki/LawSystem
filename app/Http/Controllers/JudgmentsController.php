@@ -15,10 +15,13 @@ class JudgmentsController extends Controller
     return view('judgments.index',compact('judgments'));
   }
 
-    public function create()
+    public function create($lastJudgment = null)
     {
         $files =JudgmentsController::readDirectory('/public/unfinished_judgments/');
-       return view('judgments.createNewJudgment')->with('files', $files);
+        if ($lastJudgment) {
+          $lastJudgment = judgments::find($lastJudgment);
+        }
+       return view('judgments.createNewJudgment')->with('files', $files)->with('lastJudgment',$lastJudgment);
     }
 
     public function store(Request $request)
@@ -33,31 +36,43 @@ class JudgmentsController extends Controller
             'notes' => 'required',
         ]);
 
-        $Judgment = judgments::create([
+        $lastJudgment = judgments::create([
             'judgmentcategory' => $request['judgmentcategory'],
             'judgmentfile' => $request['judgmentfile'],
             'judgmentDate' => $request['judgmentDate'],
             'year' => $request['year'],
             'objectionNo' => $request['objectionNo'],
             'notes' => $request['notes'],
+            'incompletednotes'=> $request['notes'],
         ]);
 
-        if ($Judgment)
+        if ($lastJudgment)
         {
             $suuccess = Storage::move(('public/unfinished_judgments/'.$request['judgmentfile']), ('public/Finished_Judgments/'
                 .$request['judgmentfile']));
             if ($suuccess)
             {
-            session()->flash('message','ok i am done there');
-                return back();
-
+                return redirect()->route('addJudgments',['lastJudgment'=>$lastJudgment->id]);
             }
         } else {
-            session()->flash('message','error i am not done');
-            return back();
+
+            return redirect()->route('addJudgments',['lastJudgment'=>$lastJudgment->id]);
         }
 
     }
+
+    public function updateLastInput(Request $request,$lastJudgment)
+    {
+      $judgment = judgments::find($lastJudgment);
+      $files =JudgmentsController::readDirectory('/public/unfinished_judgments/');
+      return view('judgments.updateLastInput',compact(['judgment','files']));
+    }
+
+    public function saveLastInput(Request $request,judgments $lastJudgment)
+    {
+      return $lastJudgment;
+    }
+
     public function getalljudgments()
     {
         $judgments =judgments::all();

@@ -81,12 +81,16 @@
                      </div>
                      @if ($files)
                        <button type="submit" data-dismiss="modal" class="btn general_btn btn_1">حفظ</button>
-
-                         <button type="submit" class="btn general_btn btn_1">
-                           تعديل الإدخال الأخير
-                         </button>
                      @else
                        <a href="{{route('getJudgments')}}" data-dismiss="modal" class="btn general_btn btn_1">العودة</a>
+                     @endif
+                     @if ($lastJudgment)
+                        <a href="{{route('updateLastInput',['lastJudgment'=>$lastJudgment])}}"
+                           class="btn general_btn btn_1"
+                        >
+                           تعديل الإدخال الأخير
+                        </a>
+
                      @endif
 
                    </div>
