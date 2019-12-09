@@ -112,11 +112,25 @@ class LawsController extends Controller
 
     }
 
+    public function destory(Law $lawID)
+    {
+      // $LawID->lawArticles->delete();
+      //   $LawID->delete();
+      return back();
+    }
     public function searchArticle()
     {
       return view('searchArticle');
     }
 
+    public function AddArticles(Request $request,Law $lawID)
+    {
+      return back();
+    }
+    public function SaveLawArticle(Request $request,Law $lawID)
+    {
+      return back();
+    }
       public function getsearchArticle(Request $request,$articleNo)
       {
         $formatedData = [];

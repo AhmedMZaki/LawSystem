@@ -92,7 +92,7 @@
                             <td>
                               <a href="{{route('addArticle',[
                                 'lawNo'=>$law->lawno,
-                                'lawSlug'=>$law->slug 
+                                'lawSlug'=>$law->slug
                                 ])}}" class="btn general_btn btn_1"
                               title="إضافة مواد إلي القانون {{$law->lawno}}"
                                 >
@@ -102,6 +102,7 @@
                               </a>
                             </td>
                             <td>
+
                               <a href="{{route('editLaw',['lawID'=>$law])}}" class="btn general_btn btn_1"
                                 title="تعديل القانون رقم {{$law->lawno}}"
                                 >
@@ -111,13 +112,17 @@
                               </a>
                             </td>
                             <td>
-                              <a href="#" class="btn general_btn btn_1"
-                              onclick="return confirm('هل انت متأكد من انك تريد حذف هذا القانون');"
-                                >
-                                حذف
-                                <img src="{{asset('lawSystem/assets/images/times.svg')}}" alt="">
+                              <form  action="{{route('delteLaw',['lawID'=>$law])}}" method="post" >
 
-                              </a>
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn general_btn btn_1"
+                                onclick="return confirm('هل انت متأكد من انك تريد حذف هذا القانون');" name="submit">
+                                حذف
+                                <img src="{{asset('lawSystem/assets/images/times.svg')}}">
+                              </button>
+                              </form>
+
                             </td>
                           </tr>
                         @endforeach

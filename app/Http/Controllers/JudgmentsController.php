@@ -8,17 +8,16 @@ use App\judgments;
 use Storage;
 class JudgmentsController extends Controller
 {
-//    public function __construct()
-//    {
-//        $this->middleware('auth');
-//    }
+  public function index()
+  {
+    $judgments = judgments::latest()->paginate(10);
+    return view('judgments.index',compact('judgments'));
+  }
 
     public function create()
     {
-
-        $files =JudgmentsController::readDirectory('/public/files/');
-
-       return view('laws.addJudgments')->with('files', $files);
+        $files =JudgmentsController::readDirectory('/public/unfinished_judgments/');
+       return view('judgments.createNewJudgment')->with('files', $files);
     }
 
     public function store(Request $request)

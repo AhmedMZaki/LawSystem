@@ -2,19 +2,27 @@
 
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','LawsController@index');
  // law Rotes
 Route::get('/laws','LawsController@index')->name('getLaws');
 Route::get('/laws/create','LawsController@create')->name('addNewLaw');
 Route::post('/laws/store','LawsController@store')->name('saveLaw');
 Route::get('/laws/{lawID}/edit','LawsController@edit')->name('editLaw');
 Route::patch('/laws/{lawID}/update','LawsController@update')->name('updateLaw');
+Route::delete('/law/delete/{lawID}','LawsController@destory')->name('delteLaw');
+Route::get('/laws/{lawID}/addArticles','LawsController@AddArticles')->name('addArticle');
+Route::post('/laws/{lawID}/SaveLawArticle','LawsController@SaveLawArticle')->name('SaveLawArticle');
 
+////////////////////////////////////////////
+Route::get('/judgments','JudgmentsController@index')->name('getJudgments');
+Route::get('/judgments/create','JudgmentsController@create')->name('addJudgments');
+Route::get('/judgments/store','JudgmentsController@store')->name('saveJudgments');
 
+////////////////////////////////////////
 
-Route::get('/law/addLawArticles/{lawNo}/{lawSlug}','LawArticlesController@addLawArticlesForm')->name('addArticle');
+// Route::get('/laws','LawsController@index')->name('getLaws');
+
+// Route::get('/law/addLawArticles/{lawNo}/{lawSlug}','LawArticlesController@addLawArticlesForm')->name('addArticle');
 // Route::post('/law/addLawArticles/store/{lawid}','LawArticlesController@store')->name('SaveArticle');
 //
 // Route::get('judgments/getalljudgments','JudgmentsController@getalljudgments')->name('getalljudgments');
