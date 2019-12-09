@@ -81,9 +81,10 @@ class JudgmentsController extends Controller
 
 
 
-    public function addnotes(Request $request,judgments $judgmentid)
+    public function addNote(Request $request,$judgmentID)
     {
-        return view('laws.addnotestojudgment',compact('judgmentid'));
+        $files =JudgmentsController::readDirectory('/public/unFinished_Notes/');
+        return view('judgments.addNoteTojudgment',compact(['judgmentID','files']));
     }
 
 
