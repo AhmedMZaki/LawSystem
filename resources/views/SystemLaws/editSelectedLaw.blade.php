@@ -43,7 +43,7 @@
 
                         <form method="post" action="{{route('updateLaw',['lawID'=>$lawID->id])}}"  enctype="multipart/form-data">
                           @csrf
-                          {{method_field('PATCH')}}
+                          @method('PATCH')
                         <div id="errors">
                             <div class="form-group">
                                 @if (count($errors))

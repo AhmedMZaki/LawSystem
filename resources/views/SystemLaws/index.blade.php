@@ -61,7 +61,9 @@
                         <th class="w_170 text-center">رقم القانون</th>
                         <th class="w_200 text-center">سنة الاصدار</th>
                         <th class="w_70 text-center">بشأن</th>
+                        <th class="w_70 text-center">إضافة مواد</th>
                         <th class="w_70 text-center">تعديل</th>
+                        <th class="w_70 text-center">حذف</th>
                       </tr>
                     </thead>
                     <tfoot>
@@ -72,7 +74,9 @@
                             <th><input id="Name2" class="form-control" type="text" placeholder="رقم القانون" /></th>
                            <th><input id="Name2" class="form-control" type="text" placeholder="سنة الاصدار" /></th>
                             <th><input id="Name2" class="form-control" type="text" placeholder="بشأن" /></th>
-                            <th>###########</th>
+                            <th><input disabled id="Name2" class="form-control" type="text" placeholder="إضافة مواد" /></th>
+                            <th><input disabled id="Name2" class="form-control" type="text" placeholder="تعديل" /></th>
+                            <th><input disabled id="Name2" class="form-control" type="text" placeholder="حذف" /></th>
                           </tr>
                     </tfoot>
                     <tbody>
@@ -86,22 +90,37 @@
                             <td>{{$law->lawyear}} </td>
                             <td>{{$law->lawrelation}} </td>
                             <td>
-                              <a href="{{route('editLaw',['lawID'=>$law->id])}}" class="btn general_btn btn_1"
+                              <a href="{{route('addArticle',[
+                                'lawNo'=>$law->lawno,
+                                'lawSlug'=>$law->slug 
+                                ])}}" class="btn general_btn btn_1"
+                              title="إضافة مواد إلي القانون {{$law->lawno}}"
+                                >
+                                إضافة مادة
+                                <img src="{{asset('lawSystem/assets/images/plus.svg')}}" alt="">
+
+                              </a>
+                            </td>
+                            <td>
+                              <a href="{{route('editLaw',['lawID'=>$law])}}" class="btn general_btn btn_1"
                                 title="تعديل القانون رقم {{$law->lawno}}"
                                 >
                                 تعديل
-                                <img src="{{asset('lawSystem/assets/images/cogs.svg')}}" alt="">
+                                <img src="{{asset('lawSystem/assets/images/edit.svg')}}" alt="">
+
+                              </a>
+                            </td>
+                            <td>
+                              <a href="#" class="btn general_btn btn_1"
+                              onclick="return confirm('هل انت متأكد من انك تريد حذف هذا القانون');"
+                                >
+                                حذف
+                                <img src="{{asset('lawSystem/assets/images/times.svg')}}" alt="">
 
                               </a>
                             </td>
                           </tr>
                         @endforeach
-                      @else
-                        <h3>
-                          <strong>
-                            لا توجد قوانين الأن
-                        </strong>
-                      </h3>
                       @endif
                     </tbody>
                   </table>

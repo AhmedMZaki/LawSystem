@@ -5,6 +5,7 @@
       <ul class="main-menu">
         <li><a href="index.html">الرئيسية</a></li>
         <li><a href="{{route('getLaws')}}" class="active">القوانين</a></li>
+        <li><a href="#" class="active">الأحكام</a></li>
       </ul>
     </div>
     <a href="#menu" id="toggle" class="d-block d-lg-none"><span></span></a>

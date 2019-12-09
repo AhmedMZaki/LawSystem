@@ -61,10 +61,11 @@
                           <label>النوع<span class="redstar">*</span></label>
 
                           <select name="lawtype" id="lawtype" dir="rtl" class="SelectRemovedSearch" required>
+                            <option selected>....</option>
                               <option dir="rtl" value="قانون">قانون</option>
                               <option dir="rtl" value="مرسوم">مرسوم</option>
-                              <option dir="rtl" value="مرسوم">مرسوم</option>
-                              <option selected>....</option>
+                              <option dir="rtl" value="مقترح"> مقترح</option>
+
 
                             </select>
                         </div>
@@ -72,10 +73,11 @@
                           <label>التصنيف</label>
 
                           <select name="lawcategory" id="lawcategory" dir="rtl"  class="SelectWithSearch" required>
+                            <option selected>....</option>
                               <option dir="rtl" value="دستوري">دستوري</option>
                               <option dir="rtl" value="جنائي">جنائي</option>
                               <option dir="rtl" value="احوال">احوال</option>
-                              <option selected>....</option>
+
                             </select>
                         </div>
 

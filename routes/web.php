@@ -13,8 +13,8 @@ Route::get('/laws/{lawID}/edit','LawsController@edit')->name('editLaw');
 Route::patch('/laws/{lawID}/update','LawsController@update')->name('updateLaw');
 
 
-// //
-// Route::get('/law/addLawArticles/{lawNo}/{lawSlug}','LawArticlesController@addLawArticlesForm')->name('addArticle');
+
+Route::get('/law/addLawArticles/{lawNo}/{lawSlug}','LawArticlesController@addLawArticlesForm')->name('addArticle');
 // Route::post('/law/addLawArticles/store/{lawid}','LawArticlesController@store')->name('SaveArticle');
 //
 // Route::get('judgments/getalljudgments','JudgmentsController@getalljudgments')->name('getalljudgments');
@@ -34,3 +34,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 //
 // Route::get('/searchArticle','LawsController@searchArticle');
 // Route::get('/searchArticle/{articleNo}','LawsController@getsearchArticle')->name('getsearchArticle');
+Route::get('/asd',function(){
+  echo phpinfo();
+});
+Route::middleware(['auth'])->prefix('admin')->group(function () {
+
+
+
+  });

@@ -45,11 +45,9 @@ class LawsController extends Controller
             // get just the extention
             $extention=$request->file('lawfile')->getClientOriginalExtension();
             // file to store
-            $fileNmaeToStore= $lawId->slug.'_'.time().'.'.$extention;
+            $fileNmaeToStore= $lawId->lawno.'_'.time().'.'.$extention;
             // upload image
             $path=$request->file('lawfile')->storeAs('public/Law_PDF',$fileNmaeToStore);
-
-//          $path = Storage::putFis le('public/files', $request->file('lawfile'),'public');
             $lawId->lawfile = $fileNmaeToStore;
 
         }
@@ -70,7 +68,7 @@ class LawsController extends Controller
       return view('SystemLaws.editSelectedLaw',compact('lawID'));
     }
 
-    public function update(Request $request,$lawID)
+    public function update(Request $request,Law $lawID)
     {
       $request->validate([
           'lawtype' => 'required',
@@ -79,19 +77,22 @@ class LawsController extends Controller
           'lawyear' => 'required',
           'lawrelation' => 'required',
       ]);
-      $lawID = Law::find($lawID);
+
       $lawID->lawtype = $request['lawtype'];
       $lawID->lawcategory = $request['lawcategory'];
       $lawID->lawno = $request['lawno'];
       $lawID->lawyear = $request['lawyear'];
       $lawID->lawrelation = $request['lawrelation'];
-
+      $lawID->slug = LawsController::make_slug($request['lawrelation']);
 
       if (request()->hasFile('lawfile')) {
 
-        if (($request->file('lawfile')->getClientOriginalExtension()) != $lawID->lawfile) {
-          Storage::move(('public/Law_PDF/'.$lawID->lawfile), ('public/files/'.$lawID->lawfile));
-        }
+        if (($request->file('lawfile')->getClientOriginalExtension()) == $lawID->lawfile) {
+          $lawID->save();
+          return redirect()->route('getLaws')->with('laws',Law::latest()->paginate(10));
+        } else {
+
+        Storage::move(('public/Law_PDF/'.$lawID->lawfile), ('public/files/'.$lawID->lawfile));
           // adding the new file
           $covernamewithEXT=$request->file('lawfile')->getClientOriginalName();
           // get just the file name
@@ -103,10 +104,11 @@ class LawsController extends Controller
           // upload image
           $path=$request->file('lawfile')->storeAs('public/Law_PDF',$fileNmaeToStore);
           $lawID->lawfile = $fileNmaeToStore;
+          $lawID->save();
+          return redirect()->route('getLaws')->with('laws',Law::latest()->paginate(10));
+         }
       }
 
-      $lawID->save();
-      return redirect()->route('getLaws')->with('laws',Law::latest()->paginate(10));
 
     }
 
