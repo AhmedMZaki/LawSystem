@@ -69,17 +69,18 @@
                                 ></textarea>
                               </div>
 
-                              <div class="form-group">
+                              <div class="form-group" id="">
                                   <label for="inputAddress">المواد المرتبطة</label>
 
                                   <select class="SelectWithSearch full-width" multiple="multiple"
-                                  onkeyup="" 
+                                  onkeyup=""
                                   >
                                       <option value="36">مادة 84 من قانون العقوبات بشأن تعديل القرار</option>
                                       <option value="45">مادة 84 من قانون الجنايات بشأن......</option>
                                       <option value="66">مادة 84 من القانون التجاري بشأن........</option>
                                       <option value="44">مادة 84 من القانون المدني بشأن........</option>
                                     </select>
+
 
                                 </div>
 
@@ -148,5 +149,48 @@
   <script src="{{asset('lawSystem/assets/js/users.js')}}"></script>
   <script src="{{asset('lawSystem/assets/js/alertfunction.js')}}"></script>
   <scirp></scirp>
+  <script>
+      const judgmentNotes =  new Vue({
+          el:'#formaction',
+          data:{
+              judgmentID:'',
+              judgshort:'',
+              judgrule:'',
+              lawArticles:[],
+          },
+          methods:{
+              SaveData:function (judgment_id) {
+                  this.judgmentID = judgment_id;
+                  let selected = new Array();
+                  $("input:checkbox[name=lawarticles]:checked").each(function(){
+                      selected.push($(this).val());
+                  });
+                  this.lawArticles = selected;
+
+                  axios.post('/judgments/saveNotes/store', {
+                      judgment_id:judgment_id,
+                      judgrule:this.judgrule,
+                      judgshort:this.judgshort,
+                      lawarticles:this.lawArticles,
+                  }).then(function (response) {
+                          console.log(response.data);
+                  });
+                  this.judgshort="";
+                  this.judgrule="";
+
+              }
+          },
+          computed:{
+
+          },
+          created(){
+
+          },
+          mounted(){
+              axios.defaults.headers.common['X-CSRF-TOKEN']
+                  = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+          }
+      });
+  </script>
 </body>
 @endsection
