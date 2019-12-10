@@ -1,21 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a8d258fe-d854-4b40-9cad-d289fdc0ff78" name="Default Changelist" comment="this new">
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/root.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vagrant.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/test11.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/test11.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/JudgmentsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/JudgmentsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LawsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LawsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/SystemLaws/createNewLaw.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/SystemLaws/createNewLaw.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/SystemLaws/editSelectedLaw.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/SystemLaws/editSelectedLaw.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/SystemLaws/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/SystemLaws/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/judgments/addNoteTojudgment.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/judgments/addNoteTojudgment.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/judgments/createNewJudgment.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/judgments/createNewJudgment.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/judgments/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/judgments/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/judgments/updateLastInput.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/judgments/updateLastInput.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+    <list default="true" id="a8d258fe-d854-4b40-9cad-d289fdc0ff78" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/app/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/script.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -171,8 +158,15 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="jsx.switch.disabled" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="node.js.detected.package.stylelint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.stylelint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.stylelint" value="" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
@@ -277,7 +271,16 @@
       <workItem from="1576003004215" duration="45000" />
       <workItem from="1576003274536" duration="1294000" />
       <workItem from="1576004670423" duration="669000" />
+      <workItem from="1576005378385" duration="173000" />
     </task>
+    <task id="LOCAL-00001" summary="this new">
+      <created>1576005457419</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1576005457419</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -289,6 +292,31 @@
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
+        <entry key="1">
+          <value>
+            <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="structure">
+                    <value>
+                      <list>
+                        <option value="dir:/opt/lampp/htdocs/test11/app/Http/Controllers" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
         <entry key="MAIN">
           <value>
             <State>
@@ -298,11 +326,20 @@
         </entry>
       </map>
     </option>
+    <option name="OPEN_TABS">
+      <set>
+        <option value="1" />
+      </set>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
     <option name="MAXIMUM_HISTORY_ROWS" value="1900" />
     <MESSAGE value="this new" />
     <option name="LAST_COMMIT_MESSAGE" value="this new" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="298" y="58" width="800" height="677" key="#Notifications" timestamp="1575960910362">
