@@ -45,16 +45,21 @@ class LawsController extends Controller
             // get just the extention
             $extention=$request->file('lawfile')->getClientOriginalExtension();
             // file to store
-            $fileNmaeToStore= $lawId->lawno.'_'.time().'.'.$extention;
-            // upload image
-            $path=$request->file('lawfile')->storeAs('public/Law_PDF',$fileNmaeToStore);
-            $lawId->lawfile = $fileNmaeToStore;
-
-        }
-
-        $lawId->save();
+            $fileNmaeToStore= $lawId->lawno.'.'.$extention;
+            // upload file
+            if(!Storage::exists('public/Law_PDF/'.$covernamewithEXT))
+            {
+              $path = Storage::move('public/files/'.$covernamewithEXT,'public/Law_PDF/'.$fileNmaeToStore);
+              $lawId->lawfile = $fileNmaeToStore;
+              $lawId->save();
         return redirect()
         ->route('getLaws')->with('laws',Law::latest()->paginate(10));
+            } else {
+              return back();
+            }
+        }
+
+        
     }
 
     // return view to create / add new law

@@ -1,7 +1,7 @@
 <?php
 
 
-
+use Storage;
 Route::get('/','LawsController@index');
  // law Rotes
 Route::get('/laws','LawsController@index')->name('getLaws');
@@ -43,9 +43,11 @@ Route::get('/judgments/getArticles/{articleNo}','JudgmentsController@getLawArtic
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-//
-// Route::get('/searchArticle','LawsController@searchArticle');
-// Route::get('/searchArticle/{articleNo}','LawsController@getsearchArticle')->name('getsearchArticle');
+
+Route::get('/asd',function(){
+  $asd = Storage::exists('public/Law_PDF/asd.txt');
+  return response()->json($asd);
+});
 
 Route::middleware(['auth'])->prefix('admin')->group(function () {
 
