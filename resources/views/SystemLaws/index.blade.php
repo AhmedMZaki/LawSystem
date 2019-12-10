@@ -56,14 +56,15 @@
                     <thead>
                       <tr>
                         <th class="w_40 pr-2">م</th>
-                        <th class="w_170 text-center">النوع</th>
-                        <th class="w_170 text-center">التصنيف</th>
-                        <th class="w_170 text-center">رقم القانون</th>
-                        <th class="w_200 text-center">سنة الاصدار</th>
-                        <th class="w_70 text-center">بشأن</th>
+                        <th class="w_120 text-center">النوع</th>
+                        <th class="w_100 text-center">التصنيف</th>
+                        <th class="w_100 text-center">رقم القانون</th>
+                        <th class="w_80 text-center">سنة الاصدار</th>
+                        <th class="w_159 text-center">بشأن</th>
                         <th class="w_70 text-center">إضافة مواد</th>
+                        <th class="w_80 text-center"> عرض المواد </th>
                         <th class="w_70 text-center">تعديل</th>
-                        <th class="w_70 text-center">حذف</th>
+                        <th class="w_70 text-center">الحالة</th>
                       </tr>
                     </thead>
                     <tfoot>
@@ -75,8 +76,9 @@
                            <th><input id="Name2" class="form-control" type="text" placeholder="سنة الاصدار" /></th>
                             <th><input id="Name2" class="form-control" type="text" placeholder="بشأن" /></th>
                             <th><input disabled id="Name2" class="form-control" type="text" placeholder="إضافة مواد" /></th>
+                            <th><input disabled id="Name2" class="form-control" type="text" placeholder="عرض المواد" /></th>
                             <th><input disabled id="Name2" class="form-control" type="text" placeholder="تعديل" /></th>
-                            <th><input disabled id="Name2" class="form-control" type="text" placeholder="حذف" /></th>
+                            <th><input disabled id="Name2" class="form-control" type="text" placeholder="الحالة" /></th>
                           </tr>
                     </tfoot>
                     <tbody>
@@ -90,15 +92,20 @@
                             <td>{{$law->lawyear}} </td>
                             <td>{{$law->lawrelation}} </td>
                             <td>
-                              <a href="{{route('addArticle',[
-                                'lawNo'=>$law->lawno,
-                                'lawSlug'=>$law->slug
-                                ])}}" class="btn general_btn btn_1"
+                              <a href="{{route('addArticle',['lawID'=>$law])}}" class="btn general_btn btn_1"
                               title="إضافة مواد إلي القانون {{$law->lawno}}"
                                 >
                                 إضافة مادة
                                 <img src="{{asset('lawSystem/assets/images/plus.svg')}}" alt="">
 
+                              </a>
+                            </td>
+                            <td>
+                              <a href="#" class="btn general_btn btn_1"
+                              
+                                >
+                                عرض المواد
+                            
                               </a>
                             </td>
                             <td>
@@ -116,9 +123,9 @@
 
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn general_btn btn_1"
+                                <button type="submit" class="btn general_btn btn_1" style="height: 26px;"
                                 onclick="return confirm('هل انت متأكد من انك تريد حذف هذا القانون');" name="submit">
-                                حذف
+                                تعطيل
                                 <img src="{{asset('lawSystem/assets/images/times.svg')}}">
                               </button>
                               </form>

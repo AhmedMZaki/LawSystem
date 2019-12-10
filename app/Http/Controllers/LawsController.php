@@ -52,8 +52,7 @@ class LawsController extends Controller
               $path = Storage::move('public/files/'.$covernamewithEXT,'public/Law_PDF/'.$fileNmaeToStore);
               $lawId->lawfile = $fileNmaeToStore;
               $lawId->save();
-        return redirect()
-        ->route('getLaws')->with('laws',Law::latest()->paginate(10));
+        return redirect()->route('addArticle',['lawID'=>$lawId]);
             } else {
               return back();
             }
@@ -121,8 +120,8 @@ class LawsController extends Controller
 
     public function destory(Law $lawID)
     {
-      // $LawID->lawArticles->delete();
-      //   $LawID->delete();
+      $LawID->lawArticles->delete();
+        $LawID->delete();
       return back();
     }
     public function searchArticle()
@@ -132,7 +131,7 @@ class LawsController extends Controller
 
     public function AddArticles(Request $request,Law $lawID)
     {
-      return back();
+      return "إضافة مادة إلي القانون رقم  {$lawID->id}";
     }
 
     public function SaveLawArticle(Request $request,Law $lawID)
