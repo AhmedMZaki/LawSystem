@@ -14,6 +14,7 @@ var addArcticle = new Vue({
         errors:{},
     },
 
+
     methods:{
         SaveData:function (id) {
             this.lawid = id;
