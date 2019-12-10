@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a8d258fe-d854-4b40-9cad-d289fdc0ff78" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/script.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -57,6 +56,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="e5cb95a1-4ba1-41db-8e63-654f052a6f71" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -272,7 +274,7 @@
       <workItem from="1576003004215" duration="45000" />
       <workItem from="1576003274536" duration="1294000" />
       <workItem from="1576004670423" duration="669000" />
-      <workItem from="1576005378385" duration="594000" />
+      <workItem from="1576005378385" duration="736000" />
     </task>
     <task id="LOCAL-00001" summary="this new">
       <created>1576005457419</created>
@@ -288,7 +290,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576005571246</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="this new">
+      <created>1576006039862</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1576006039862</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
