@@ -122,12 +122,17 @@
                             </div>
                           </div>
                           <div class="form-row">
-                            <div class="form-group col-md-6">
+                          <div class="form-group col-md-4" id="changefile">
+                          <label>
+                          <input type="radio"  onclick="document.getElementById('lawfilesection').style.display='block';document.getElementById('changefile').style.display='none';" />
+                           تغيير مستند القانون </label>
+                          </div>
+                            <div class="form-group col-md-6" style="display:none" id="lawfilesection">
 
                                 <label>مستند القانون</label>
 
 
-                                <div class="uploader">
+                                <div class="uploader"  >
                                     <span class="file-name" id="file-name">لم يتم ارفاق اي ملف</span>
                                     <input type="file" id="lawfile" name="lawfile" accept="application/pdf">
                                     <span class="upload-file btn btn-secondary">ارفق ملف</span>

@@ -92,12 +92,12 @@ class LawsController extends Controller
 
       if (request()->hasFile('lawfile')) {
 
-        if (($request->file('lawfile')->getClientOriginalExtension()) == $lawID->lawfile) {
+        if(Storage::exists('public/Law_PDF/'.$request->file('lawfile')->getClientOriginalExtension()))
+        {
           $lawID->save();
           return redirect()->route('getLaws')->with('laws',Law::latest()->paginate(10));
         } else {
-
-        Storage::move(('public/Law_PDF/'.$lawID->lawfile), ('public/files/'.$lawID->lawfile));
+          Storage::move(('public/Law_PDF/'.$lawID->lawfile), ('public/files/'.time().'_'.'old'.'_'.$lawID->lawfile));
           // adding the new file
           $covernamewithEXT=$request->file('lawfile')->getClientOriginalName();
           // get just the file name
@@ -105,17 +105,19 @@ class LawsController extends Controller
           // get just the extention
           $extention=$request->file('lawfile')->getClientOriginalExtension();
           // file to store
-          $fileNmaeToStore= $lawID->lawno.'_'.time().'.'.$extention;
-          // upload image
-          $path=$request->file('lawfile')->storeAs('public/Law_PDF',$fileNmaeToStore);
+          $fileNmaeToStore= $lawID->lawno.'.'.$extention;
+          // upload file
+          Storage::move(('public/files/'.$covernamewithEXT),('public/Law_PDF/'.$fileNmaeToStore));
+
           $lawID->lawfile = $fileNmaeToStore;
-          $lawID->save();
-          return redirect()->route('getLaws')->with('laws',Law::latest()->paginate(10));
+         
+        }
+         
          }
+         $lawID->save();
+         return redirect()->route('getLaws')->with('laws',Law::latest()->paginate(10));
       }
 
-
-    }
 
     public function destory(Law $lawID)
     {
