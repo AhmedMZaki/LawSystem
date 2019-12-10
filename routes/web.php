@@ -1,7 +1,6 @@
 <?php
 
 
-use Storage;
 Route::get('/','LawsController@index');
  // law Rotes
 Route::get('/laws','LawsController@index')->name('getLaws');

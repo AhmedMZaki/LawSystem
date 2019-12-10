@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 
 class LawsController extends Controller
 {
-  // index methos gets all laws to show them in index page
+    // index methos gets all laws to show them in index page
     public function index()
     {
         $laws = Law::latest()->paginate(10);
@@ -49,109 +49,108 @@ class LawsController extends Controller
             // upload file
             if(!Storage::exists('public/Law_PDF/'.$covernamewithEXT))
             {
-              $path = Storage::move('public/files/'.$covernamewithEXT,'public/Law_PDF/'.$fileNmaeToStore);
-              $lawId->lawfile = $fileNmaeToStore;
-              $lawId->save();
-        return redirect()->route('addArticle',['lawID'=>$lawId]);
+                $path = Storage::move('public/files/' . $covernamewithEXT, 'public/Law_PDF/' . $fileNmaeToStore);
+                $lawId->lawfile = $fileNmaeToStore;
+                $lawId->save();
+                return redirect()->route('addArticle', ['lawID' => $lawId]);
             } else {
-              return back();
+                return back();
             }
         }
 
-        
+
     }
 
     // return view to create / add new law
     public function create()
     {
-      return view('SystemLaws.createNewLaw');
+        return view('SystemLaws.createNewLaw');
     }
 
     public function edit(Law $lawID)
     {
-      return view('SystemLaws.editSelectedLaw',compact('lawID'));
+        return view('SystemLaws.editSelectedLaw', compact('lawID'));
     }
 
     public function update(Request $request,Law $lawID)
     {
-      $request->validate([
-          'lawtype' => 'required',
-          'lawcategory' => 'required',
-          'lawno' => 'required',
-          'lawyear' => 'required',
-          'lawrelation' => 'required',
-      ]);
+        $request->validate([
+            'lawtype' => 'required',
+            'lawcategory' => 'required',
+            'lawno' => 'required',
+            'lawyear' => 'required',
+            'lawrelation' => 'required',
+        ]);
 
-      $lawID->lawtype = $request['lawtype'];
-      $lawID->lawcategory = $request['lawcategory'];
-      $lawID->lawno = $request['lawno'];
-      $lawID->lawyear = $request['lawyear'];
-      $lawID->lawrelation = $request['lawrelation'];
-      $lawID->slug = LawsController::make_slug($request['lawrelation']);
+        $lawID->lawtype = $request['lawtype'];
+        $lawID->lawcategory = $request['lawcategory'];
+        $lawID->lawno = $request['lawno'];
+        $lawID->lawyear = $request['lawyear'];
+        $lawID->lawrelation = $request['lawrelation'];
+        $lawID->slug = LawsController::make_slug($request['lawrelation']);
 
-      if (request()->hasFile('lawfile')) {
+        if (request()->hasFile('lawfile')) {
 
-        if(Storage::exists('public/Law_PDF/'.$request->file('lawfile')->getClientOriginalExtension()))
-        {
-          $lawID->save();
-          return redirect()->route('getLaws')->with('laws',Law::latest()->paginate(10));
-        } else {
-          Storage::move(('public/Law_PDF/'.$lawID->lawfile), ('public/files/'.time().'_'.'old'.'_'.$lawID->lawfile));
-          // adding the new file
-          $covernamewithEXT=$request->file('lawfile')->getClientOriginalName();
-          // get just the file name
-          $filename=pathinfo($covernamewithEXT,PATHINFO_FILENAME);
-          // get just the extention
-          $extention=$request->file('lawfile')->getClientOriginalExtension();
-          // file to store
-          $fileNmaeToStore= $lawID->lawno.'.'.$extention;
-          // upload file
-          Storage::move(('public/files/'.$covernamewithEXT),('public/Law_PDF/'.$fileNmaeToStore));
+            if (Storage::exists('public/Law_PDF/' . $request->file('lawfile')->getClientOriginalExtension())) {
+                $lawID->save();
+                return redirect()->route('getLaws')->with('laws', Law::latest()->paginate(10));
+            } else {
+                Storage::move(('public/Law_PDF/' . $lawID->lawfile), ('public/files/' . time() . '_' . 'old' . '_' . $lawID->lawfile));
+                // adding the new file
+                $covernamewithEXT = $request->file('lawfile')->getClientOriginalName();
+                // get just the file name
+                $filename = pathinfo($covernamewithEXT, PATHINFO_FILENAME);
+                // get just the extention
+                $extention = $request->file('lawfile')->getClientOriginalExtension();
+                // file to store
+                $fileNmaeToStore = $lawID->lawno . '.' . $extention;
+                // upload file
+                Storage::move(('public/files/' . $covernamewithEXT), ('public/Law_PDF/' . $fileNmaeToStore));
 
-          $lawID->lawfile = $fileNmaeToStore;
-         
+                $lawID->lawfile = $fileNmaeToStore;
+
+            }
+
         }
-         
-         }
-         $lawID->save();
-         return redirect()->route('getLaws')->with('laws',Law::latest()->paginate(10));
-      }
+        $lawID->save();
+        return redirect()->route('getLaws')->with('laws', Law::latest()->paginate(10));
+    }
 
 
     public function destory(Law $lawID)
     {
-      $LawID->lawArticles->delete();
+        $LawID->lawArticles->delete();
         $LawID->delete();
-      return back();
+        return back();
     }
     public function searchArticle()
     {
-      return view('searchArticle');
+        return view('searchArticle');
     }
 
     public function AddArticles(Request $request,Law $lawID)
     {
-      return "إضافة مادة إلي القانون رقم  {$lawID->id}";
+        return "إضافة مادة إلي القانون رقم  {$lawID->id}";
     }
 
     public function SaveLawArticle(Request $request,Law $lawID)
     {
-      return back();
+        return back();
     }
-      
 
-      public static function make_slug($string, $separator = '-')
-      {
-          $string = trim($string);
-          $string = mb_strtolower($string, 'UTF-8');
 
-          $string = preg_replace("/[^a-z0-9_\s-۰۱۲۳۴۵۶۷۸۹ءاآؤئبپتثجچحخدذرزژسشصضطظعغفقکكگگلمنوهی]/u", '', $string);
+    public static function make_slug($string, $separator = '-')
+    {
+        $string = trim($string);
+        $string = mb_strtolower($string, 'UTF-8');
 
-          $string = preg_replace("/[\s-_]+/", ' ', $string);
+        $string = preg_replace("/[^a-z0-9_\s-۰۱۲۳۴۵۶۷۸۹ءاآؤئبپتثجچحخدذرزژسشصضطظعغفقکكگگلمنوهی]/u", '', $string);
 
-          $string = preg_replace("/[\s_]/", $separator, $string);
+        $string = preg_replace("/[\s-_]+/", ' ', $string);
 
-          return $string;
-      }
+        $string = preg_replace("/[\s_]/", $separator, $string);
+
+        return $string;
+    }
 
 }

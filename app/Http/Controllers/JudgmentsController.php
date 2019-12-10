@@ -11,19 +11,19 @@ use App\LawArticl;
 use DB;
 class JudgmentsController extends Controller
 {
-  public function index()
-  {
-    $judgments = judgments::latest()->paginate(10);
-    return view('judgments.index',compact('judgments'));
-  }
+    public function index()
+    {
+        $judgments = judgments::latest()->paginate(10);
+        return view('judgments.index', compact('judgments'));
+    }
 
     public function create($lastJudgment = null)
     {
         $files =JudgmentsController::readDirectory('/public/unfinished_judgments/');
         if ($lastJudgment) {
-          $lastJudgment = judgments::find($lastJudgment);
+            $lastJudgment = judgments::find($lastJudgment);
         }
-       return view('judgments.createNewJudgment')->with('files', $files)->with('lastJudgment',$lastJudgment);
+        return view('judgments.createNewJudgment')->with('files', $files)->with('lastJudgment', $lastJudgment);
     }
 
     public function store(Request $request)
@@ -65,14 +65,14 @@ class JudgmentsController extends Controller
 
     public function updateLastInput(Request $request,$lastJudgment)
     {
-      $judgment = judgments::find($lastJudgment);
-      $files =JudgmentsController::readDirectory('/public/unfinished_judgments/');
-      return view('judgments.updateLastInput',compact(['judgment','files']));
+        $judgment = judgments::find($lastJudgment);
+        $files = JudgmentsController::readDirectory('/public/unfinished_judgments/');
+        return view('judgments.updateLastInput', compact(['judgment', 'files']));
     }
 
     public function saveLastInput(Request $request,judgments $lastJudgment)
     {
-      return $request;
+        return $request;
     }
 
     public function getalljudgments()
@@ -98,39 +98,40 @@ class JudgmentsController extends Controller
 
     public static function readDirectory($directory)
     {
-      $files = array_filter(Storage::disk('local')->files($directory),
-          function ($item) {return strpos($item, 'pdf');});
-      $data = [];
-     $realfilesName = [];
-      foreach ($files as $file)
-      {
-          $data= explode ("/", $file);
-          $realfilesName [] = $data[2];
-      }
+        $files = array_filter(Storage::disk('local')->files($directory),
+            function ($item) {
+                return strpos($item, 'pdf');
+            });
+        $data = [];
+        $realfilesName = [];
+        foreach ($files as $file) {
+            $data = explode("/", $file);
+            $realfilesName [] = $data[2];
+        }
 
-      return $realfilesName;
+        return $realfilesName;
     }
 
     public function getLawArticles(Request $request,$articleNo)
     {
-      if ($articleNo) {
-        $formatedData = [];
-        $laws = [];
-        $results =DB::table('law_articls')
-                      ->where('articleno', $articleNo)
-                      ->get();
-                      foreach ($results as $article) {
-                        $attr = LawArticl::find($article->id);
-                        $somedata = [
-                          'articleId'=>$attr->id,
-                          'info'=>"    المادة رقم {$attr->articleno} من القانون ال{$attr->law->lawcategory}  ",
-                        ];
-                        $formatedData[] =$somedata;
-                      }
-        return $formatedData;
-      } else {
-        return null;
-      }
+        if ($articleNo) {
+            $formatedData = [];
+            $laws = [];
+            $results = DB::table('law_articls')
+                ->where('articleno', $articleNo)
+                ->get();
+            foreach ($results as $article) {
+                $attr = LawArticl::find($article->id);
+                $somedata = [
+                    'articleId' => $attr->id,
+                    'info' => "    المادة رقم {$attr->articleno} من القانون ال{$attr->law->lawcategory}  ",
+                ];
+                $formatedData[] = $somedata;
+            }
+            return $formatedData;
+        } else {
+            return null;
+        }
     }
 
 
