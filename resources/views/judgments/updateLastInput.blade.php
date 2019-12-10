@@ -57,7 +57,7 @@
                              @endif
                               value="دستوري">دستوري</option>
                              <option
-                             @if ($judgment->judgmentcategory == 'جناي')
+                             @if ($judgment->judgmentcategory == 'جنائي')
                                selected
                              @endif
                               value="جنائي">جنائي</option>
