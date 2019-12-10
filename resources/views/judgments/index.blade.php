@@ -93,7 +93,7 @@
                               <td>{{$judgment->notes}} </td>
                               <td>{{$judgment->incompletednotes}} </td>
                               <td>
-                                <a href="#" class="btn general_btn btn_1"
+                                <a href="{{route('addNote',['judgmentID'=>$judgment->id])}}" class="btn general_btn btn_1"
                                   >
                                    إضافة مبادئ
                                 <img src="{{asset('lawSystem/assets/images/plus.svg')}}" width="20px" height="20px">

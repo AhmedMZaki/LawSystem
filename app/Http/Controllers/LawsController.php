@@ -127,30 +127,12 @@ class LawsController extends Controller
     {
       return back();
     }
+
     public function SaveLawArticle(Request $request,Law $lawID)
     {
       return back();
     }
-      public function getsearchArticle(Request $request,$articleNo)
-      {
-        $formatedData = [];
-        $laws = [];
-        $results =DB::table('law_articls')
-                      ->where('articleno', 'like', $articleNo.'%')
-                      ->get();
-                      foreach ($results as $article) {
-                        $attr = \App\LawArticl::find($article->id);
-                        $somedata = [
-                          'articleID'=>$attr->id,
-                          'articleNO'=>$attr->articleno,
-                          'lawID'=>$attr->law->id,
-                          'lawCategory'=>$attr->law->lawcategory,
-                          'lawSlug' =>$attr->law->slug,
-                        ];
-                        $formatedData[] = $somedata;
-                      }
-        return $formatedData;
-      }
+      
 
       public static function make_slug($string, $separator = '-')
       {

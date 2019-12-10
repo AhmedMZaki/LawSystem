@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a8d258fe-d854-4b40-9cad-d289fdc0ff78" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Law.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Law.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/LawArticl.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/LawArticl.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/laws/addArticlesToLaw.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/laws/addArticlesToLaw.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/JudgmentsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/JudgmentsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LawsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LawsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/judgments/addNoteTojudgment.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/judgments/addNoteTojudgment.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/judgments/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/judgments/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -10158,7 +10158,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
   </component>
   <component name="RunManager">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -10252,6 +10252,7 @@
       <workItem from="1575724202033" duration="886000" />
       <workItem from="1575725228764" duration="13000" />
       <workItem from="1575725493602" duration="16000" />
+      <workItem from="1575960835881" duration="1925000" />
     </task>
     <servers />
   </component>
@@ -10262,6 +10263,10 @@
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.env" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="298" y="58" width="800" height="677" key="#Notifications" timestamp="1575960910362">
+      <screen x="41" y="27" width="1325" height="741" />
+    </state>
+    <state x="298" y="58" width="800" height="677" key="#Notifications/41.27.1325.741@41.27.1325.741" timestamp="1575960910362" />
     <state x="436" y="154" width="524" height="484" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1575661703682">
       <screen x="41" y="27" width="1325" height="741" />
     </state>
@@ -10270,18 +10275,18 @@
       <screen x="41" y="27" width="1325" height="741" />
     </state>
     <state x="486" y="154" width="424" height="484" key="FileChooserDialogImpl/41.27.1325.741@41.27.1325.741" timestamp="1575696952877" />
-    <state x="192" y="31" key="SettingsEditor" timestamp="1575724348294">
+    <state x="192" y="31" key="SettingsEditor" timestamp="1575962003896">
       <screen x="41" y="27" width="1325" height="741" />
     </state>
-    <state x="192" y="31" key="SettingsEditor/41.27.1325.741@41.27.1325.741" timestamp="1575724348294" />
-    <state x="359" y="224" key="com.intellij.ide.util.TipDialog" timestamp="1575725505206">
+    <state x="192" y="31" key="SettingsEditor/41.27.1325.741@41.27.1325.741" timestamp="1575962003896" />
+    <state x="359" y="224" key="com.intellij.ide.util.TipDialog" timestamp="1575960835851">
       <screen x="41" y="27" width="1325" height="741" />
     </state>
-    <state x="359" y="224" key="com.intellij.ide.util.TipDialog/41.27.1325.741@41.27.1325.741" timestamp="1575725505206" />
-    <state x="366" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1575696985479">
+    <state x="359" y="224" key="com.intellij.ide.util.TipDialog/41.27.1325.741@41.27.1325.741" timestamp="1575960835851" />
+    <state x="366" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1575962135071">
       <screen x="41" y="27" width="1325" height="741" />
     </state>
-    <state x="366" y="89" width="672" height="678" key="search.everywhere.popup/41.27.1325.741@41.27.1325.741" timestamp="1575696985479" />
+    <state x="366" y="89" width="672" height="678" key="search.everywhere.popup/41.27.1325.741@41.27.1325.741" timestamp="1575962135071" />
     <state x="428" y="310" width="540" height="172" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1575649405460">
       <screen x="41" y="27" width="1325" height="741" />
     </state>

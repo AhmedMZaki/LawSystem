@@ -41,10 +41,10 @@
           <!-- start row -->
           <div class="row mt-0">
             <div class="col-lg-12 tbl-new-brdr">
-              <div class="panel panel-default no-brdr">
+              <div class="panel panel-default no-brdr" id="formaction">
 
                   <form method="post"
-                  action="{{route('addNote',['judgmentID'=>$judgmentID])}}"
+                  action="{{route('saveNote',['judgmentID'=>$judgmentID])}}"
                    enctype="multipart/form-data"
                    @submit.prevent="SaveData({{json_encode($judgmentID)}})"
                    >
@@ -69,21 +69,19 @@
                                 ></textarea>
                               </div>
 
-                              <div class="form-group" id="">
-                                  <label for="inputAddress">المواد المرتبطة</label>
-
-                                  <select class="SelectWithSearch full-width" multiple="multiple"
-                                  onkeyup=""
-                                  >
-                                      <option value="36">مادة 84 من قانون العقوبات بشأن تعديل القرار</option>
-                                      <option value="45">مادة 84 من قانون الجنايات بشأن......</option>
-                                      <option value="66">مادة 84 من القانون التجاري بشأن........</option>
-                                      <option value="44">مادة 84 من القانون المدني بشأن........</option>
-                                    </select>
-
-
+                              <div class="form-group">
+                                <label for="inputAddress">المواد المرتبطة</label>
+                                <input type="search" class="form-control"  v-model="articleNo" @keyup="SearchForData" 
+                               />
+                              
+                                <div id="coming">
+                                
                                 </div>
-
+                        
+                              </div>
+                              
+                             
+                              {{-- /////////////// --}}
                           </div>
 
                       </div>
@@ -101,23 +99,8 @@
                         <label><input type="radio" name="pdf" onclick = "openPdf({{json_encode($filename)}})"> 12-11-2019 </label>
                       </div>
                   @endforeach
-
-                  <script type="text/javascript">
-                  function openPdf(file)
-                  {
-                  let filename = "/storage/unFinished_Notes/"+file;
-                  var omyFrame = document.getElementById("myFrame");
-                  omyFrame.style.display="block";
-                  omyFrame.src = filename;
-                  }
-
-                  </script>
                </div>
-
                     </form>
-
-
-
               </div>
             </div>
           </div>
@@ -148,11 +131,12 @@
   <script src="{{asset('lawSystem/assets/js/jquery.toast.js')}}"></script>
   <script src="{{asset('lawSystem/assets/js/users.js')}}"></script>
   <script src="{{asset('lawSystem/assets/js/alertfunction.js')}}"></script>
-  <scirp></scirp>
+
   <script>
       const judgmentNotes =  new Vue({
           el:'#formaction',
           data:{
+             articleNo:'',
               judgmentID:'',
               judgshort:'',
               judgrule:'',
@@ -161,10 +145,11 @@
           methods:{
               SaveData:function (judgment_id) {
                   this.judgmentID = judgment_id;
-                  let selected = new Array();
-                  $("input:checkbox[name=lawarticles]:checked").each(function(){
-                      selected.push($(this).val());
-                  });
+                  var selected = new Array();
+                  let selectedArticle = document.getElementsByName('selectedArticle');
+                 for (var i = 0; i < selectedArticle.length; i++) {
+                   selected.push(selectedArticle[i].value);
+                 }
                   this.lawArticles = selected;
 
                   axios.post('/judgments/saveNotes/store', {
@@ -178,7 +163,35 @@
                   this.judgshort="";
                   this.judgrule="";
 
-              }
+              },
+                    SearchForData:function () {
+
+            axios.get("/judgments/getArticles/"+this.articleNo, {
+
+                      })
+                      .then(function (response) {
+
+                        if (response.data) {
+                       
+                          var element = document.getElementById('coming');
+                        for (var i = 0; i < response.data.length; i++) {
+                          var li = document.createElement("li");
+                          li.setAttribute('value',response.data[i]['articleId']);
+                          li.setAttribute('id',response.data[i]['articleId']);
+                          li.setAttribute('name','selectedArticle');
+                          li.setAttribute("class", "list-group-item alert alert-info ");
+                          li.addEventListener('click',function(e){
+                           element.innerHTML = "";
+                          });
+                          li.innerHTML =response.data[i]['info'];
+                          element.append(li);
+                        
+                        }
+                        }
+                      });
+                     
+        }
+
           },
           computed:{
 
@@ -191,6 +204,16 @@
                   = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
           }
       });
+  </script>
+  <script type="text/javascript">
+  function openPdf(file)
+  {
+  let filename = "/storage/unFinished_Notes/"+file;
+  var omyFrame = document.getElementById("myFrame");
+  omyFrame.style.display="block";
+  omyFrame.src = filename;
+  }
+
   </script>
 </body>
 @endsection

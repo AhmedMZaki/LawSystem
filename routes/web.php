@@ -20,7 +20,8 @@ Route::post('/judgments/store','JudgmentsController@store')->name('saveJudgments
 Route::get('/judgments/{lastJudgment}/updateLastInput','JudgmentsController@updateLastInput')->name('updateLastInput');
 Route::patch('/judgments/{lastJudgment}/saveLastInput','JudgmentsController@saveLastInput')->name('saveLastInput');
 Route::get('/judgments/addNote/{judgmentID}','JudgmentsController@addNote')->name('addNote');
-Route::post('/judgments/saveNote/{judgmentID}','JudgmentsController@saveNote')->name('addNote');
+Route::post('/judgments/saveNote/{judgmentID}','JudgmentsController@saveNote')->name('saveNote');
+Route::get('/judgments/getArticles/{articleNo}','JudgmentsController@getLawArticles')->name('searchArticle');
 ////////////////////////////////////////
 
 // Route::get('/laws','LawsController@index')->name('getLaws');
@@ -45,9 +46,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 //
 // Route::get('/searchArticle','LawsController@searchArticle');
 // Route::get('/searchArticle/{articleNo}','LawsController@getsearchArticle')->name('getsearchArticle');
-Route::get('/asd',function(){
-  echo phpinfo();
-});
+
 Route::middleware(['auth'])->prefix('admin')->group(function () {
 
 
