@@ -4,6 +4,10 @@
     <list default="true" id="a8d258fe-d854-4b40-9cad-d289fdc0ff78" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LawsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LawsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/SystemLaws/addArticleToLaw.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/SystemLaws/addArticleToLaw.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/SystemLaws/editArticle.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/SystemLaws/editArticle.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/SystemLaws/showArticles.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/SystemLaws/showArticles.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -60,6 +64,9 @@
   </component>
   <component name="GithubDefaultAccount">
     <option name="defaultAccountId" value="e5cb95a1-4ba1-41db-8e63-654f052a6f71" />
+  </component>
+  <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -310,7 +317,8 @@
       <workItem from="1576064852689" duration="1780000" />
       <workItem from="1576066673878" duration="1718000" />
       <workItem from="1576068430163" duration="1773000" />
-      <workItem from="1576070247683" duration="1607000" />
+      <workItem from="1576070247683" duration="1780000" />
+      <workItem from="1576072125839" duration="1037000" />
     </task>
     <task id="LOCAL-00001" summary="this new">
       <created>1576005457419</created>
@@ -382,7 +390,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576071639205</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="creating edit law article blade page">
+      <created>1576071863596</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1576071863596</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -216,13 +216,17 @@ class LawsController extends Controller
         $articleID->save();
 
         if ($articleID) {
-            return response()->json([
-                'message' => "تم تعديل المادة بنجاح",
-                "status" => 200
-            ]);
+            return redirect()->route('showrticles', ['law' => $articleID->law]);
+        } else {
+            return back();
         }
 
     }
 
+    public function deleteArticle(LawArticl $articleID)
+    {
+        $articleID->delete();
+        return redirect()->back();
+    }
 
 }

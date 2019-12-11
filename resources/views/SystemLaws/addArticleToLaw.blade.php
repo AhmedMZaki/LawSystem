@@ -53,6 +53,7 @@
                                         <label>رقم الكتاب<span class="redstar"></span></label>
 
                                         <select v-model="subjectid" name="subjectid" id="subjectid" dir="rtl"
+                                                v-model="subjectid"
                                                 class="SelectRemovedSearch">
                                             <option selected>....</option>
                                             <option value="1">1</option>

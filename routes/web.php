@@ -13,8 +13,8 @@ Route::get('/laws/{lawID}/addArticles','LawsController@AddArticles')->name('addA
 Route::post('/laws/SaveLawArticle', 'LawsController@SaveLawArticles')->name('SaveLawArticle');
 Route::get('/laws/{law}/showArticles', 'LawsController@showArticles')->name('showrticles');
 Route::get('/laws/{articleID}/editArticle', 'LawsController@editArticle')->name('editArticle');
-Route::get('/laws/{articleID}/updateArticle', 'LawsController@updateArticle')->name('updateArticle');
-
+Route::patch('/laws/{articleID}/updateArticle', 'LawsController@updateArticle')->name('updateArticle');
+Route::delete('/laws/{articleID}/deleteArticle', 'LawsController@deleteArticle')->name('deleteArticle');
 
 // judgments routes
 Route::get('/judgments','JudgmentsController@index')->name('getJudgments');

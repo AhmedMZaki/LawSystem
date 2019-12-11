@@ -86,7 +86,8 @@
                                                 </a>
                                             </td>
                                             <td>
-                                                <form action="{{route('delteLaw',['lawID'=>$law])}}" method="post">
+                                                <form action="{{route('deleteArticle',['articleID'=>$article])}}"
+                                                      method="post">
 
                                                     @csrf
                                                     @method('DELETE')
