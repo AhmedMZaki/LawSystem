@@ -88,7 +88,6 @@
                                             <td>
                                                 <form action="{{route('deleteArticle',['articleID'=>$article])}}"
                                                       method="post">
-
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn  general_btn btn_1"
