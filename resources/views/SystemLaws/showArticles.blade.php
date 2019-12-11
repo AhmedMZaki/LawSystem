@@ -25,27 +25,12 @@
                     <div class="d-flex align-items-center flex-wrap">
                         <ol class="breadcrumb">
                             <li><a href="#">الرئيسية</a></li>
-                            <li><a href="{{route('getLaws')}}">القوانين</a></li>
+                            <li><a href="{{route('getLaws')}}">القانون رقم {{$law->lawno}}</a></li>
+                            <li><a href="#">مواد القانون</a></li>
                         </ol>
                     </div>
                 </div>
 
-                <template id="alert_template">
-                    <div :class="alertClasses" v-show="show">
-                        <slot></slot>
-                        <span class="alert_close" @click="show=false">X</span>
-                    </div>
-                </template>
-                <div class="col-lg-6">
-                    <div
-                        class="navbar d-flex flex-wrap align-items-center justify-content-start justify-content-lg-end rec-counts">
-                        <a href="{{route('addNewLaw')}}">
-                            <button class="general_btn btn_1 ml-2">
-                                <i class="plus-icon btn-icon-width inline-icon green-icon"></i><span>اضافة جديد</span>
-                            </button>
-                        </a>
-                    </div>
-                </div>
             </div>
             <!-- end row -->
             <!-- start row -->
@@ -56,72 +41,44 @@
                             <table id="usersTable" class="table table-striped mb-0 table-right CustomTable datatable">
                                 <thead>
                                 <tr>
-                                    <th class="w_40 pr-2">م</th>
-                                    <th class="w_120 text-center">النوع</th>
-                                    <th class="w_100 text-center">التصنيف</th>
-                                    <th class="w_100 text-center">رقم القانون</th>
-                                    <th class="w_80 text-center">سنة الاصدار</th>
-                                    <th class="w_159 text-center">بشأن</th>
-                                    <th class="w_70 text-center">إضافة مواد</th>
-                                    <th class="w_80 text-center"> عرض المواد</th>
-                                    <th class="w_70 text-center">تعديل</th>
-                                    <th class="w_70 text-center">الحالة</th>
+                                    <th class="w_30 pr-2">م</th>
+                                    <th class="w_70 text-center">رقم المادة</th>
+                                    <th class="w_100 text-center">نص المادة</th>
+                                    <th class="w_80 text-center">رقم الكتاب</th>
+                                    <th class="w_80 text-center">عنوان الكتاب</th>
+                                    <th class="w_50 text-center">رقم الباب</th>
+                                    <th class="w_80 text-center"> عنوان الباب</th>
+                                    <th class="w_100 text-center">الفصل</th>
+                                    <th class="w_70 text-center"> عنوان الفصل</th>
+                                    <th class="w_80 text-center"> عنوان المادة</th>
+
+                                    <th class="w_70 text-center">إضافة</th>
+                                    <th class="w_70 text-center">حذف</th>
                                 </tr>
                                 </thead>
                                 <tfoot>
-                                <tr>
-                                    <th></th>
-                                    <th><input id="Name" class="form-control" type="text" placeholder="النوع"/></th>
-                                    <th><input id="Name" class="form-control" type="text" placeholder="القانون"/></th>
-                                    <th><input id="Name2" class="form-control" type="text" placeholder="رقم القانون"/>
-                                    </th>
-                                    <th><input id="Name2" class="form-control" type="text" placeholder="سنة الاصدار"/>
-                                    </th>
-                                    <th><input id="Name2" class="form-control" type="text" placeholder="بشأن"/></th>
-                                    <th><input disabled id="Name2" class="form-control" type="text"
-                                               placeholder="إضافة مواد"/></th>
-                                    <th><input disabled id="Name2" class="form-control" type="text"
-                                               placeholder="عرض المواد"/></th>
-                                    <th><input disabled id="Name2" class="form-control" type="text"
-                                               placeholder="تعديل"/></th>
-                                    <th><input disabled id="Name2" class="form-control" type="text"
-                                               placeholder="الحالة"/></th>
-                                </tr>
+
                                 </tfoot>
                                 <tbody>
-                                @if (count($laws))
-                                    @foreach ($laws as $law)
+                                @if (count($articles))
+                                    @foreach ($articles as $article)
                                         <tr>
-                                            <td>{{$law->id}}</td>
-                                            <td>{{$law->lawtype}}</td>
-                                            <td>{{$law->lawcategory}}</td>
-                                            <td>{{$law->lawno}}</td>
-                                            <td>{{$law->lawyear}} </td>
-                                            <td>{{$law->lawrelation}} </td>
-                                            <td>
-                                                <a href="{{route('addArticle',['lawID'=>$law])}}"
-                                                   class="btn general_btn btn_1"
-                                                   title="إضافة مواد إلي القانون {{$law->lawno}}"
-                                                >
-                                                    إضافة مادة
-                                                    <img src="{{asset('lawSystem/assets/images/plus.svg')}}" alt="">
+                                            <td>{{$article->id}}</td>
+                                            <td>{{$article->articleno}} </td>
+                                            <td>{{$article->articlebody}} </td>
+                                            <td>{{$article->subjectid}}</td>
+                                            <td>{{$article->subjectitle}}</td>
+                                            <td>{{$article->chapterid}}</td>
+                                            <td>{{$article->chaptertitle}} </td>
+                                            <td>{{$article->sectionid}} </td>
+                                            <td>{{$article->sectiontitle}} </td>
+                                            <td>{{$article->articletitle}} </td>
 
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <a href="{{route('showrticles',['law'=>$law])}}"
-                                                   class="btn general_btn btn_1"
 
-                                                >
-                                                    عرض المواد
-
-                                                </a>
-                                            </td>
                                             <td>
 
-                                                <a href="{{route('editLaw',['lawID'=>$law])}}"
+                                                <a href="{{route('editArticle',['articleID'=>$article])}}"
                                                    class="btn general_btn btn_1"
-                                                   title="تعديل القانون رقم {{$law->lawno}}"
                                                 >
                                                     تعديل
                                                     <img src="{{asset('lawSystem/assets/images/edit.svg')}}" alt="">
@@ -135,9 +92,9 @@
                                                     @method('DELETE')
                                                     <button type="submit" class="btn  general_btn btn_1"
                                                             style="height: 26px;"
-                                                            onclick="return confirm('هل انت متأكد من انك تريد حذف هذا القانون');"
+                                                            onclick="return confirm('هل انت متأكد من انك تريد حذف هذه المادة');"
                                                             name="submit">
-                                                        تعطيل
+                                                        حذف
                                                         <img src="{{asset('lawSystem/assets/images/times.svg')}}">
                                                     </button>
                                                 </form>

@@ -123,6 +123,23 @@ class LawsController extends Controller
 //        $LawID->delete();
         return back();
     }
+
+    public static function make_slug($string, $separator = '-')
+    {
+        $string = trim($string);
+        $string = mb_strtolower($string, 'UTF-8');
+
+        $string = preg_replace("/[^a-z0-9_\s-۰۱۲۳۴۵۶۷۸۹ءاآؤئبپتثجچحخدذرزژسشصضطظعغفقکكگگلمنوهی]/u", '', $string);
+
+        $string = preg_replace("/[\s-_]+/", ' ', $string);
+
+        $string = preg_replace("/[\s_]/", $separator, $string);
+
+        return $string;
+    }
+
+
+
     public function searchArticle()
     {
         return view('searchArticle');
@@ -170,22 +187,20 @@ class LawsController extends Controller
 
     public function showArticles(Law $law)
     {
-        return view('SystemLaws.showArticles', compact('law'));
+        $articles = $law->lawArticles;
+        return view('SystemLaws.showArticles', compact(['law', 'articles']));
     }
 
 
-    public static function make_slug($string, $separator = '-')
+    public function editArticle(LawArticl $articleID)
     {
-        $string = trim($string);
-        $string = mb_strtolower($string, 'UTF-8');
-
-        $string = preg_replace("/[^a-z0-9_\s-۰۱۲۳۴۵۶۷۸۹ءاآؤئبپتثجچحخدذرزژسشصضطظعغفقکكگگلمنوهی]/u", '', $string);
-
-        $string = preg_replace("/[\s-_]+/", ' ', $string);
-
-        $string = preg_replace("/[\s_]/", $separator, $string);
-
-        return $string;
+        return view('SystemLaws.editArticle', compact('articleID'));
     }
+
+    public function updateArticle(Request $request, LawArticl $articleID)
+    {
+
+    }
+
 
 }

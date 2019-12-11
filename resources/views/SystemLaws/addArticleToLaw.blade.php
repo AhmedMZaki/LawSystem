@@ -223,7 +223,7 @@
                                 toast(response.data.message, 'error');
                             }
                         }).catch(function (error) {
-
+                            toast('خطأ', 'المادة موجوة بالفعل', 'error');
                         });
 
                         this.articleno = '';
