@@ -133,7 +133,7 @@ class LawsController extends Controller
         return view('SystemLaws.addArticleToLaw', compact('lawID'));
     }
 
-    public function SaveLawArticles(Request $request, Law $lawID)
+    public function SaveLawArticles(Request $request)
     {
         $request->validate([
             'articleno' => 'required|unique:law_articls',
@@ -141,11 +141,20 @@ class LawsController extends Controller
         ]);
 
 
-        $LawArticl = LawArticl::create($request);
-        $LawArticl->laws_id = $lawID->id;
-        $LawArticl->save();
+        $articleLaw = new LawArticl;
+        $articleLaw->laws_id = $request['laws_id'];
+        $articleLaw->articleno = $request['articleno'];
+        $articleLaw->articlebody = $request['articlebody'];
+        $articleLaw->subjectid = $request['subjectid'];
+        $articleLaw->subjectitle = $request['subjectitle'];
+        $articleLaw->chapterid = $request['chapterid'];
+        $articleLaw->chaptertitle = $request['chaptertitle'];
+        $articleLaw->sectionid = $request['sectionid'];
+        $articleLaw->sectiontitle = $request['sectiontitle'];
+        $articleLaw->articletitle = $request['articletitle'];
+        $articleLaw->save();
 
-        if ($LawArticl) {
+        if ($articleLaw) {
             return response()->json([
                 'message' => "تم اضافة المادة بنجاح",
                 "status" => 200
@@ -156,6 +165,12 @@ class LawsController extends Controller
                 "status" => 422
             ]);
         }
+
+    }
+
+    public function showArticles(Law $law)
+    {
+        return view('SystemLaws.showArticles', compact('law'));
     }
 
 

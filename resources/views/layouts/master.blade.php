@@ -7,6 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="{{asset('js/vue.js')}}"></script>
+    <script src="{{asset('lawSystem/assets/js/jquery.js')}}"></script>
     <script src="{{asset('js/axios.js')}}"></script>
   <title> @yield('title') </title>
   <!-- <link rel="shortcut icon" href="assets/images/favicon.ico" /> -->

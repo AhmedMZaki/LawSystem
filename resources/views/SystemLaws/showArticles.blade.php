@@ -5,7 +5,7 @@
 @endsection
 
 @section('stylesheets')
-    <link rel="stylesheet" href="{{asset('lawSystem/assets/css/dataTables.bootstrap4.min.css')}}">
+
     <link rel="stylesheet" href="{{asset('lawSystem/assets/css/bootstrap.min.css')}}"/>
     <link rel="stylesheet" href="{{asset('lawSystem/assets/css/main.css')}}"/>
     <link rel="stylesheet" href="{{asset('lawSystem/assets/css/select2.min.css')}}"/>
@@ -156,13 +156,13 @@
         </div>
     </div>
     <!-- end content-wrapper -->
-
+    in
 @endsection
 
 @section('secripts')
 
     <script src="{{asset('lawSystem/assets/js/jquery.js')}}"></script>
-    <script src="{{asset('lawSystem/assets/js/popper.js')}}"></script>
+
     <script src="{{asset('lawSystem/assets/js/bootstrap.min.js')}}"></script>
     <script src="{{asset('lawSystem/assets/js/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('lawSystem/assets/js/full_numbers_no_ellipses.js')}}"></script>

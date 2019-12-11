@@ -71,13 +71,10 @@
 
                                         <div class="form-group">
                                             <label for="inputAddress">المواد المرتبطة</label>
-                                            <input type="search" class="form-control" v-model="articleNo"
-                                                   @keyup="SearchForData"
-                                            />
 
-                                            <div id="coming">
+                                            <select class="SelectWithSearch full-width" multiple="multiple">
 
-                                            </div>
+                                            </select>
 
                                         </div>
 
@@ -133,7 +130,8 @@
     <script src="{{asset('lawSystem/assets/js/jquery.toast.js')}}"></script>
     <script src="{{asset('lawSystem/assets/js/users.js')}}"></script>
     <script src="{{asset('lawSystem/assets/js/alertfunction.js')}}"></script>
-
+    <script src="{{asset('js/vue.js')}}"></script>
+    <script src="{{asset('js/axios.js')}}"></script>
     <script>
         const judgmentNotes = new Vue({
             el: '#formaction',
@@ -145,6 +143,7 @@
                 lawArticles: [],
             },
             methods: {
+                //s2id_autogen2
                 SaveData: function (judgment_id) {
                     this.judgmentID = judgment_id;
                     var selected = new Array();

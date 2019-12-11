@@ -10,7 +10,11 @@ Route::get('/laws/{lawID}/edit','LawsController@edit')->name('editLaw');
 Route::patch('/laws/{lawID}/update','LawsController@update')->name('updateLaw');
 Route::delete('/law/delete/{lawID}','LawsController@destory')->name('delteLaw');
 Route::get('/laws/{lawID}/addArticles','LawsController@AddArticles')->name('addArticle');
-Route::post('/laws/{lawID}/SaveLawArticle', 'LawsController@SaveLawArticles')->name('SaveLawArticle');
+Route::post('/laws/SaveLawArticle', 'LawsController@SaveLawArticles')->name('SaveLawArticle');
+Route::get('/laws/{law}/showArticles', 'LawsController@showArticles')->name('showrticles');
+
+
+
 
 // judgments routes
 Route::get('/judgments','JudgmentsController@index')->name('getJudgments');
