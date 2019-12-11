@@ -199,6 +199,28 @@ class LawsController extends Controller
 
     public function updateArticle(Request $request, LawArticl $articleID)
     {
+        $request->validate([
+            'articleno' => 'required',
+            'articlebody' => 'required',
+        ]);
+
+        $articleID->articleno = $request['articleno'];
+        $articleID->articlebody = $request['articlebody'];
+        $articleID->subjectid = $request['subjectid'];
+        $articleID->subjectitle = $request['subjectitle'];
+        $articleID->chapterid = $request['chapterid'];
+        $articleID->chaptertitle = $request['chaptertitle'];
+        $articleID->sectionid = $request['sectionid'];
+        $articleID->sectiontitle = $request['sectiontitle'];
+        $articleID->articletitle = $request['articletitle'];
+        $articleID->save();
+
+        if ($articleID) {
+            return response()->json([
+                'message' => "تم تعديل المادة بنجاح",
+                "status" => 200
+            ]);
+        }
 
     }
 
