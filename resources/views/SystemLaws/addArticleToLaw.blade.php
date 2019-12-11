@@ -39,7 +39,7 @@
             <div class="row mt-0">
                 <div class="col-lg-12 tbl-new-brdr">
                     <div class="panel panel-default no-brdr">
-
+                        <div id="FormArticles">
                         <form method="post" action="{{route('SaveLawArticle',['lawID'=>$lawID])}}"
                               @submit.prevent="SaveData"
                               enctype="multipart/form-data">
@@ -63,7 +63,7 @@
                                     <label>رقم الكتاب<span class="redstar"></span></label>
 
                                     <select v-model="subjectid" name="subjectid" id="subjectid" dir="rtl"
-                                            class="SelectRemovedSearch">
+                                            class="SelectRemovedSearch" {{old('subjectid')}}>
                                         <option selected>....</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
@@ -81,8 +81,8 @@
                                 </div>
                                 <div class="form-group col-md-2">
                                     <label>عنوان الكتاب</label>
-                                    <input type="num" name="lawno" id="lawno" lang="ar" class="form-control"
-                                           name="subjectitle" id="subjectitle" required {{old('lawno')}}
+                                    <input type="num" name="subjectitle" id="subjectitle" class="form-control"
+                                           {{old('subjectitle')}}
                                            v-model="subjectitle" lang="ar" placeholder="عنوان الكتاب "
                                            dir="rtl">
                                 </div>
@@ -90,8 +90,9 @@
                                 <div class="form-group col-md-2">
                                     <label>رقم الباب<span class="redstar"></span></label>
 
-                                    <select name="chapterid" id="chapterid" lang="ar" placeholder=" الباب"
-                                            dir="rtl" v-model="chapterid" dir="rtl" class="SelectRemovedSearch">
+                                    <select name="chapterid" id="chapterid" lang="ar" placeholder=" رقم الباب"
+                                            dir="rtl" v-model="chapterid"
+                                            class="SelectRemovedSearch" {{old('chapterid')}}>
                                         <option selected>....</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
@@ -111,15 +112,16 @@
                                     <label>عنوان الباب</label>
                                     <input type="num" name="chaptertitle" id="chaptertitle" lang="ar"
                                            class="form-control"
-                                           required {{old('chaptertitle')}}
-                                           v-model="chaptertitle" lang="ar" placeholder="عنوان الباب "
+                                           {{old('chaptertitle')}}
+                                           v-model="chaptertitle" placeholder="عنوان الباب "
                                            dir="rtl">
                                 </div>
                                 <div class="form-group col-md-2">
                                     <label>رقم الفصل<span class="redstar"></span></label>
 
-                                    <select name="chapterid" id="chapterid" lang="ar" placeholder=" رقم الفصل"
-                                            dir="rtl" v-model="chapterid" dir="rtl" class="SelectRemovedSearch">
+                                    <select name="sectionid" id="sectionid" lang="ar" placeholder=" رقم الفصل"
+                                            v-model="chapterid" dir="rtl"
+                                            class="SelectRemovedSearch" {{old('sectionid')}}>
                                         <option selected>....</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
@@ -139,7 +141,7 @@
                                     <label>عنوان الفصل</label>
                                     <input type="num" name="sectiontitle" id="sectiontitle" lang="ar"
                                            placeholder=" عنوان الفصل "
-                                           dir="rtl" v-model="sectiontitle" class="form-control"
+                                           dir="rtl" v-model="sectiontitle" class="form-control" {{old('sectiontitle')}}
                                     >
                                 </div>
                             </div>
@@ -155,14 +157,18 @@
                                     <label>عنوان المادة</label>
                                     <input type="num" lang="ar" v-model="articletitle" class="form-control"
                                            name="articletitle" id="articletitle"
-                                           placeholder="عنوان المادة" dir="rtl"
+                                           placeholder="عنوان المادة" dir="rtl" {{old('articletitle')}}
                                     >
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label>نص المادة</label>
-                                    <textarea name="" class="form-control rounded-0" rows="5" cols="15"></textarea>
+                                    <textarea name="articlebody" id="articlebody"
+                                              class="form-control rounded-0"
+                                              rows="5" cols="15"
+                                              v-model="articlebody"
+                                              required></textarea>
                                 </div>
                             </div>
                             <div class="form-row">
@@ -175,15 +181,15 @@
 
                             </div>
                         </form>
-                        {{-- onclick="return toast('
-            </div>عملية ناجحة','تم تعديل المستخدم','success')" --}}
+                        </div>
+                        >
                     </div>
                 </div>
                 <!-- end row -->
             </div>
         </div>
         <!-- end content-wrapper -->
-
+    </div>
     @endsection
 
     @section('secripts')
@@ -206,4 +212,63 @@
             <script src="{{asset('lawSystem/assets/js/jquery.toast.js')}}"></script>
             <script src="{{asset('lawSystem/assets/js/users.js')}}"></script>
             <script src="{{asset('lawSystem/assets/js/alertfunction.js')}}"></script>
+        <script>
+            new Vue({
+                el: '#FormArticles',
+                data: {
+                    subjectid: '',
+                    subjectitle: '',
+                    chapterid: '',
+                    chaptertitle: '',
+                    sectionid: '',
+                    sectiontitle: '',
+                    articletitle: '',
+                    articleno: '',
+                    articlebody: '',
+                    errors: {},
+                },
+
+                methods: {
+                    SaveData: function () {
+
+                        art = this.articleno;
+                        let URL = "/laws/".{{$lawID->id}}.
+                        "/SaveLawArticle";
+                        axios.post(URL, {
+                            subjectid: this.subjectid,
+                            subjectitle: this.subjectitle,
+                            chapterid: this.chapterid,
+                            chaptertitle: this.chaptertitle,
+                            sectionid: this.sectionid,
+                            sectiontitle: this.sectiontitle,
+                            articletitle: this.articletitle,
+                            articleno: this.articleno,
+                            articlebody: this.articlebody,
+                        }).then(function (response) {
+                            if (response.data.status == 200) {
+                                toast(response.data.message, 'success');
+                            }
+
+                        }).catch(function (error) {
+
+
+                            toastr('error ', 'error', 'error');
+                        });
+
+                        this.articleno = '';
+                        this.articlebody = '';
+                    },
+                },
+                errors() {
+                    console.log();
+                },
+
+                mounted() {
+
+                    axios.defaults.headers.common['X-CSRF-TOKEN']
+                        = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+                },
+
+            });
+        </script>
 @endsection

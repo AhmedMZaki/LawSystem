@@ -119,8 +119,8 @@ class LawsController extends Controller
 
     public function destory(Law $lawID)
     {
-        $LawID->lawArticles->delete();
-        $LawID->delete();
+//        $LawID->lawArticles->delete();
+//        $LawID->delete();
         return back();
     }
     public function searchArticle()
@@ -133,9 +133,29 @@ class LawsController extends Controller
         return view('SystemLaws.addArticleToLaw', compact('lawID'));
     }
 
-    public function SaveLawArticle(Request $request,Law $lawID)
+    public function SaveLawArticles(Request $request, Law $lawID)
     {
-        return dd($request);
+        $request->validate([
+            'articleno' => 'required|unique:law_articls',
+            'articlebody' => 'required',
+        ]);
+
+
+        $LawArticl = LawArticl::create($request);
+        $LawArticl->laws_id = $lawID->id;
+        $LawArticl->save();
+
+        if ($LawArticl) {
+            return response()->json([
+                'message' => "تم اضافة المادة بنجاح",
+                "status" => 200
+            ]);
+        } else {
+            return response()->json([
+                'message' => "هذه المادة موجودة بالفعل",
+                "status" => 422
+            ]);
+        }
     }
 
 
