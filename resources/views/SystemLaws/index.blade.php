@@ -132,7 +132,7 @@
 
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn general_btn btn_1"
+                                                    <button type="submit" class="btn  general_btn btn_1"
                                                             style="height: 26px;"
                                                             onclick="return confirm('هل انت متأكد من انك تريد حذف هذا القانون');"
                                                             name="submit">

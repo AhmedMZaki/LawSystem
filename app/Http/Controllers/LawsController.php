@@ -45,7 +45,7 @@ class LawsController extends Controller
             // get just the extention
             $extention=$request->file('lawfile')->getClientOriginalExtension();
             // file to store
-            $fileNmaeToStore= $lawId->lawno.'.'.$extention;
+            $fileNmaeToStore = "_قانون رقم_" . $lawId->lawno . '.' . $extention;
             // upload file
             if(!Storage::exists('public/Law_PDF/'.$covernamewithEXT))
             {
@@ -130,12 +130,12 @@ class LawsController extends Controller
 
     public function AddArticles(Request $request,Law $lawID)
     {
-        return "إضافة مادة إلي القانون رقم  {$lawID->id}";
+        return view('SystemLaws.addArticleToLaw', compact('lawID'));
     }
 
     public function SaveLawArticle(Request $request,Law $lawID)
     {
-        return back();
+        return dd($request);
     }
 
 
