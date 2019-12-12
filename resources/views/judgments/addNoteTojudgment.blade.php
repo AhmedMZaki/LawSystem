@@ -28,7 +28,7 @@
                         <ol class="breadcrumb">
                             <li><a href="#">الرئيسية</a></li>
                             <li>الاحكام</li>
-                            <li>اضافة مبدأ</li>
+                            <li>اضافة مبدأ والموجز</li>
                         </ol>
                     </div>
                 </div>
@@ -44,9 +44,9 @@
                     <div class="panel panel-default no-brdr" id="formaction">
 
                         <form method="post"
-                              action="{{route('saveNote',['judgmentID'=>$judgmentID])}}"
+                              action="{{route('saveNote',['judgmentID'=>$judgment])}}"
                               enctype="multipart/form-data"
-                              @submit.prevent="SaveData({{json_encode($judgmentID)}})"
+                              @submit.prevent="SaveData({{json_encode($judgment->id)}})"
                         >
                             @csrf
                             <div class="col-md-6 float-right">
@@ -83,8 +83,7 @@
                                     </div>
 
                                 </div>
-                                <button type="
-                      " data-dismiss="modal" class="btn general_btn btn_1">حفظ</button>
+                                <button type="submit" data-dismiss="modal" class="btn general_btn btn_1">حفظ</button>
                                 <a href="{{route('addJudgments')}}" class="btn general_btn btn_1">الرجوع</a>
 
                             </div>
@@ -92,12 +91,14 @@
                             <div class="col-md-6 float-right">
 
                                 <iframe id="myFrame" style="display:none" width="100%" height="400"></iframe>
-                                @foreach ($files as $filename)
-                                    <div class="radio">
-                                        <label><input type="radio" name="pdf"
-                                                      onclick="openPdf({{json_encode($filename)}})"> 12-11-2019 </label>
-                                    </div>
-                                @endforeach
+
+                                <div class="radio">
+                                    <label><input type="radio" name="pdf"
+                                                  onclick="openPdf({{json_encode($judgment->judgmentFile)}})">
+                                        {{$judgment->judgmentFile}}
+                                    </label>
+                                </div>
+
                             </div>
                         </form>
                     </div>
@@ -133,6 +134,15 @@
     <script src="{{asset('js/vue.js')}}"></script>
     <script src="{{asset('js/axios.js')}}"></script>
     <script>
+        // $.fn.addSelect2Items = function(items, config){
+        //     var that = this;
+        //     that.select2("destroy");
+        //     for(var k in items){
+        //         var data = items[k];
+        //         that.append("<option value='"+ data.id +"'>"+ data.text +"</option>");
+        //     }
+        //     that.select2(config || {});
+        // };
         const judgmentNotes = new Vue({
             el: '#formaction',
             data: {
@@ -145,66 +155,64 @@
             methods: {
                 //s2id_autogen2
                 SaveData: function (judgment_id) {
-                    this.judgmentID = judgment_id;
-                    var selected = new Array();
-                    let selectedArticle = document.getElementsByName('selectedArticle');
-                    for (var i = 0; i < selectedArticle.length; i++) {
-                        selected.push(selectedArticle[i].value);
-                    }
-                    this.lawArticles = selected;
 
-                    axios.post('/judgments/saveNotes/store', {
-                        judgment_id: judgment_id,
-                        judgrule: this.judgrule,
-                        judgshort: this.judgshort,
-                        lawarticles: this.lawArticles,
-                    }).then(function (response) {
-                        console.log(response.data);
-                    });
-                    this.judgshort = "";
-                    this.judgrule = "";
+                    toast('gregreg', 'grregtre', 'success');
+                    // this.judgmentID = judgment_id;
+                    // var selected = new Array();
+                    // let selectedArticle = document.getElementsByName('selectedArticle');
+                    // for (var i = 0; i < selectedArticle.length; i++) {
+                    //     selected.push(selectedArticle[i].value);
+                    // }
+                    // this.lawArticles = selected;
+                    //
+                    // axios.post('/judgments/saveNotes/store', {
+                    //     judgment_id: judgment_id,
+                    //     judgrule: this.judgrule,
+                    //     judgshort: this.judgshort,
+                    //     lawarticles: this.lawArticles,
+                    // }).then(function (response) {
+                    //     console.log(response.data);
+                    // });
+                    // this.judgshort = "";
+                    // this.judgrule = "";
 
                 },
-                SearchForData: function () {
-
-                    axios.get("/judgments/getArticles/" + this.articleNo, {})
-                        .then(function (response) {
-
-                            if (response.data) {
-
-                                var element = document.getElementById('coming');
-                                for (var i = 0; i < response.data.length; i++) {
-                                    var li = document.createElement("li");
-                                    li.setAttribute('value', response.data[i]['articleId']);
-                                    li.setAttribute('id', response.data[i]['articleId']);
-                                    li.setAttribute('name', 'selectedArticle');
-                                    li.setAttribute("class", "list-group-item alert alert-info ");
-                                    li.addEventListener('click', function (e) {
-                                        element.innerHTML = "";
-                                    });
-                                    li.innerHTML = response.data[i]['info'];
-                                    element.append(li);
-
-                                }
-                            }
-                        });
-
-                }
 
             },
-            computed: {},
             created() {
+                $(document).ready(function () {
 
+
+                    document.getElementById('s2id_autogen2').addEventListener('keyup', function () {
+                        axios.get('/judgments/getArticles/' + this.value, {})
+                            .then(function (response) {
+                                for (var i = 0; i < response.data.length; i++) {
+                                    var option = document.createElement("option");
+                                    option.setAttribute('value', response.data[i].articleId);
+                                    option.innerHTML = response.data[i].info;
+                                    // $(".SelectWithSearch").select2("destroy");
+                                    document.getElementsByClassName('SelectWithSearch')[0].append(option);
+                                    // $(".SelectWithSearch").select2({ dir: "rtl",dropdownCssClass:'',allowClear: false, placeholder: "اختر"});
+                                }
+
+                            })
+                            .catch(function (error) {
+                                console.log(error);
+                            });
+                    });
+                });
             },
             mounted() {
                 axios.defaults.headers.common['X-CSRF-TOKEN']
                     = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
             }
         });
+
     </script>
+
     <script type="text/javascript">
         function openPdf(file) {
-            let filename = "/storage/unFinished_Notes/" + file;
+            let filename = "/storage/Finished_Judgments/" + file;
             var omyFrame = document.getElementById("myFrame");
             omyFrame.style.display = "block";
             omyFrame.src = filename;

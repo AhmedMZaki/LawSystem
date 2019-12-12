@@ -105,8 +105,8 @@ class JudgmentsController extends Controller
 
     public function addNote(Request $request,$judgmentID)
     {
-        $files =JudgmentsController::readDirectory('/public/unFinished_Notes/');
-        return view('judgments.addNoteTojudgment',compact(['judgmentID','files']));
+        $judgment = judgments::find($judgmentID);
+        return view('judgments.addNoteTojudgment', compact(['judgment']));
     }
 
 
@@ -154,7 +154,31 @@ class JudgmentsController extends Controller
         }
     }
 
+    public function judgmentNotes(Request $request)
+    {
+        $request->validate([
+            'judgment_id' => 'required',
+            'judgrule' => 'required',
+            'judgshort' => 'required',
+            'lawarticles' => 'required',
+        ]);
 
+        $judgmentnotes = judgmentNotes::create([
+            'judgment_id' => $request['judgment_id'],
+            'judgrule' => $request['judgrule'],
+            'judgshort' => $request['judgshort'],
+        ]);
+
+        $judg = judgments::find($request['judgment_id']);
+        $judg->Articls()->attach($request['lawarticles']);
+
+        return response()->json([
+            'message' => "تم اضافة المادة بنجاح",
+            "status" => 200
+        ]);
+
+
+    }
 
 
 }
