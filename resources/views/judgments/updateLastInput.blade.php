@@ -113,21 +113,21 @@
                                 <iframe id="myFrame" style="display:none" width="100%" height="400"></iframe>
 
                                 <div class="radio">
-                                    @foreach ($files as $fileName)
+
                                         <label>
                                             <input type="radio"
-                                                   onclick="openPdf({{json_encode($fileName)}})" name="judgmentfile"
-                                                   id="judgmentfile" value="{{$fileName}}">
-                                            {{$fileName}}
+                                                   onclick="openPdf({{json_encode($judgment->judgmentFile)}})"
+                                                   name="judgmentfile"
+                                                   id="judgmentfile" value="{{$judgment->judgmentFile}}">
+                                            {{$judgment->judgmentFile}}
                                         </label>
-                                    @endforeach
+
                                 </div>
                                 <script type="text/javascript">
                                     function openPdf(file) {
                                         var omyFrame = document.getElementById("myFrame");
                                         omyFrame.style.display = "block";
-                                        let filename = "/storage/unfinished_judgments/" + file;
-
+                                        let filename = "/storage/Finished_Judgments/" + file;
                                         omyFrame.src = filename;
                                     }
                                 </script>

@@ -15,6 +15,8 @@ Route::get('/laws/{law}/showArticles', 'LawsController@showArticles')->name('sho
 Route::get('/laws/{articleID}/editArticle', 'LawsController@editArticle')->name('editArticle');
 Route::patch('/laws/{articleID}/updateArticle', 'LawsController@updateArticle')->name('updateArticle');
 Route::delete('/laws/{articleID}/deleteArticle', 'LawsController@deleteArticle')->name('deleteArticle');
+Route::get('/laws/{lawID}/off', 'LawsController@lawOFF')->name('lawOFF');
+Route::get('/laws/{lawID}/on', 'LawsController@lawON')->name('lawON');
 
 // judgments routes
 Route::get('/judgments','JudgmentsController@index')->name('getJudgments');

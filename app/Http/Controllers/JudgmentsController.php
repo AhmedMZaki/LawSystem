@@ -66,13 +66,33 @@ class JudgmentsController extends Controller
     public function updateLastInput(Request $request,$lastJudgment)
     {
         $judgment = judgments::find($lastJudgment);
-        $files = JudgmentsController::readDirectory('/public/unfinished_judgments/');
-        return view('judgments.updateLastInput', compact(['judgment', 'files']));
+        return view('judgments.updateLastInput', compact(['judgment']));
     }
 
-    public function saveLastInput(Request $request,judgments $lastJudgment)
+    public function saveLastInput(Request $request, $lastJudgment)
     {
-        return $request;
+        $request->validate([
+
+            'judgmentcategory' => 'required',
+            'judgmentDate' => 'required',
+            'year' => 'required',
+            'objectionNo' => 'required',
+            'notes' => 'required',
+        ]);
+        $judgment = judgments::find($lastJudgment);
+        $judgment->judgmentcategory = $request['judgmentcategory'];
+        $judgment->judgmentDate = $request['judgmentDate'];
+        $judgment->year = $request['year'];
+        $judgment->objectionNo = $request['objectionNo'];
+        $judgment->notes = $request['notes'];
+        $judgment->save();
+        if ($judgment) {
+            $files = JudgmentsController::readDirectory('/public/unfinished_judgments/');
+            $lastJudgment = null;
+            return view('judgments.createNewJudgment')->with('files', $files)->with('lastJudgment', $lastJudgment);
+        } else {
+            return redirect()->back();
+        }
     }
 
     public function getalljudgments()

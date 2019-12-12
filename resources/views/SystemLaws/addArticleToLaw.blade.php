@@ -205,8 +205,9 @@
                 },
                 methods: {
                     SaveData: function (id) {
-
+                        atr = this.articleno;
                         axios.post("/laws/SaveLawArticle", {
+
                             laws_id: id,
                             subjectid: this.subjectid,
                             subjectitle: this.subjectitle,
@@ -219,12 +220,12 @@
                             articlebody: this.articlebody,
                         }).then(function (response) {
                             if (response.data.status == 200) {
-                                toast(response.data.message, 'success');
+                                toast("عملية ناجة ", "تم إضافة المادة رقم " + atr + " بنجاح ", 'success');
                             } else if (response.data.status == 422) {
-                                toast(response.data.message, 'error');
+                                toast('خطأ', 'المادة رقم ' + atr + " موجودة بالفعل ", 'error');
                             }
                         }).catch(function (error) {
-                            toast('خطأ', 'المادة موجوة بالفعل', 'error');
+                            toast('خطأ', 'المادة رقم ' + atr + " موجودة بالفعل ", 'error');
                         });
 
                         this.articleno = '';

@@ -47,18 +47,15 @@ class LawsController extends Controller
             // file to store
             $fileNmaeToStore = "_قانون رقم_" . $lawId->lawno . '.' . $extention;
             // upload file
-            if(!Storage::exists('public/Law_PDF/'.$covernamewithEXT))
+            if (!(Storage::exists('public/Law_PDF/' . $covernamewithEXT)))
             {
                 $path = Storage::move('public/files/' . $covernamewithEXT, 'public/Law_PDF/' . $fileNmaeToStore);
                 $lawId->lawfile = $fileNmaeToStore;
                 $lawId->save();
                 return redirect()->route('addArticle', ['lawID' => $lawId]);
-            } else {
-                return back();
             }
         }
-
-
+        return redirect()->route('addArticle', ['lawID' => $lawId]);
     }
 
     // return view to create / add new law
@@ -153,11 +150,22 @@ class LawsController extends Controller
     public function SaveLawArticles(Request $request)
     {
         $request->validate([
-            'articleno' => 'required|unique:law_articls',
+            'articleno' => 'required',
             'articlebody' => 'required',
         ]);
+        $results = DB::table('law_articls')
+            ->where('articleno', $request['articleno'])->get();
 
-
+        if ($results) {
+            foreach ($results as $result) {
+                if ($result->laws_id == $request['laws_id']) {
+                    return response()->json([
+                        'message' => "هذه المادة موجودة بالفعل",
+                        "status" => 422
+                    ]);
+                }
+            }
+        }
         $articleLaw = new LawArticl;
         $articleLaw->laws_id = $request['laws_id'];
         $articleLaw->articleno = $request['articleno'];
