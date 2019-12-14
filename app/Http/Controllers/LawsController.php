@@ -19,12 +19,20 @@ class LawsController extends Controller
     }
     public function store(Request $request)
     {
-        $request->validate([
+        $this->validate($request,
+        [
             'lawtype' => 'required',
             'lawcategory' => 'required',
             'lawno' => 'required|unique:laws',
             'lawyear' => 'required',
             'lawrelation' => 'required',
+        ],[
+          'lawno.required'=>'مطلوب إدخال رقم القانون',
+          'lawno.unique'=> " القانون رقم ".$request['lawno']." موجود بالفعل  ",
+          'lawtype.required'=>'مطلوب إخال نوع القانون',
+          'lawcategory.required'=>'مطلوب إدخال تصنيف القانون',
+          'lawyear.required'=>'مطلوب إدخال سنة القانون',
+          'lawrelation.required'=>'مطلوب إدخال القانون بشأن',
         ]);
 
         $lawId = Law::create([
@@ -52,10 +60,25 @@ class LawsController extends Controller
                 $path = Storage::move('public/files/' . $covernamewithEXT, 'public/Law_PDF/' . $fileNmaeToStore);
                 $lawId->lawfile = $fileNmaeToStore;
                 $lawId->save();
-                return redirect()->route('addArticle', ['lawID' => $lawId]);
+
             }
         }
-        return redirect()->route('addArticle', ['lawID' => $lawId]);
+
+        if ($lawId) {
+          Session::put('notification',[
+                            'message' => " تم إضافة القانون بنجاح ",
+                            'alert-type' => 'success',
+              ]);
+              return redirect()->route('addArticle', ['lawID' => $lawId]);
+        } else {
+          Session::put('notification',[
+                            'message' => " خطأ قد يكون القانون موجود بالفعل ",
+                            'alert-type' => 'error',
+              ]);
+          return redirect()->back();
+        }
+
+
     }
 
     // return view to create / add new law

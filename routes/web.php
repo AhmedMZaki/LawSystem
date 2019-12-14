@@ -37,8 +37,13 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/asd',function(){
-  $asd = Storage::exists('public/Law_PDF/asd.txt');
-  return response()->json($asd);
+
+                Session::put('notification',[
+                                  'message' => "Ahmed Zaki ",
+                                  'alert-type' => 'success'
+                              ]);
+
+                return view('test');
 });
 
 Route::middleware(['auth'])->prefix('admin')->group(function () {
