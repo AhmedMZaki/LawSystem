@@ -15,25 +15,26 @@ class LawsController extends Controller
     public function index()
     {
         $laws = Law::latest()->paginate(10);
-        return view('SystemLaws.index',compact('laws'));
+        return view('SystemLaws.index', compact('laws'));
     }
+
     public function store(Request $request)
     {
         $this->validate($request,
-        [
-            'lawtype' => 'required',
-            'lawcategory' => 'required',
-            'lawno' => 'required|unique:laws',
-            'lawyear' => 'required',
-            'lawrelation' => 'required',
-        ],[
-          'lawno.required'=>'مطلوب إدخال رقم القانون',
-          'lawno.unique'=> " القانون رقم ".$request['lawno']." موجود بالفعل  ",
-          'lawtype.required'=>'مطلوب إخال نوع القانون',
-          'lawcategory.required'=>'مطلوب إدخال تصنيف القانون',
-          'lawyear.required'=>'مطلوب إدخال سنة القانون',
-          'lawrelation.required'=>'مطلوب إدخال القانون بشأن',
-        ]);
+            [
+                'lawtype' => 'required',
+                'lawcategory' => 'required',
+                'lawno' => 'required|unique:laws',
+                'lawyear' => 'required',
+                'lawrelation' => 'required',
+            ], [
+                'lawno.required' => 'مطلوب إدخال رقم القانون',
+                'lawno.unique' => " القانون رقم " . $request['lawno'] . " موجود بالفعل  ",
+                'lawtype.required' => 'مطلوب إخال نوع القانون',
+                'lawcategory.required' => 'مطلوب إدخال تصنيف القانون',
+                'lawyear.required' => 'مطلوب إدخال سنة القانون',
+                'lawrelation.required' => 'القانون بشأن ماذا',
+            ]);
 
         $lawId = Law::create([
             'lawtype' => $request['lawtype'],
@@ -47,16 +48,15 @@ class LawsController extends Controller
 
         if (request()->hasFile('lawfile')) {
             // get the file name with extention
-            $covernamewithEXT=$request->file('lawfile')->getClientOriginalName();
+            $covernamewithEXT = $request->file('lawfile')->getClientOriginalName();
             // get just the file name
-            $filename=pathinfo($covernamewithEXT,PATHINFO_FILENAME);
+            $filename = pathinfo($covernamewithEXT, PATHINFO_FILENAME);
             // get just the extention
-            $extention=$request->file('lawfile')->getClientOriginalExtension();
+            $extention = $request->file('lawfile')->getClientOriginalExtension();
             // file to store
             $fileNmaeToStore = "_قانون رقم_" . $lawId->lawno . '.' . $extention;
             // upload file
-            if (!(Storage::exists('public/Law_PDF/' . $covernamewithEXT)))
-            {
+            if (!(Storage::exists('public/Law_PDF/' . $covernamewithEXT))) {
                 $path = Storage::move('public/files/' . $covernamewithEXT, 'public/Law_PDF/' . $fileNmaeToStore);
                 $lawId->lawfile = $fileNmaeToStore;
                 $lawId->save();
@@ -65,17 +65,17 @@ class LawsController extends Controller
         }
 
         if ($lawId) {
-          Session::put('notification',[
-                            'message' => " تم إضافة القانون بنجاح ",
-                            'alert-type' => 'success',
-              ]);
-              return redirect()->route('addArticle', ['lawID' => $lawId]);
+            Session::put('notification', [
+                'message' => " تم إضافة القانون بنجاح ",
+                'alert-type' => 'success',
+            ]);
+            return redirect()->route('addArticle', ['lawID' => $lawId]);
         } else {
-          Session::put('notification',[
-                            'message' => " خطأ قد يكون القانون موجود بالفعل ",
-                            'alert-type' => 'error',
-              ]);
-          return redirect()->back();
+            Session::put('notification', [
+                'message' => " خطأ قد يكون القانون موجود بالفعل ",
+                'alert-type' => 'error',
+            ]);
+            return redirect()->back();
         }
 
 
@@ -92,15 +92,22 @@ class LawsController extends Controller
         return view('SystemLaws.editSelectedLaw', compact('lawID'));
     }
 
-    public function update(Request $request,Law $lawID)
+    public function update(Request $request, Law $lawID)
     {
-        $request->validate([
-            'lawtype' => 'required',
-            'lawcategory' => 'required',
-            'lawno' => 'required',
-            'lawyear' => 'required',
-            'lawrelation' => 'required',
-        ]);
+        $this->validate($request,
+            [
+                'lawtype' => 'required',
+                'lawcategory' => 'required',
+                'lawno' => 'required',
+                'lawyear' => 'required',
+                'lawrelation' => 'required',
+            ], [
+                'lawno.required' => 'مطلوب إدخال رقم القانون',
+                'lawtype.required' => 'مطلوب إخال نوع القانون',
+                'lawcategory.required' => 'مطلوب إدخال تصنيف القانون',
+                'lawyear.required' => 'مطلوب إدخال سنة القانون',
+                'lawrelation.required' => 'القانون بشأن ماذا',
+            ]);
 
         $lawID->lawtype = $request['lawtype'];
         $lawID->lawcategory = $request['lawcategory'];
@@ -133,7 +140,11 @@ class LawsController extends Controller
 
         }
         $lawID->save();
-        return redirect()->route('getLaws')->with('laws', Law::latest()->paginate(10));
+        Session::put('notification', [
+            'message' => " تم تعديل القانون رقم  " . $lawID->lawno,
+            'alert-type' => 'success',
+        ]);
+        return redirect()->route('getLaws');
     }
 
 
@@ -159,23 +170,26 @@ class LawsController extends Controller
     }
 
 
-
     public function searchArticle()
     {
         return view('searchArticle');
     }
 
-    public function AddArticles(Request $request,Law $lawID)
+    public function AddArticles(Request $request, Law $lawID)
     {
         return view('SystemLaws.addArticleToLaw', compact('lawID'));
     }
 
     public function SaveLawArticles(Request $request)
     {
-        $request->validate([
-            'articleno' => 'required',
-            'articlebody' => 'required',
-        ]);
+        $this->validate($request,
+            [
+                'articleno' => 'required',
+                'articlebody' => 'required',
+            ], [
+                'articleno.required' => 'مطلوب إدخال رقم المادة',
+                'articlebody.required' => 'مطلوب إدخال نص المادة',
+            ]);
         $results = DB::table('law_articls')
             ->where('articleno', $request['articleno'])->get();
 
@@ -230,10 +244,15 @@ class LawsController extends Controller
 
     public function updateArticle(Request $request, LawArticl $articleID)
     {
-        $request->validate([
-            'articleno' => 'required',
-            'articlebody' => 'required',
-        ]);
+
+        $this->validate($request,
+            [
+                'articleno' => 'required',
+                'articlebody' => 'required',
+            ], [
+                'articleno.required' => 'مطلوب إدخال رقم المادة',
+                'articlebody.required' => 'مطلوب إدخال نص المادة',
+            ]);
 
         $articleID->articleno = $request['articleno'];
         $articleID->articlebody = $request['articlebody'];
@@ -247,6 +266,11 @@ class LawsController extends Controller
         $articleID->save();
 
         if ($articleID) {
+            $articleID->delete();
+            Session::put('notification', [
+                'message' => " تم تعديل المادة بنجاح  ",
+                'alert-type' => 'success',
+            ]);
             return redirect()->route('showrticles', ['law' => $articleID->law]);
         } else {
             return back();
@@ -257,6 +281,10 @@ class LawsController extends Controller
     public function deleteArticle(LawArticl $articleID)
     {
         $articleID->delete();
+        Session::put('notification', [
+            'message' => " تم حذف المادة بنجاح  ",
+            'alert-type' => 'success',
+        ]);
         return redirect()->back();
     }
 

@@ -69,16 +69,19 @@
 
                                     <div class="form-group col-md-4">
                                         <label>السنة</label>
-                                        <input type="text" class="form-control" id="year" name="year" required>
+                                        <input type="text" class="form-control" id="year" name="year"
+                                               required {{old('year')}}>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label>رقم الطعن</label>
-                                        <input type="text" class="form-control" id="objectionNo" name="objectionNo">
+                                        <input type="text" class="form-control" id="objectionNo" name="objectionNo"
+                                               required {{old('objectionNo')}}>
                                     </div>
 
                                     <div class="form-group col-md-4">
                                         <label> عدد المبادئ <span class="redstar">*</span></label>
-                                        <input type="text" class="form-control" id="notes" name="notes"/>
+                                        <input type="text" class="form-control" id="notes" name="notes"
+                                               required {{old('notes')}}>
                                     </div>
                                 </div>
                                 @if ($files)
@@ -153,11 +156,8 @@
     <script src="{{asset('lawSystem/assets/js/jquery.toast.js')}}"></script>
     <script src="{{asset('lawSystem/assets/js/users.js')}}"></script>
     <script src="{{asset('lawSystem/assets/js/alertfunction.js')}}"></script>
-    <scirp></scirp>
+    @include('layouts.notification')
+    @include('layouts.errors')
 @endsection
 
-@if(Session::has('message'))
-    <script>
-        toast({{Session::get('message')}},{{Session::get('type')}});
-    </script>
-@endif
+

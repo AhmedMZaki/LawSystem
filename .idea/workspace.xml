@@ -2,7 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a8d258fe-d854-4b40-9cad-d289fdc0ff78" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/views/judgments/editJudgment.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/JudgmentsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/JudgmentsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LawsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LawsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_12_04_061618_create_judgments_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_12_04_061618_create_judgments_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/lawSystem/assets/css/select2.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/lawSystem/assets/css/select2.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/lawSystem/assets/js/select2.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/lawSystem/assets/js/select2.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/SystemLaws/addArticleToLaw.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/SystemLaws/addArticleToLaw.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/SystemLaws/editSelectedLaw.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/SystemLaws/editSelectedLaw.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/SystemLaws/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/SystemLaws/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/SystemLaws/showArticles.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/SystemLaws/showArticles.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/judgments/addNoteTojudgment.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/judgments/addNoteTojudgment.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/judgments/createNewJudgment.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/judgments/createNewJudgment.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/judgments/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/judgments/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/judgments/updateLastInput.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/judgments/updateLastInput.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/footer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/footer.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/notification.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/notification.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -170,7 +187,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="jsx.switch.disabled" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../blog" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/lawSystem/assets/js" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.stylelint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -181,6 +198,15 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="preferences.toDoOptions" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public/lawSystem/assets/css" />
+      <recent name="$PROJECT_DIR$/public/lawSystem/assets/js" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public/lawSystem/assets/js" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -325,6 +351,13 @@
       <workItem from="1576146035929" duration="1286000" />
       <workItem from="1576147432857" duration="1761000" />
       <workItem from="1576215607922" duration="191000" />
+      <workItem from="1576328396409" duration="1903000" />
+      <workItem from="1576330331602" duration="1780000" />
+      <workItem from="1576332145793" duration="1786000" />
+      <workItem from="1576334000370" duration="2033000" />
+      <workItem from="1576336404268" duration="1740000" />
+      <workItem from="1576338273478" duration="1504000" />
+      <workItem from="1576339813841" duration="879000" />
     </task>
     <task id="LOCAL-00001" summary="this new">
       <created>1576005457419</created>

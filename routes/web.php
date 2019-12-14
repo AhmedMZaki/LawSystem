@@ -24,6 +24,8 @@ Route::get('/judgments/create/{lastJudgment?}','JudgmentsController@create')->na
 Route::post('/judgments/store','JudgmentsController@store')->name('saveJudgments');
 Route::get('/judgments/{lastJudgment}/updateLastInput','JudgmentsController@updateLastInput')->name('updateLastInput');
 Route::patch('/judgments/{lastJudgment}/saveLastInput','JudgmentsController@saveLastInput')->name('saveLastInput');
+Route::get('/judgments/{judgmentID}/edit', 'JudgmentsController@edit')->name('editJudgment');
+Route::patch('/judgments/{JudgmentID}/update', 'JudgmentsController@update')->name('updateJudgment');
 Route::get('/judgments/addNote/{judgmentID}','JudgmentsController@addNote')->name('addNote');
 Route::post('/judgments/saveNote/{judgmentID}','JudgmentsController@saveNote')->name('saveNote');
 Route::get('/judgments/getArticles/{articleNo}','JudgmentsController@getLawArticles')->name('searchArticle');

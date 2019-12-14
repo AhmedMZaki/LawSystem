@@ -19,7 +19,7 @@ class CreateJudgmentsTable extends Migration
             $table->dateTime('judgmentDate');
             $table->string('objectionNo');
             $table->string('year');
-            $table->string('judgmentFile');
+            $table->string('judgmentFile')->nullable();
             $table->integer('notes');
             $table->integer('incompletednotes');
             $table->timestamps();

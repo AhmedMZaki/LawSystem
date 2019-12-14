@@ -45,20 +45,6 @@
                                   enctype="multipart/form-data">
                                 @csrf
                                 @method('PATCH')
-                                <div id="errors">
-                                    <div class="form-group">
-                                        @if (count($errors))
-                                            <div class="alert alert-danger">
-                                                <ul>
-                                                    @foreach ($errors->all() as $error)
-                                                        <li class="list-group-item">{{$error}}</li>
-                                                    @endforeach
-                                                </ul>
-                                            </div>
-                                        @endif
-                                    </div>
-                                </div>
-
                                 <div class="form-row">
                                     <div class="form-group col-md-2">
                                         <label>النوع<span class="redstar">*</span></label>
@@ -193,4 +179,6 @@
     <script src="{{asset('lawSystem/assets/js/jquery.toast.js')}}"></script>
     <script src="{{asset('lawSystem/assets/js/users.js')}}"></script>
     <script src="{{asset('lawSystem/assets/js/alertfunction.js')}}"></script>
+    @include('layouts.notification')
+    @include('layouts.errors')
 @endsection

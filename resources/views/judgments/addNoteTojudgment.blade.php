@@ -6,7 +6,7 @@
 
 @section('stylesheets')
     <!-- <link rel="shortcut icon" href="assets/images/favicon.ico" /> -->
-    <link rel="stylesheet" href="{{asset('lawSystem/assets/css/dataTables.bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{asset('lawSystem/assets/css/dataTables.bootstrap4.min.css')}}" xmlns="">
     <link rel="stylesheet" href="{{asset('lawSystem/assets/css/bootstrap.min.css')}}"/>
     <link rel="stylesheet" href="{{asset('lawSystem/assets/css/main.css')}}"/>
     <link rel="stylesheet" href="{{asset('lawSystem/assets/css/select2.min.css')}}"/>
@@ -46,7 +46,7 @@
                         <form method="post"
                               action="{{route('saveNote',['judgmentID'=>$judgment])}}"
                               enctype="multipart/form-data"
-                              @submit.prevent="SaveData({{json_encode($judgment->id)}})"
+
                         >
                             @csrf
                             <div class="col-md-6 float-right">
@@ -57,7 +57,7 @@
                                             <label>الموجز</label>
                                             <textarea class="form-control rounded-0" rows="4"
                                                       name="judgshort" id="judgshort"
-                                                      v-model="judgshort"
+
                                                       required
                                             ></textarea>
                                         </div>
@@ -65,17 +65,13 @@
                                             <label>المبدأ</label>
                                             <textarea class="form-control rounded-0" rows="4"
                                                       name="judgrule" id="judgrule" required
-                                                      v-model="judgrule"
+
                                             ></textarea>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="inputAddress">المواد المرتبطة</label>
-
-                                            <select class="SelectWithSearch full-width" multiple="multiple">
-
-                                            </select>
-
+                                            <select class="selectStatic" multiple="multiple"></select>
                                         </div>
 
 
@@ -121,6 +117,7 @@
 
         });
     </script>
+
     <script src="{{asset('lawSystem/assets/js/popper.js')}}"></script>
     <script src="{{asset('lawSystem/assets/js/bootstrap.min.js')}}"></script>
     <script src="{{asset('lawSystem/assets/js/jquery.dataTables.min.js')}}"></script>
@@ -131,86 +128,46 @@
     <script src="{{asset('lawSystem/assets/js/jquery.toast.js')}}"></script>
     <script src="{{asset('lawSystem/assets/js/users.js')}}"></script>
     <script src="{{asset('lawSystem/assets/js/alertfunction.js')}}"></script>
-    <script src="{{asset('js/vue.js')}}"></script>
-    <script src="{{asset('js/axios.js')}}"></script>
+
     <script>
-        // $.fn.addSelect2Items = function(items, config){
-        //     var that = this;
-        //     that.select2("destroy");
-        //     for(var k in items){
-        //         var data = items[k];
-        //         that.append("<option value='"+ data.id +"'>"+ data.text +"</option>");
-        //     }
-        //     that.select2(config || {});
-        // };
-        const judgmentNotes = new Vue({
-            el: '#formaction',
-            data: {
-                articleNo: '',
-                judgmentID: '',
-                judgshort: '',
-                judgrule: '',
-                lawArticles: [],
-            },
-            methods: {
-                //s2id_autogen2
-                SaveData: function (judgment_id) {
-
-                    toast('gregreg', 'grregtre', 'success');
-                    // this.judgmentID = judgment_id;
-                    // var selected = new Array();
-                    // let selectedArticle = document.getElementsByName('selectedArticle');
-                    // for (var i = 0; i < selectedArticle.length; i++) {
-                    //     selected.push(selectedArticle[i].value);
-                    // }
-                    // this.lawArticles = selected;
-                    //
-                    // axios.post('/judgments/saveNotes/store', {
-                    //     judgment_id: judgment_id,
-                    //     judgrule: this.judgrule,
-                    //     judgshort: this.judgshort,
-                    //     lawarticles: this.lawArticles,
-                    // }).then(function (response) {
-                    //     console.log(response.data);
-                    // });
-                    // this.judgshort = "";
-                    // this.judgrule = "";
-
-                },
-
-            },
-            created() {
-                $(document).ready(function () {
 
 
-                    document.getElementById('s2id_autogen2').addEventListener('keyup', function () {
-                        axios.get('/judgments/getArticles/' + this.value, {})
-                            .then(function (response) {
-                                for (var i = 0; i < response.data.length; i++) {
-                                    var option = document.createElement("option");
-                                    option.setAttribute('value', response.data[i].articleId);
-                                    option.innerHTML = response.data[i].info;
-                                    // $(".SelectWithSearch").select2("destroy");
-                                    document.getElementsByClassName('SelectWithSearch')[0].append(option);
-                                    // $(".SelectWithSearch").select2({ dir: "rtl",dropdownCssClass:'',allowClear: false, placeholder: "اختر"});
-                                }
-
-                            })
-                            .catch(function (error) {
-                                console.log(error);
-                            });
-                    });
-                });
-            },
-            mounted() {
-                axios.defaults.headers.common['X-CSRF-TOKEN']
-                    = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        $.fn.addSelect2Items = function (items, config) {
+            var that = this;
+            that.select2("destroy");
+            for (var k in items) {
+                var data = items[k];
+                that.append("<option value='" + data.id + "'>" + data.text + "</option>");
             }
+            that.select2(config || {});
+        };
+
+
+        $(".selectStatic").select2({
+            placeholder: "اختر", width: "100%", height: "100%"
         });
 
+        $('.select2-search__field').keyup(function (event) {
+
+            axios.get('/judgments/getArticles/' + 33, {})
+                .then(function (response) {
+                    for (var i = 0; i < response.data.length; i++) {
+                        $(".selectStatic").addSelect2Items([{
+                            id: response.data[i].articleId,
+                            text: response.data[i].info
+                        }], {});
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+
+
+        });
     </script>
 
     <script type="text/javascript">
+
         function openPdf(file) {
             let filename = "/storage/Finished_Judgments/" + file;
             var omyFrame = document.getElementById("myFrame");
@@ -219,5 +176,7 @@
         }
 
     </script>
+
+
     </body>
 @endsection

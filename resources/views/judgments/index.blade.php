@@ -105,7 +105,8 @@
                                             </td>
                                             <td>
 
-                                                <a href="#" class="btn general_btn btn_1"
+                                                <a href="{{route('editJudgment',['judgmentID'=>$judgment])}}"
+                                                   class="btn general_btn btn_1"
                                                 >
                                                     تعديل
                                                     <img src="{{asset('lawSystem/assets/images/edit.svg')}}" alt="">
@@ -118,7 +119,7 @@
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit"
-                                                            onclick="return confirm(();" name="submit"
+                                                            onclick="return confirm();" name="submit"
                                                             class="btn general_btn btn_1"
                                                             style="height:28px;"
                                                     >
@@ -164,6 +165,7 @@
     <script src="{{asset('lawSystem/assets/js/jquery.toast.js')}}"></script>
     <script src="{{asset('lawSystem/assets/js/users.js')}}"></script>
     <script src="{{asset('lawSystem/assets/js/alertfunction.js')}}"></script>
-    <scirp></scirp>
-    </body>
+    @include('layouts.notification')
+    @include('layouts.errors')
+
 @endsection

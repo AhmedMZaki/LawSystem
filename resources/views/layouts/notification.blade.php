@@ -21,5 +21,5 @@
             break;
     }
 </script>
-{{Session::forget('notification')}}
+  {{Session::forget('notification')}}
 @endif

@@ -160,7 +160,7 @@
                                                   class="form-control rounded-0"
                                                   rows="5" cols="15"
                                                   v-model="articlebody"
-                                                  required></textarea>
+                                        ></textarea>
                                     </div>
                                 </div>
                                 <div class="form-row">
@@ -220,12 +220,12 @@
                             articlebody: this.articlebody,
                         }).then(function (response) {
                             if (response.data.status == 200) {
-                                toast("عملية ناجة ", "تم إضافة المادة رقم " + atr + " بنجاح ", 'success');
+                                toast("عملية ناجة ", response.data.message, 'success');
                             } else if (response.data.status == 422) {
-                                toast('خطأ', 'المادة رقم ' + atr + " موجودة بالفعل ", 'error');
+                                toast('خطأ', response.data.message, 'error');
                             }
                         }).catch(function (error) {
-                            toast('خطأ', 'المادة رقم ' + atr + " موجودة بالفعل ", 'error');
+                            toast('خطأ', error.message, 'error');
                         });
 
                         this.articleno = '';
