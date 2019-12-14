@@ -2,24 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a8d258fe-d854-4b40-9cad-d289fdc0ff78" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/judgments/editJudgment.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/JudgmentsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/JudgmentsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LawsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LawsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2019_12_04_061618_create_judgments_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_12_04_061618_create_judgments_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/lawSystem/assets/css/select2.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/lawSystem/assets/css/select2.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/lawSystem/assets/js/select2.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/lawSystem/assets/js/select2.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/SystemLaws/addArticleToLaw.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/SystemLaws/addArticleToLaw.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/SystemLaws/editSelectedLaw.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/SystemLaws/editSelectedLaw.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/SystemLaws/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/SystemLaws/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/SystemLaws/showArticles.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/SystemLaws/showArticles.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/judgments/addNoteTojudgment.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/judgments/addNoteTojudgment.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/judgments/createNewJudgment.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/judgments/createNewJudgment.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/judgments/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/judgments/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/judgments/updateLastInput.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/judgments/updateLastInput.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/footer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/footer.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/notification.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/notification.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -357,7 +342,8 @@
       <workItem from="1576334000370" duration="2033000" />
       <workItem from="1576336404268" duration="1740000" />
       <workItem from="1576338273478" duration="1504000" />
-      <workItem from="1576339813841" duration="879000" />
+      <workItem from="1576339813841" duration="1786000" />
+      <workItem from="1576341634962" duration="357000" />
     </task>
     <task id="LOCAL-00001" summary="this new">
       <created>1576005457419</created>
@@ -464,7 +450,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576149019478</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="setting up notification system">
+      <created>1576340724376</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1576340724376</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -526,7 +519,8 @@
     <MESSAGE value="create the body code for SaveLawArticles method" />
     <MESSAGE value="creating edit law article blade page" />
     <MESSAGE value="adding notes to judgment" />
-    <option name="LAST_COMMIT_MESSAGE" value="adding notes to judgment" />
+    <MESSAGE value="setting up notification system" />
+    <option name="LAST_COMMIT_MESSAGE" value="setting up notification system" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>

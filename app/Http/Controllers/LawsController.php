@@ -75,7 +75,7 @@ class LawsController extends Controller
                 'message' => " خطأ قد يكون القانون موجود بالفعل ",
                 'alert-type' => 'error',
             ]);
-            return redirect()->back();
+            return redirect()->route('addNewLaw');
         }
 
 
