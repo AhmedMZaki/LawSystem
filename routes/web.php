@@ -17,6 +17,7 @@ Route::patch('/laws/{articleID}/updateArticle', 'LawsController@updateArticle')-
 Route::delete('/laws/{articleID}/deleteArticle', 'LawsController@deleteArticle')->name('deleteArticle');
 Route::get('/laws/{lawID}/off', 'LawsController@lawOFF')->name('lawOFF');
 Route::get('/laws/{lawID}/on', 'LawsController@lawON')->name('lawON');
+Route::get('/laws/SearchArticles/{articleNo}', 'LawsController@SearchArticles')->name('searchArticle');
 
 // judgments routes
 Route::get('/judgments','JudgmentsController@index')->name('getJudgments');
@@ -28,7 +29,7 @@ Route::get('/judgments/{judgmentID}/edit', 'JudgmentsController@edit')->name('ed
 Route::patch('/judgments/{JudgmentID}/update', 'JudgmentsController@update')->name('updateJudgment');
 Route::get('/judgments/addNote/{judgmentID}','JudgmentsController@addNote')->name('addNote');
 Route::post('/judgments/saveNote/{judgmentID}','JudgmentsController@saveNote')->name('saveNote');
-Route::get('/judgments/getArticles/{articleNo}','JudgmentsController@getLawArticles')->name('searchArticle');
+
 
 ////////////////////////////////////////
 
@@ -38,18 +39,4 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/asd',function(){
 
-                Session::put('notification',[
-                                  'message' => "Ahmed Zaki ",
-                                  'alert-type' => 'success'
-                              ]);
-
-                return view('test');
-});
-
-Route::middleware(['auth'])->prefix('admin')->group(function () {
-
-
-
-  });

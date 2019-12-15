@@ -193,27 +193,5 @@ class JudgmentsController extends Controller
         return $realfilesName;
     }
 
-    public function getLawArticles(Request $request, $articleNo)
-    {
-        if ($articleNo) {
-            $formatedData = [];
-            $laws = [];
-            $results = DB::table('law_articls')
-                ->where('articleno', $articleNo)
-                ->get();
-            foreach ($results as $article) {
-                $attr = LawArticl::find($article->id);
-                $somedata = [
-                    'articleId' => $attr->id,
-                    'info' => "    المادة رقم {$attr->articleno} من القانون ال{$attr->law->lawcategory}  ",
-                ];
-                $formatedData[] = $somedata;
-            }
-            return $formatedData;
-        } else {
-            return null;
-        }
-    }
-
 
 }

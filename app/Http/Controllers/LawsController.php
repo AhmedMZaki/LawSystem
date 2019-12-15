@@ -180,11 +180,6 @@ class LawsController extends Controller
         return $string;
     }
 
-//
-//    public function searchArticle()
-//    {
-//        return view('searchArticle');
-//    }
 
     public function AddArticles(Request $request, Law $lawID)
     {
@@ -297,6 +292,28 @@ class LawsController extends Controller
             'alert-type' => 'success',
         ]);
         return redirect()->back();
+    }
+
+    public function SearchArticles(Request $request, $articleNo)
+    {
+        if ($articleNo) {
+            $formatedData = [];
+            $laws = [];
+            $results = DB::table('law_articls')
+                ->where('articleno', $articleNo)
+                ->get();
+            foreach ($results as $article) {
+                $attr = LawArticl::find($article->id);
+                $somedata = [
+                    'articleId' => $attr->id,
+                    'info' => "    المادة رقم {$attr->articleno} من القانون ال{$attr->law->lawcategory}  ",
+                ];
+                $formatedData[] = $somedata;
+            }
+            return $formatedData;
+        } else {
+            return null;
+        }
     }
 
 }

@@ -3,10 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="a8d258fe-d854-4b40-9cad-d289fdc0ff78" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/JudgmentsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/JudgmentsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LawsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LawsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/judgments/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/judgments/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -349,7 +348,7 @@
       <workItem from="1576338273478" duration="1504000" />
       <workItem from="1576339813841" duration="1786000" />
       <workItem from="1576341634962" duration="421000" />
-      <workItem from="1576393215580" duration="6927000" />
+      <workItem from="1576393215580" duration="8426000" />
     </task>
     <task id="LOCAL-00001" summary="this new">
       <created>1576005457419</created>
@@ -540,7 +539,8 @@
     <MESSAGE value="creating edit law article blade page" />
     <MESSAGE value="adding notes to judgment" />
     <MESSAGE value="setting up notification system" />
-    <option name="LAST_COMMIT_MESSAGE" value="setting up notification system" />
+    <MESSAGE value="adding comments to law controller &#10;move search article from judgment controller to law controller" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding comments to law controller &#10;move search article from judgment controller to law controller" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
