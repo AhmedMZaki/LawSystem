@@ -11,13 +11,14 @@ use Illuminate\Http\Request;
 
 class LawsController extends Controller
 {
-    // index methos gets all laws to show them in index page
+    // index method gets all laws to show them in index page
     public function index()
     {
         $laws = Law::latest()->paginate(10);
         return view('SystemLaws.index', compact('laws'));
     }
 
+    // store method used to save the new law
     public function store(Request $request)
     {
         $this->validate($request,
@@ -27,7 +28,7 @@ class LawsController extends Controller
                 'lawno' => 'required|unique:laws',
                 'lawyear' => 'required',
                 'lawrelation' => 'required',
-            ], [
+            ], [   // change the default error messages from english to arabic
                 'lawno.required' => 'مطلوب إدخال رقم القانون',
                 'lawno.unique' => " القانون رقم " . $request['lawno'] . " موجود بالفعل  ",
                 'lawtype.required' => 'مطلوب إخال نوع القانون',
@@ -45,7 +46,8 @@ class LawsController extends Controller
             'slug' => LawsController::make_slug($request['lawrelation'])
 
         ]);
-
+        // check if the $request has a file
+        // Note:: the lawfile column is nullable
         if (request()->hasFile('lawfile')) {
             // get the file name with extention
             $covernamewithEXT = $request->file('lawfile')->getClientOriginalName();
@@ -63,7 +65,8 @@ class LawsController extends Controller
 
             }
         }
-
+        // check the creation of the new law is done
+        // return success message
         if ($lawId) {
             Session::put('notification', [
                 'message' => " تم إضافة القانون بنجاح ",
@@ -75,6 +78,8 @@ class LawsController extends Controller
                 'message' => " خطأ قد يكون القانون موجود بالفعل ",
                 'alert-type' => 'error',
             ]);
+
+            // if the creation of new law is fails redirect it back
             return redirect()->route('addNewLaw');
         }
 
@@ -87,6 +92,7 @@ class LawsController extends Controller
         return view('SystemLaws.createNewLaw');
     }
 
+    // return view to edit law
     public function edit(Law $lawID)
     {
         return view('SystemLaws.editSelectedLaw', compact('lawID'));
@@ -101,7 +107,7 @@ class LawsController extends Controller
                 'lawno' => 'required',
                 'lawyear' => 'required',
                 'lawrelation' => 'required',
-            ], [
+            ], [  // change the default english error validation messages with arabic ones
                 'lawno.required' => 'مطلوب إدخال رقم القانون',
                 'lawtype.required' => 'مطلوب إخال نوع القانون',
                 'lawcategory.required' => 'مطلوب إدخال تصنيف القانون',
@@ -116,12 +122,16 @@ class LawsController extends Controller
         $lawID->lawrelation = $request['lawrelation'];
         $lawID->slug = LawsController::make_slug($request['lawrelation']);
 
+        // check if the request has file
+        // if file is changed then
         if (request()->hasFile('lawfile')) {
-
+            // if the new file is exists on the law files folder
+            // then save and do nothing & return direct back with success message
             if (Storage::exists('public/Law_PDF/' . $request->file('lawfile')->getClientOriginalExtension())) {
                 $lawID->save();
                 return redirect()->route('getLaws')->with('laws', Law::latest()->paginate(10));
             } else {
+                // if the request has new file is different from the old one change the file
                 Storage::move(('public/Law_PDF/' . $lawID->lawfile), ('public/files/' . time() . '_' . 'old' . '_' . $lawID->lawfile));
                 // adding the new file
                 $covernamewithEXT = $request->file('lawfile')->getClientOriginalName();
@@ -155,6 +165,7 @@ class LawsController extends Controller
         return back();
     }
 
+    // laravel doesn't support arabic slug so this method is used to generate arabic ones
     public static function make_slug($string, $separator = '-')
     {
         $string = trim($string);
@@ -169,11 +180,11 @@ class LawsController extends Controller
         return $string;
     }
 
-
-    public function searchArticle()
-    {
-        return view('searchArticle');
-    }
+//
+//    public function searchArticle()
+//    {
+//        return view('searchArticle');
+//    }
 
     public function AddArticles(Request $request, Law $lawID)
     {

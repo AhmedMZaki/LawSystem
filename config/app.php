@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'ar',
 
     /*
     |--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'en',
+    'fallback_locale' => 'ar',
 
     /*
     |--------------------------------------------------------------------------
@@ -105,8 +105,9 @@ return [
     | localized telephone numbers, street address information and more.
     |
     */
+    'faker_locale' => 'ar_JO',
+//    'faker_locale' => 'en_US',
 
-    'faker_locale' => 'en_US',
 
     /*
     |--------------------------------------------------------------------------

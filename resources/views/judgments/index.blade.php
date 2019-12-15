@@ -75,7 +75,7 @@
                                     </th>
                                     <th class="w_200 text-center">سنة الاصدار</th>
                                     <th class="w_70 text-center">رقم الطعن</th>
-                                    <th class="w_70 text-center">عدد المبادئ *</th>
+                                    <th class="w_70 text-center">عدد المبادئ</th>
                                     <th class="w_120 text-center">غير مكتمل</th>
                                     <th class="w_70 text-center">إضافة مبدأ</th>
                                     <th class="w_70 text-center">تعديل</th>
