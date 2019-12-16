@@ -150,6 +150,7 @@
                                         <input type="num" lang="ar" v-model="articletitle" class="form-control"
                                                name="articletitle" id="articletitle"
                                                placeholder="عنوان المادة" dir="rtl" {{old('articletitle')}}
+
                                         >
                                     </div>
                                 </div>
@@ -160,6 +161,7 @@
                                                   class="form-control rounded-0"
                                                   rows="5" cols="15"
                                                   v-model="articlebody"
+                                                  required
                                         ></textarea>
                                     </div>
                                 </div>
@@ -225,7 +227,7 @@
                                 toast('خطأ', response.data.message, 'error');
                             }
                         }).catch(function (error) {
-                            toast('خطأ', error.message, 'error');
+                            toast('خطأ', "هذه المادة موجودة بالفعل ", 'error');
                         });
 
                         this.articleno = '';

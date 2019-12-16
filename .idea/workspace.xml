@@ -2,10 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a8d258fe-d854-4b40-9cad-d289fdc0ff78" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/JudgmentsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/JudgmentsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LawsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LawsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/LawArticl.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/LawArticl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/public/.htaccess" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/en/validation.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/en/validation.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/SystemLaws/addArticleToLaw.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/SystemLaws/addArticleToLaw.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,7 +20,7 @@
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution>
-      <executable />
+      <executable path="composer" />
     </execution>
   </component>
   <component name="DatabaseView">
@@ -48,6 +52,9 @@
       </path>
     </expand>
     <select />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="test11" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -175,8 +182,13 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="jsx.switch.disabled" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../blog" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.stylelint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -196,6 +208,108 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/public/lawSystem/assets/js" />
     </key>
+  </component>
+  <component name="RestClientSettings">
+    <option name="REQUEST_HISTORY">
+      <list>
+        <RestClientRequest>
+          <option name="biscuits">
+            <list>
+              <Biscuit>
+                <option name="date" value="1576417156000" />
+                <option name="domain" value="localhost" />
+                <option name="name" value="XSRF-TOKEN" />
+                <option name="path" value="/" />
+                <option name="value" value="eyJpdiI6IlhFemNjZHRvaDJCZ2FDcGhFNXJ2RWc9PSIsInZhbHVlIjoibGlcL1Z6Y2VlXC9DRDhBMmdFTGJcL1Y5N2NsWlFHS2VjalU4ZFdvWEN2aVNWWktIMWNTZWpISGp1cU1KRGlBb1VwQSIsIm1hYyI6ImM2NjVhYWQ2OTMxMDcwYWM2NTQ2M2QxYTVhNGFmMmNlNDAzMmIyOWZiNzJmZGFmY2IwNTMzOThlZjIxYmIyMGIifQ%3D%3D" />
+              </Biscuit>
+              <Biscuit>
+                <option name="date" value="1576417156000" />
+                <option name="domain" value="localhost" />
+                <option name="name" value="law_system_session" />
+                <option name="path" value="/" />
+                <option name="value" value="eyJpdiI6IjFcL1BLMmJCOUJFK2YyXC9zN05sMlNmZz09IiwidmFsdWUiOiJHSjhkTEc4eTQ0RFVHM2M3N1RhNFNJVXVsQnU0V2xLXC9Jb0tNV3c4S0VuVHZMOElaNDd3dTMzRmFxZ1V2R2ZQRSIsIm1hYyI6IjdmNWNhNzM1N2Q3Y2I4OWI4MGViNWM5MWMyNGRjZDRhZDRjNjI0NjNjNzgxZDZlMWU3MWMyNDA1NDUzMDkwM2MifQ%3D%3D" />
+              </Biscuit>
+            </list>
+          </option>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:8000" />
+          <option name="urlPath" value="laws/SearchArticles/25" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="*/*" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Cache-Control" />
+                <option name="value" value="no-cache" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parametersEnabled" value="true" />
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="biscuits">
+            <list>
+              <Biscuit>
+                <option name="date" value="1576416960000" />
+                <option name="domain" value="localhost" />
+                <option name="name" value="XSRF-TOKEN" />
+                <option name="path" value="/" />
+                <option name="value" value="eyJpdiI6ImFzS1RrK3ljNnA2NFZ0S0xXZ0o1K1E9PSIsInZhbHVlIjoiNUwzN0I4RFRFTWlzVXg4aUJKK1JjTmtmZ3d4QTdNN1BSdkhaaFBIRCtYbjRQcEdjWkp5MUJyRGNcL0pXd2trTTIiLCJtYWMiOiJiMjdmMjBjZWNhNmMyOGY3YTY4MjliNTljNzVhMjEyMGUyZTMyOWQ5OGFlNjc1YjNhZTBhNDAxZjczNjBkNzE5In0%3D" />
+              </Biscuit>
+              <Biscuit>
+                <option name="date" value="1576416960000" />
+                <option name="domain" value="localhost" />
+                <option name="name" value="law_system_session" />
+                <option name="path" value="/" />
+                <option name="value" value="eyJpdiI6IkFubVNjNE5ZWVNNbGtEUTQxMkRoU1E9PSIsInZhbHVlIjoiSDBRbFduT0dMeUkxcEVuQ0RQNmpWXC82UzZDdE1nT1N5ZnVDQldVZ1dSeWNBOWtaSUFtSkp5dmlQV3R4QVowUmoiLCJtYWMiOiI4YTIwZWU1OGFkM2JmZGQzMjIwNDczZGM1OWRlNDIzMDVkMjVhZWQ5NDliZDI5OWM4NDkzOWUzYzYyODg3ZGI4In0%3D" />
+              </Biscuit>
+            </list>
+          </option>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:8000" />
+          <option name="urlPath" value="laws/SearchArticles/2" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="*/*" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Cache-Control" />
+                <option name="value" value="no-cache" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parametersEnabled" value="true" />
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:8000" />
+          <option name="urlPath" value="laws/SearchArticles/25" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="*/*" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Cache-Control" />
+                <option name="value" value="no-cache" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parametersEnabled" value="true" />
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+      </list>
+    </option>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -222,7 +336,12 @@
           <expand>
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@72014b8f" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@99d38bbe" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+            </path>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@99d38bbe" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@64517fa8" type="9fbbdea:ServiceModel$ServiceNode" />
             </path>
           </expand>
           <select />
@@ -348,7 +467,9 @@
       <workItem from="1576338273478" duration="1504000" />
       <workItem from="1576339813841" duration="1786000" />
       <workItem from="1576341634962" duration="421000" />
-      <workItem from="1576393215580" duration="8426000" />
+      <workItem from="1576393215580" duration="9824000" />
+      <workItem from="1576410106686" duration="1814000" />
+      <workItem from="1576482439674" duration="4709000" />
     </task>
     <task id="LOCAL-00001" summary="this new">
       <created>1576005457419</created>
@@ -476,7 +597,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576393263244</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="move SearchArticles method from judgments controller to laws controller">
+      <created>1576406947572</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1576406947572</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -540,7 +668,8 @@
     <MESSAGE value="adding notes to judgment" />
     <MESSAGE value="setting up notification system" />
     <MESSAGE value="adding comments to law controller &#10;move search article from judgment controller to law controller" />
-    <option name="LAST_COMMIT_MESSAGE" value="adding comments to law controller &#10;move search article from judgment controller to law controller" />
+    <MESSAGE value="move SearchArticles method from judgments controller to laws controller" />
+    <option name="LAST_COMMIT_MESSAGE" value="move SearchArticles method from judgments controller to laws controller" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>

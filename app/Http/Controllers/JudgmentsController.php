@@ -47,15 +47,8 @@ class JudgmentsController extends Controller
                 'notes.required' => 'مطلوب إدخال عدد المبادئ ',
             ]);
 
-        $lastJudgment = judgments::create([
-            'judgmentcategory' => $request['judgmentcategory'],
-            'judgmentfile' => $request['judgmentfile'],
-            'judgmentDate' => $request['judgmentDate'],
-            'year' => $request['year'],
-            'objectionNo' => $request['objectionNo'],
-            'notes' => $request['notes'],
-            'incompletednotes' => $request['notes'],
-        ]);
+        $lastJudgment = judgments::create($request->all());
+        $lastJudgment->incompletednotes = $request['notes'];
 
         if ($lastJudgment) {
             $suuccess = Storage::move(('public/unfinished_judgments/' . $request['judgmentfile']), ('public/Finished_Judgments/'

@@ -11,7 +11,7 @@ class LawArticl extends Model
         [
             'laws_id','articleno','articlebody'
         ];
-        //protected $with = ['Law'];
+
     public function law()
     {
         return $this->belongsTo(Law::class,'laws_id');

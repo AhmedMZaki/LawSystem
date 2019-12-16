@@ -37,15 +37,9 @@ class LawsController extends Controller
                 'lawrelation.required' => 'القانون بشأن ماذا',
             ]);
 
-        $lawId = Law::create([
-            'lawtype' => $request['lawtype'],
-            'lawcategory' => $request['lawcategory'],
-            'lawno' => $request['lawno'],
-            'lawyear' => $request['lawyear'],
-            'lawrelation' => $request['lawrelation'],
-            'slug' => LawsController::make_slug($request['lawrelation'])
+        $lawId = Law::create($request->all());
+        $lawId->slug = LawsController::make_slug($request['lawrelation']);
 
-        ]);
         // check if the $request has a file
         // Note:: the lawfile column is nullable
         if (request()->hasFile('lawfile')) {
@@ -75,7 +69,7 @@ class LawsController extends Controller
             return redirect()->route('addArticle', ['lawID' => $lawId]);
         } else {
             Session::put('notification', [
-                'message' => " خطأ قد يكون القانون موجود بالفعل ",
+                'message' => " خطأ القانون موجود بالفعل ",
                 'alert-type' => 'error',
             ]);
 
@@ -196,8 +190,7 @@ class LawsController extends Controller
                 'articleno.required' => 'مطلوب إدخال رقم المادة',
                 'articlebody.required' => 'مطلوب إدخال نص المادة',
             ]);
-        $results = DB::table('law_articls')
-            ->where('articleno', $request['articleno'])->get();
+        $results = LawArticl::where('articleno', $request['articleno'])->get();
 
         if ($results) {
             foreach ($results as $result) {
@@ -209,18 +202,7 @@ class LawsController extends Controller
                 }
             }
         }
-        $articleLaw = new LawArticl;
-        $articleLaw->laws_id = $request['laws_id'];
-        $articleLaw->articleno = $request['articleno'];
-        $articleLaw->articlebody = $request['articlebody'];
-        $articleLaw->subjectid = $request['subjectid'];
-        $articleLaw->subjectitle = $request['subjectitle'];
-        $articleLaw->chapterid = $request['chapterid'];
-        $articleLaw->chaptertitle = $request['chaptertitle'];
-        $articleLaw->sectionid = $request['sectionid'];
-        $articleLaw->sectiontitle = $request['sectiontitle'];
-        $articleLaw->articletitle = $request['articletitle'];
-        $articleLaw->save();
+        $articleLaw = LawArticl::create($request->all());
 
         if ($articleLaw) {
             return response()->json([
@@ -306,7 +288,7 @@ class LawsController extends Controller
                 $attr = LawArticl::find($article->id);
                 $somedata = [
                     'articleId' => $attr->id,
-                    'info' => "    المادة رقم {$attr->articleno} من القانون ال{$attr->law->lawcategory}  ",
+                    'info' => " المادة رقم {$attr->articleno} من القانون ال{$attr->law->lawcategory} ",
                 ];
                 $formatedData[] = $somedata;
             }
