@@ -80,6 +80,26 @@
                                     <th class="w_70 text-center">حذف</th>
                                 </tr>
                                 </thead>
+                                <tfoot>
+                                <tr>
+                                    <th></th>
+                                    <th><input id="Name" class="form-control" type="text" placeholder="التصنيف"/></th>
+                                    <th><input id="Name" class="form-control" type="text" placeholder="تاريخ الجلسة"/>
+                                    </th>
+                                    <th><input id="Name2" class="form-control" type="text" placeholder="سنة الاصدار"/>
+                                    </th>
+                                    <th><input id="Name2" class="form-control" type="text" placeholder="رقم الطعن"/>
+                                    </th>
+                                    <th><input id="Name2" class="form-control" type="text" placeholder="عدد المبادئ"/>
+                                    </th>
+                                    <th><input id="Name2" class="form-control" type="text" placeholder="غير مكتمل"/>
+                                    </th>
+                                    <th>######</th>
+                                    <th>######</th>
+                                    <th>######</th>
+                                    <th>######</th>
+                                </tr>
+                                </tfoot>
                                 <tbody>
 
                                 </tbody>
