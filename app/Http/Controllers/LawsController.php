@@ -6,18 +6,25 @@ use App\Law;
 use Storage;
 use App\LawArticl;
 use Session;
-use DB;
+use Redirect, Response, DB, Config;
+use Datatables;
 use Illuminate\Http\Request;
 
 class LawsController extends Controller
 {
     // index method gets all laws to show them in index page
+
     public function index()
     {
-        $laws = Law::latest()->paginate(10);
-        return view('SystemLaws.index', compact('laws'));
+        return view('SystemLaws.index');
     }
 
+    public function lawsList()
+    {
+        $laws = DB::table('laws')->select('*');
+        return datatables()->of($laws)->make(true);
+
+    }
     // store method used to save the new law
     public function store(Request $request)
     {
@@ -25,7 +32,7 @@ class LawsController extends Controller
             [
                 'lawtype' => 'required',
                 'lawcategory' => 'required',
-                'lawno' => 'required|unique:laws',
+                'lawno' => 'required',
                 'lawyear' => 'required',
                 'lawrelation' => 'required',
             ], [   // change the default error messages from english to arabic
@@ -36,6 +43,22 @@ class LawsController extends Controller
                 'lawyear.required' => 'مطلوب إدخال سنة القانون',
                 'lawrelation.required' => 'القانون بشأن ماذا',
             ]);
+
+        $results = Law::where('lawno', $request['lawno'])->get();
+
+        if ($results) {
+            foreach ($results as $result) {
+                if ($result->lawno == $request['lawno'] && $result->lawcategory == $request['lawcategory']) {
+                    Session::put('notification', [
+                        'message' => " خطأ القانون موجود بالفعل ",
+                        'alert-type' => 'error',
+                    ]);
+
+                    // if the creation of new law is fails redirect it back
+                    return redirect()->route('addNewLaw');
+                }
+            }
+        }
 
         $lawId = Law::create($request->all());
         $lawId->slug = LawsController::make_slug($request['lawrelation']);

@@ -68,70 +68,20 @@
                                 <thead>
                                 <tr>
                                     <th class="w_40 pr-2">م</th>
-                                    <th class="w_170 text-center">التصنيف</th>
-                                    <th class="w_100 text-center">
-
-                                        تاريخ الجلسة
-                                    </th>
-                                    <th class="w_200 text-center">سنة الاصدار</th>
+                                    <th class="w_100 text-center">التصنيف</th>
+                                    <th class="w_120 text-center">تاريخ الجلسة</th>
+                                    <th class="w_100 text-center">سنة الاصدار</th>
                                     <th class="w_70 text-center">رقم الطعن</th>
                                     <th class="w_70 text-center">عدد المبادئ</th>
-                                    <th class="w_120 text-center">غير مكتمل</th>
-                                    <th class="w_70 text-center">إضافة مبدأ</th>
+                                    <th class="w_70 text-center">غير مكتمل</th>
+                                    <th class="w_100 text-center">عرض المبادئ</th>
+                                    <th class="w_100 text-center">إضافة مبدأ</th>
                                     <th class="w_70 text-center">تعديل</th>
                                     <th class="w_70 text-center">حذف</th>
                                 </tr>
                                 </thead>
                                 <tbody>
 
-                                @if (count($judgments))
-                                    @foreach ($judgments as $judgment)
-                                        <tr>
-                                            <td>{{$judgment->id}}</td>
-                                            <td>{{$judgment->judgmentcategory}}</td>
-                                            <td>{{$judgment->judgmentDate}}</td>
-                                            <td>{{$judgment->year}}</td>
-                                            <td>{{$judgment->objectionNo}} </td>
-                                            <td>{{$judgment->notes}} </td>
-                                            <td>{{$judgment->incompletednotes}} </td>
-                                            <td>
-                                                <a href="{{route('addNote',['judgmentID'=>$judgment->id])}}"
-                                                   class="btn general_btn btn_1"
-                                                >
-                                                    إضافة مبادئ
-                                                    <img src="{{asset('lawSystem/assets/images/plus.svg')}}"
-                                                         width="20px" height="20px">
-                                                </a>
-                                            </td>
-                                            <td>
-
-                                                <a href="{{route('editJudgment',['judgmentID'=>$judgment])}}"
-                                                   class="btn general_btn btn_1"
-                                                >
-                                                    تعديل
-                                                    <img src="{{asset('lawSystem/assets/images/edit.svg')}}" alt="">
-
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <form action="" method="post">
-
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit"
-                                                            onclick="return confirm();" name="submit"
-                                                            class="btn general_btn btn_1"
-                                                            style="height:28px;"
-                                                    >
-                                                        حذف
-                                                        <img src="{{asset('lawSystem/assets/images/times.svg')}}">
-                                                    </button>
-                                                </form>
-
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                @endif
                                 </tbody>
                             </table>
                         </div>
@@ -161,11 +111,141 @@
     <script src="{{asset('lawSystem/assets/js/full_numbers_no_ellipses.js')}}"></script>
     <script src="{{asset('lawSystem/assets/js/dataTables.bootstrap4.min.js')}}"></script>
     <script src="{{asset('lawSystem/assets/js/function.js')}}"></script>
+    <script>
+        $.fn.DataTable.ext.pager.numbers_length = 3;
+        var table = $('#usersTable').DataTable({
+            paging: true,
+            destroy: true,
+            columnDefs: [
+                {
+                    "targets": [0],
+                    "orderable": false,
+
+                }
+            ],
+            select: {
+                style: 'multi',
+                selector: '.select-box'
+            },
+            order: [[2, 'asc']],
+            orderCellsTop: true,
+            "lengthMenu": [[10, 50, 100, -1], [10, 50, 100, "الكل"]],
+            'pagingType': 'full_numbers_no_ellipses',
+            sDom: 'lrt<"row"<"col-sm-12 col-md-7"i><"col-sm-12 col-md-5"p>>',
+            "bLengthChange": false,
+            "language": {
+                select: {
+                    rows: " تم تحديد   %d   قانون اضافة الى<li class='add-to-group'><select class='fotrolo' title='اختر'><option>المدرسين</option> <option>اطباء</option></select><button class='btn save-to-group general_btn btn_1'><i class='plus-icon   btn-icon-width inline-icon green-icon'></i><span>اضافة </span></button></li>"
+                },
+                "emptyTable": "لا يوجد بيانات",
+                "infoEmpty": "عرض 0 الي 0 من 0 قانون",
+                "info": "عرض _START_ الى _END_ من _TOTAL_ قانون",
+                "lengthMenu": "اظهر _MENU_ ملف",
+                "infoFiltered": "(من اصل _MAX_ ملف)",
+                "zeroRecords": "لا يوجد نتائج للبحث",
+                "paginate": {
+                    "previous": "<",
+                    "next": ">",
+                    "last": ">>",
+                    "first": "<<"
+                }
+            },
+            ajax: "{{ url('judgments-list') }}",
+            columns: [
+                {data: 'id', name: 'id'},
+                {data: 'judgmentcategory', name: 'judgmentcategory'},
+                {data: 'judgmentDate', name: 'judgmentDate'},
+                {data: 'year', name: 'year'},
+                {data: 'objectionNo', name: 'objectionNo'},
+                {data: 'notes', name: 'notes'},
+                {data: 'notes', name: 'incompletednotes'},
+                {
+                    data: 'id', name: 'add', "render": function (data) {
+                        data = '<a class="general_btn btn_1 ml-2" href="#">' + "عرض المبادئ" + '</a>';
+                        return data;
+                    }
+                },
+                {
+                    data: 'id', name: 'add', "render": function (data) {
+                        data = '<a class="general_btn btn_1 ml-2" href="/judgments/addNote/' + data + '">' + "إضافة مبادئ" + '</a>';
+                        return data;
+                    }
+                },
+                {
+                    data: 'id', name: 'edit', "render": function (data) {
+                        data = '<a class="general_btn btn_1 ml-2" href="/judgments/' + data + '/edit">' + "تعديل" + '</a>';
+                        return data;
+                    }
+                },
+                {
+                    data: 'id', name: 'edit', "render": function (data) {
+                        data = '<a class="general_btn btn_1 ml-2" href="#">' + "حذف" + '</a>';
+                        return data;
+                    }
+                },
+
+            ]
+
+        });
+
+
+        table.columns().every(function (index) {
+            $('.CustomTable tfoot tr:eq(0) th:eq(' + index + ') input[type="text"],.CustomTable tfoot tr:eq(0) th:eq(' + index + ') select').on('change', function () {
+                table.column($(this).parent().index() + ':visible')
+                    .search(this.value)
+                    .draw();
+            });
+
+        });
+
+        table.on('order.dt search.dt', function () {
+            table.column(0, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i) {
+                cell.innerHTML = i + 1;
+            });
+        }).draw();
+
+
+        table.on("click", "th.select-checkbox2>input", function () {
+            if ($("th.select-checkbox2").hasClass("selected")) {
+                table.rows({page: 'current'}).deselect();
+                $("th.select-checkbox2").removeClass("selected");
+            } else {
+                table.rows({page: 'current'}).select();
+                $("th.select-checkbox2").addClass("selected");
+            }
+        })
+
+
+        $(window).on('load', function () {
+            PageNumberInput();
+        })
+        $('.CustomTable').on('draw.dt', function () {
+            PageNumberInput();
+
+        });
+
+
+        function PageNumberInput() {
+            $(`<li><input type='number' min='1' id='goPage' onchange="Jumpto(this)" class='paginate_input go-to-page' placeholder='ادخل رقم'></li>`).insertBefore(".next");
+        }
+
+        function Jumpto(e) {
+            table = $('.CustomTable').DataTable();
+            var ss = e.value - 1;
+            table.page(ss).draw(false);
+        }
+
+        function chabgepgln(pgln) {
+            var value = pgln.value;
+            var table = $('.CustomTable').DataTable();
+            table.page.len(value).draw();
+
+        }
+
+    </script>
     <script src="{{asset('lawSystem/assets/js/select2.min.js')}}"></script>
     <script src="{{asset('lawSystem/assets/js/jquery.toast.js')}}"></script>
-    <script src="{{asset('lawSystem/assets/js/users.js')}}"></script>
     <script src="{{asset('lawSystem/assets/js/alertfunction.js')}}"></script>
-    @include('layouts.notification')
-    @include('layouts.errors')
+
 
 @endsection

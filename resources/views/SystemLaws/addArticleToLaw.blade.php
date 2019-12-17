@@ -258,11 +258,11 @@
         <script src="{{asset('lawSystem/assets/js/jquery.dataTables.min.js')}}"></script>
         <script src="{{asset('lawSystem/assets/js/full_numbers_no_ellipses.js')}}"></script>
         <script src="{{asset('lawSystem/assets/js/dataTables.bootstrap4.min.js')}}"></script>
-        <script src="{{asset('lawSystem/assets/js/function.js')}}"></script>
+
         <script src="{{asset('lawSystem/assets/js/select2.min.js')}}"></script>
+        <script src="{{asset('lawSystem/assets/js/function.js')}}"></script>
         <script src="{{asset('lawSystem/assets/js/jquery.toast.js')}}"></script>
         <script src="{{asset('lawSystem/assets/js/users.js')}}"></script>
         <script src="{{asset('lawSystem/assets/js/alertfunction.js')}}"></script>
-        @include('layouts.notification')
-        @include('layouts.errors')
-@endsection
+
+    @endsection

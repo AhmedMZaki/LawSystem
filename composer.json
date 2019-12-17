@@ -13,7 +13,8 @@
         "goodnesskay/laravelpdfviewer": "^1.0",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
-        "pusher/pusher-php-server": "^4.1"
+        "pusher/pusher-php-server": "^4.1",
+        "yajra/laravel-datatables-oracle": "^9.8"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",

@@ -2,7 +2,7 @@
   var table = $('.CustomTable').DataTable({
       paging: true,
       destroy: true,
-      columnDefs: [ 
+      columnDefs: [
         {
           "targets": [ 0 ],
           "orderable": false,
@@ -18,14 +18,14 @@
         "lengthMenu": [[10, 50, 100, -1], [10, 50, 100, "الكل"]],
         'pagingType': 'full_numbers_no_ellipses',
         sDom: 'lrt<"row"<"col-sm-12 col-md-7"i><"col-sm-12 col-md-5"p>>',
-        "bLengthChange" : false,   
+        "bLengthChange" : false,
         "language": {
              select: {
-            rows: " تم تحديد   %d   ملف اضافة الى<li class='add-to-group'><select class='fotrolo' title='اختر'><option>المدرسين</option> <option>اطباء</option></select><button class='btn save-to-group general_btn btn_1'><i class='plus-icon   btn-icon-width inline-icon green-icon'></i><span>اضافة </span></button></li>"
+                 rows: " تم تحديد   %d   قانون اضافة الى<li class='add-to-group'><select class='fotrolo' title='اختر'><option>المدرسين</option> <option>اطباء</option></select><button class='btn save-to-group general_btn btn_1'><i class='plus-icon   btn-icon-width inline-icon green-icon'></i><span>اضافة </span></button></li>"
         },
           "emptyTable": "لا يوجد بيانات",
-          "infoEmpty":      "عرض 0 الي 0 من 0 ملف",
-          "info": "عرض _START_ الى _END_ من _TOTAL_ ملف",
+            "infoEmpty": "عرض 0 الي 0 من 0 قانون",
+            "info": "عرض _START_ الى _END_ من _TOTAL_ قانون",
           "lengthMenu": "اظهر _MENU_ ملف",
           "infoFiltered": "(من اصل _MAX_ ملف)",
           "zeroRecords": "لا يوجد نتائج للبحث",
@@ -47,7 +47,7 @@
               .search(this.value)
               .draw();
       });
- 
+
 });
 
     table.on( 'order.dt search.dt', function () {
@@ -92,7 +92,7 @@ function Jumpto(e) {
   }
 
 function chabgepgln(pgln) {
-  var value = pgln.value;  
+  var value = pgln.value;
   var table = $('.CustomTable').DataTable();
   table.page.len( value ).draw();
 

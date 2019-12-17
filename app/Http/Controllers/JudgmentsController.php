@@ -8,14 +8,21 @@ use App\judgments;
 use Storage;
 use Session;
 use App\LawArticl;
-use DB;
+use Redirect, Response, DB, Config;
+use Datatables;
 
 class JudgmentsController extends Controller
 {
     public function index()
     {
-        $judgments = judgments::latest()->paginate(10);
-        return view('judgments.index', compact('judgments'));
+        return view('judgments.index');
+    }
+
+    public function judgmentsList()
+    {
+        $judgments = DB::table('judgments')->select('*');
+        return datatables()->of($judgments)->make(true);
+
     }
 
     public function create($lastJudgment = null)

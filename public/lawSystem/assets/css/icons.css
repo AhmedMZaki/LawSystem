@@ -27,6 +27,11 @@ mask-position: center;
     width: 24px;
     height: 24px;
 }
+
+.gavel-icon {
+    -webkit-mask-image: url(../images/gavel.svg);
+    mask-image: url(../images/gavel.svg);
+}
 .shopping-icon {
     -webkit-mask-image: url(../images/shopping.svg);
     mask-image: url(../images/shopping.svg);

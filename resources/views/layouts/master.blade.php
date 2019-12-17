@@ -22,5 +22,6 @@
 @include('layouts.footer')
   <!-- end main-wrapper -->
 @yield('secripts')
+  @include('layouts.notification')
 </body>
 </html>

@@ -20,13 +20,50 @@
   });
 
 
+    function isNumber(n) {
+        return !isNaN(parseFloat(n)) && isFinite(n);
+    }
 
+    function setFontSize(el) {
+        var fontSize = el.val();
 
+        if (isNumber(fontSize) && fontSize >= 0.5) {
+            $('body').css({fontSize: fontSize + 'em'});
+        } else if (fontSize) {
+            el.val('1');
+            $('body').css({fontSize: '1em'});
+        }
+    }
+
+    $(function () {
+
+        $('#fontSize')
+            .bind('change', function () {
+                setFontSize($(this));
+            })
+            .bind('keyup', function (e) {
+                if (e.keyCode == 27) {
+                    $(this).val('1');
+                    $('body').css({fontSize: '1em'});
+                } else {
+                    setFontSize($(this));
+                }
+            });
+
+        $(window)
+            .bind('keyup', function (e) {
+                if (e.keyCode == 27) {
+                    $('#fontSize').val('1');
+                    $('body').css({fontSize: '1em'});
+                }
+            });
+
+    });
 
   //  2- tooltip
   $('[data-toggle="tooltip"]').tooltip({
     trigger : 'hover'
-}) 
+})
 
 
   $(".toogleCompletion").click(function() {
@@ -40,10 +77,10 @@
     }
   });
 
-  
-  
+
+
   // 3- dropdown-menu
- 
+
   $(document).ready(function() {
 
     var SelectWithSearch = document.getElementsByClassName('SelectWithSearch');
@@ -59,7 +96,7 @@ placeholder: "اختر", width: "100%",height: "100%"
     });
     }
   });
-    
+
 
   $(document).ready(function() {
     $(".dropdown-menu a ").click(function(event) {
@@ -76,7 +113,7 @@ placeholder: "اختر", width: "100%",height: "100%"
 
      $(".input_dateyearpicker").datepicker( {
        format: "yyyy",
-       viewMode: "years", 
+       viewMode: "years",
        minViewMode: "years",
        orientation: "bottom right",
    }).on('changeDate', function(e){
@@ -87,7 +124,7 @@ placeholder: "اختر", width: "100%",height: "100%"
 })(jQuery);
 
 /********************************************
- * 
+ *
 ********************************************/
 
 function appendButtonPrint() {
@@ -111,7 +148,7 @@ function Jumpto(e) {
   }
 /*******************************************
  *  select multiple checkboxes
-*******************************************/ 
+*******************************************/
 
 $(document).ready(function () {
   $('.select-all-box').click(function () {
@@ -124,7 +161,7 @@ $(document).ready(function () {
       $('.select-semi').prop("disabled", false);
       $('.select-semi').prop("disabled", false);
     }
-        
+
   });
 
   $('.select-semi-box').click(function () {
@@ -134,7 +171,7 @@ $(document).ready(function () {
     } else {
       $('.select-semi').prop("disabled", false);
     }
-   
+
   });
 
   $('.select-email-box').click(function () {
@@ -144,7 +181,7 @@ $(document).ready(function () {
     } else {
       $('.select-email').prop("disabled", false);
     }
-   
+
   });
 
 });
@@ -153,7 +190,7 @@ $(document).ready(function () {
 
 /*******************************************
  *    Upload file
-*******************************************/ 
+*******************************************/
 $("#file-upload").change(function(){
   $("#file-name").text(this.files[0].name);
 });
@@ -168,9 +205,9 @@ $(document).ready(function () {
   /********* highlight single row ********/
   $('.table').on('click','.select-box', function() {
     if ($(this).prop('checked') === true) {
-       $(this).closest('tr').addClass('highlight'); 
+       $(this).closest('tr').addClass('highlight');
     } else {
-       $(this).closest('tr').removeClass('highlight'); 
+       $(this).closest('tr').removeClass('highlight');
     }
   });
 

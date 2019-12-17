@@ -105,8 +105,8 @@ return [
     | localized telephone numbers, street address information and more.
     |
     */
-    'faker_locale' => 'ar_JO',
-//    'faker_locale' => 'en_US',
+    // 'faker_locale' => 'ar_JO',
+    'faker_locale' => 'en_US',
 
 
     /*
@@ -163,7 +163,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
-
+        Yajra\Datatables\DatatablesServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -229,7 +229,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
-
+        'Datatables' => Yajra\Datatables\Facades\Datatables::class,
     ],
 
 ];

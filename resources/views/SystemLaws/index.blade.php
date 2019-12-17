@@ -57,95 +57,35 @@
                                 <thead>
                                 <tr>
                                     <th class="w_40 pr-2">م</th>
-                                    <th class="w_120 text-center">النوع</th>
+                                    <th class="w_100 text-center">نوع</th>
                                     <th class="w_100 text-center">التصنيف</th>
-                                    <th class="w_100 text-center">رقم القانون</th>
-                                    <th class="w_80 text-center">سنة الاصدار</th>
-                                    <th class="w_159 text-center">بشأن</th>
-                                    <th class="w_70 text-center">إضافة مواد</th>
-                                    <th class="w_80 text-center"> عرض المواد</th>
+                                    <th class="w_120 text-center">رقم القانون</th>
+                                    <th class="w_100 text-center">سنة الاصدار</th>
+                                    <th class="w_150 text-center">بشأن</th>
+                                    <th class="w_73 text-center"> عرض المواد</th>
+                                    <th class="w_73 text-center">إضافة مادة</th>
                                     <th class="w_70 text-center">تعديل</th>
-                                    <th class="w_70 text-center">الحالة</th>
+                                    <th class="w_70 text-center">حذف</th>
                                 </tr>
                                 </thead>
                                 <tfoot>
                                 <tr>
                                     <th></th>
                                     <th><input id="Name" class="form-control" type="text" placeholder="النوع"/></th>
-                                    <th><input id="Name" class="form-control" type="text" placeholder="القانون"/></th>
+                                    <th><input id="Name" class="form-control" type="text" placeholder="التصنيف"/></th>
                                     <th><input id="Name2" class="form-control" type="text" placeholder="رقم القانون"/>
                                     </th>
                                     <th><input id="Name2" class="form-control" type="text" placeholder="سنة الاصدار"/>
                                     </th>
                                     <th><input id="Name2" class="form-control" type="text" placeholder="بشأن"/></th>
-                                    <th><input disabled id="Name2" class="form-control" type="text"
-                                               placeholder="إضافة مواد"/></th>
-                                    <th><input disabled id="Name2" class="form-control" type="text"
-                                               placeholder="عرض المواد"/></th>
-                                    <th><input disabled id="Name2" class="form-control" type="text"
-                                               placeholder="تعديل"/></th>
-                                    <th><input disabled id="Name2" class="form-control" type="text"
-                                               placeholder="الحالة"/></th>
+                                    <th>######</th>
+                                    <th>######</th>
+                                    <th>######</th>
+                                    <th>######</th>
                                 </tr>
                                 </tfoot>
                                 <tbody>
-                                @if (count($laws))
-                                    @foreach ($laws as $law)
-                                        <tr>
-                                            <td>{{$law->id}}</td>
-                                            <td>{{$law->lawtype}}</td>
-                                            <td>{{$law->lawcategory}}</td>
-                                            <td>{{$law->lawno}}</td>
-                                            <td>{{$law->lawyear}} </td>
-                                            <td>{{$law->lawrelation}} </td>
-                                            <td>
-                                                <a href="{{route('addArticle',['lawID'=>$law])}}"
-                                                   class="btn general_btn btn_1"
-                                                   title="إضافة مواد إلي القانون {{$law->lawno}}"
-                                                >
-                                                    إضافة مادة
-                                                    <img src="{{asset('lawSystem/assets/images/plus.svg')}}" alt="">
 
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <a href="{{route('showrticles',['law'=>$law])}}"
-                                                   class="btn general_btn btn_1"
-
-                                                >
-                                                    عرض المواد
-
-                                                </a>
-                                            </td>
-                                            <td>
-
-                                                <a href="{{route('editLaw',['lawID'=>$law])}}"
-                                                   class="btn general_btn btn_1"
-                                                   title="تعديل القانون رقم {{$law->lawno}}"
-                                                >
-                                                    تعديل
-                                                    <img src="{{asset('lawSystem/assets/images/edit.svg')}}" alt="">
-
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <form action="{{route('delteLaw',['lawID'=>$law])}}" method="post">
-
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn  general_btn btn_1"
-                                                            style="height: 26px;"
-                                                            onclick="return confirm('هل انت متأكد من انك تريد حذف هذا القانون');"
-                                                            name="submit">
-                                                        تعطيل
-                                                        <img src="{{asset('lawSystem/assets/images/times.svg')}}">
-                                                    </button>
-                                                </form>
-
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                @endif
                                 </tbody>
                             </table>
                         </div>
@@ -160,7 +100,13 @@
 @endsection
 
 @section('secripts')
+    <script>
+        $(function () {
+            $("#header").load("header.html");
+            $("#footer").load("footer.html");
 
+        });
+    </script>
     <script src="{{asset('lawSystem/assets/js/jquery.js')}}"></script>
     <script src="{{asset('lawSystem/assets/js/popper.js')}}"></script>
     <script src="{{asset('lawSystem/assets/js/bootstrap.min.js')}}"></script>
@@ -168,10 +114,139 @@
     <script src="{{asset('lawSystem/assets/js/full_numbers_no_ellipses.js')}}"></script>
     <script src="{{asset('lawSystem/assets/js/dataTables.bootstrap4.min.js')}}"></script>
     <script src="{{asset('lawSystem/assets/js/function.js')}}"></script>
+    <script>
+        $.fn.DataTable.ext.pager.numbers_length = 3;
+        var table = $('#usersTable').DataTable({
+            paging: true,
+            destroy: true,
+            columnDefs: [
+                {
+                    "targets": [0],
+                    "orderable": false,
+
+                }
+            ],
+            select: {
+                style: 'multi',
+                selector: '.select-box'
+            },
+            order: [[2, 'asc']],
+            orderCellsTop: true,
+            "lengthMenu": [[10, 50, 100, -1], [10, 50, 100, "الكل"]],
+            'pagingType': 'full_numbers_no_ellipses',
+            sDom: 'lrt<"row"<"col-sm-12 col-md-7"i><"col-sm-12 col-md-5"p>>',
+            "bLengthChange": false,
+            "language": {
+                select: {
+                    rows: " تم تحديد   %d   قانون اضافة الى<li class='add-to-group'><select class='fotrolo' title='اختر'><option>المدرسين</option> <option>اطباء</option></select><button class='btn save-to-group general_btn btn_1'><i class='plus-icon   btn-icon-width inline-icon green-icon'></i><span>اضافة </span></button></li>"
+                },
+                "emptyTable": "لا يوجد بيانات",
+                "infoEmpty": "عرض 0 الي 0 من 0 قانون",
+                "info": "عرض _START_ الى _END_ من _TOTAL_ قانون",
+                "lengthMenu": "اظهر _MENU_ ملف",
+                "infoFiltered": "(من اصل _MAX_ ملف)",
+                "zeroRecords": "لا يوجد نتائج للبحث",
+                "paginate": {
+                    "previous": "<",
+                    "next": ">",
+                    "last": ">>",
+                    "first": "<<"
+                }
+            },
+            ajax: "{{ url('laws-list') }}",
+            columns: [
+                {data: 'id', name: 'id'},
+                {data: 'lawtype', name: 'lawtype'},
+                {data: 'lawcategory', name: 'lawcategory'},
+                {data: 'lawno', name: 'lawno'},
+                {data: 'lawyear', name: 'lawyear'},
+                {data: 'lawrelation', name: 'lawrelation'},
+                {
+                    data: 'id', name: 'add', "render": function (data) {
+                        data = '<a class="general_btn btn_1 ml-2" href="/laws/' + data + '/showArticles">' + "عرض المواد" + '</a>';
+                        return data;
+                    }
+                },
+                {
+                    data: 'id', name: 'add', "render": function (data) {
+                        data = '<a class="general_btn btn_1 ml-2" href="/laws/' + data + '/addArticles">' + "إضافة مادة" + '</a>';
+                        return data;
+                    }
+                },
+                {
+                    data: 'id', name: 'edit', "render": function (data) {
+                        data = '<a class="general_btn btn_1 ml-2" href="laws/1/edit">' + "تعديل" + '</a>';
+                        return data;
+                    }
+                },
+                {
+                    data: 'id', name: 'edit', "render": function (data) {
+                        data = '<a class="general_btn btn_1 ml-2" href="laws/1/deActivate">' + "حذف" + '</a>';
+                        return data;
+                    }
+                },
+
+            ]
+
+        });
+
+
+        table.columns().every(function (index) {
+            $('.CustomTable tfoot tr:eq(0) th:eq(' + index + ') input[type="text"],.CustomTable tfoot tr:eq(0) th:eq(' + index + ') select').on('change', function () {
+                table.column($(this).parent().index() + ':visible')
+                    .search(this.value)
+                    .draw();
+            });
+
+        });
+
+        table.on('order.dt search.dt', function () {
+            table.column(0, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i) {
+                cell.innerHTML = i + 1;
+            });
+        }).draw();
+
+
+        table.on("click", "th.select-checkbox2>input", function () {
+            if ($("th.select-checkbox2").hasClass("selected")) {
+                table.rows({page: 'current'}).deselect();
+                $("th.select-checkbox2").removeClass("selected");
+            } else {
+                table.rows({page: 'current'}).select();
+                $("th.select-checkbox2").addClass("selected");
+            }
+        })
+
+
+        $(window).on('load', function () {
+            PageNumberInput();
+        })
+        $('.CustomTable').on('draw.dt', function () {
+            PageNumberInput();
+
+        });
+
+
+        function PageNumberInput() {
+            $(`<li><input type='number' min='1' id='goPage' onchange="Jumpto(this)" class='paginate_input go-to-page' placeholder='ادخل رقم'></li>`).insertBefore(".next");
+        }
+
+        function Jumpto(e) {
+            table = $('.CustomTable').DataTable();
+            var ss = e.value - 1;
+            table.page(ss).draw(false);
+        }
+
+        function chabgepgln(pgln) {
+            var value = pgln.value;
+            var table = $('.CustomTable').DataTable();
+            table.page.len(value).draw();
+
+        }
+
+    </script>
     <script src="{{asset('lawSystem/assets/js/select2.min.js')}}"></script>
     <script src="{{asset('lawSystem/assets/js/jquery.toast.js')}}"></script>
-    <script src="{{asset('lawSystem/assets/js/users.js')}}"></script>
     <script src="{{asset('lawSystem/assets/js/alertfunction.js')}}"></script>
-    @include('layouts.notification')
-    @include('layouts.errors')
+
 @endsection

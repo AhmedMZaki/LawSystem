@@ -3,7 +3,8 @@
 
 // law Rotes
 Route::get('/','LawsController@index');
-Route::get('/laws','LawsController@index')->name('getLaws');
+Route::get('laws', 'LawsController@index')->name('getLaws');
+Route::get('laws-list', 'LawsController@lawsList');
 Route::get('/laws/create','LawsController@create')->name('addNewLaw');
 Route::post('/laws/store','LawsController@store')->name('saveLaw');
 Route::get('/laws/{lawID}/edit','LawsController@edit')->name('editLaw');
@@ -20,7 +21,10 @@ Route::get('/laws/{lawID}/on', 'LawsController@lawON')->name('lawON');
 Route::get('/laws/SearchArticles/{articleNo}', 'LawsController@SearchArticles')->name('searchArticle');
 
 // judgments routes
-Route::get('/judgments','JudgmentsController@index')->name('getJudgments');
+
+
+Route::get('/judgments', 'JudgmentsController@index')->name('getJudgments');
+Route::get('judgments-list', 'JudgmentsController@judgmentsList');
 Route::get('/judgments/create/{lastJudgment?}','JudgmentsController@create')->name('addJudgments');
 Route::post('/judgments/store','JudgmentsController@store')->name('saveJudgments');
 Route::get('/judgments/{lastJudgment}/updateLastInput','JudgmentsController@updateLastInput')->name('updateLastInput');
