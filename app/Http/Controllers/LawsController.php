@@ -62,7 +62,7 @@ class LawsController extends Controller
 
         $lawId = Law::create($request->all());
         $lawId->slug = LawsController::make_slug($request['lawrelation']);
-
+        $lawId->save();
         // check if the $request has a file
         // Note:: the lawfile column is nullable
         if (request()->hasFile('lawfile')) {
