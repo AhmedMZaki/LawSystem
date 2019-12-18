@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="a8d258fe-d854-4b40-9cad-d289fdc0ff78" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LawsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LawsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/SystemLaws/addArticleToLaw.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/SystemLaws/addArticleToLaw.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/SystemLaws/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/SystemLaws/index.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -328,7 +330,17 @@
     <option name="allServicesViewState">
       <serviceView>
         <treeState>
-          <expand />
+          <expand>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@8807a442" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+            </path>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@8807a442" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@3de1f31d" type="9fbbdea:ServiceModel$ServiceNode" />
+            </path>
+          </expand>
           <select />
         </treeState>
       </serviceView>
@@ -462,7 +474,10 @@
       <workItem from="1576489836415" duration="155000" />
       <workItem from="1576490199396" duration="79000" />
       <workItem from="1576493363571" duration="4343000" />
-      <workItem from="1576567849771" duration="8575000" />
+      <workItem from="1576567849771" duration="11403000" />
+      <workItem from="1576654195203" duration="272000" />
+      <workItem from="1576677813633" duration="1916000" />
+      <workItem from="1576686716611" duration="632000" />
     </task>
     <task id="LOCAL-00001" summary="this new">
       <created>1576005457419</created>
@@ -618,7 +633,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576575881585</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="fixing law edit button">
+      <created>1576577269879</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1576577269879</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -686,7 +708,8 @@
     <MESSAGE value="law controller refactoring&#10;judgments controller refactoring" />
     <MESSAGE value="adding dataTables to laws index and judgments index" />
     <MESSAGE value="fixing judgments search area" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixing judgments search area" />
+    <MESSAGE value="fixing law edit button" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixing law edit button" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>

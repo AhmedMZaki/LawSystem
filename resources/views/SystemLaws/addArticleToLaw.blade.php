@@ -51,9 +51,7 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-2">
                                         <label>رقم الكتاب<span class="redstar"></span></label>
-
-                                        <select v-model="subjectid" name="subjectid" id="subjectid" dir="rtl"
-                                                v-model="subjectid"
+                                        <select name="subjectid" id="subjectid" dir="rtl"
                                                 class="SelectRemovedSearch">
                                             <option selected>....</option>
                                             <option value="1">1</option>
@@ -82,7 +80,7 @@
                                         <label>رقم الباب<span class="redstar"></span></label>
 
                                         <select name="chapterid" id="chapterid" lang="ar" placeholder=" رقم الباب"
-                                                dir="rtl" v-model="chapterid"
+                                                dir="rtl"
                                                 class="SelectRemovedSearch">
                                             <option selected>....</option>
                                             <option value="1">1</option>
@@ -111,7 +109,7 @@
                                         <label>رقم الفصل<span class="redstar"></span></label>
 
                                         <select name="sectionid" id="sectionid" lang="ar" placeholder=" رقم الفصل"
-                                                v-model="chapterid" dir="rtl"
+                                                dir="rtl"
                                                 class="SelectRemovedSearch">
                                             <option selected>....</option>
                                             <option value="1">1</option>
@@ -208,14 +206,15 @@
                 methods: {
                     SaveData: function (id) {
                         atr = this.articleno;
+
                         axios.post("/laws/SaveLawArticle", {
 
                             laws_id: id,
-                            subjectid: this.subjectid,
+                            subjectid: $('#subjectid').val(),
                             subjectitle: this.subjectitle,
-                            chapterid: this.chapterid,
+                            chapterid: $('#chapterid').val(),
                             chaptertitle: this.chaptertitle,
-                            sectionid: this.sectionid,
+                            sectionid: $('#sectionid').val(),
                             sectiontitle: this.sectiontitle,
                             articletitle: this.articletitle,
                             articleno: this.articleno,

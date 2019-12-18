@@ -205,6 +205,7 @@ class LawsController extends Controller
 
     public function SaveLawArticles(Request $request)
     {
+
         $this->validate($request,
             [
                 'articleno' => 'required',
@@ -225,7 +226,19 @@ class LawsController extends Controller
                 }
             }
         }
-        $articleLaw = LawArticl::create($request->all());
+
+        $articleLaw = new LawArticl();
+        $articleLaw->laws_id = $request['laws_id'];
+        $articleLaw->articleno = $request['articleno'];
+        $articleLaw->articlebody = $request['articlebody'];
+        $articleLaw->subjectid = $request['subjectid'];
+        $articleLaw->subjectitle = $request['subjectitle'];
+        $articleLaw->chapterid = $request['chapterid'];
+        $articleLaw->chaptertitle = $request['chaptertitle'];
+        $articleLaw->sectionid = $request['sectionid'];
+        $articleLaw->sectiontitle = $request['sectiontitle'];
+        $articleLaw->articletitle = $request['articletitle'];
+        $articleLaw->save();
 
         if ($articleLaw) {
             return response()->json([

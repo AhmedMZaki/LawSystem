@@ -175,13 +175,13 @@
                 },
                 {
                     data: 'id', name: 'edit', "render": function (data) {
-                        data = '<a class="general_btn btn_1 ml-2" href="/laws/' + data + '/edit">' + "تعديل" + '</a>';
+                        data = '<a class="general_btn btn_1 ml-2" href="/laws/' + data + '/edit" >' + "تعديل" + '</a>';
                         return data;
                     }
                 },
                 {
                     data: 'id', name: 'edit', "render": function (data) {
-                        data = '<a class="general_btn btn_1 ml-2" href="laws/1/deActivate">' + "حذف" + '</a>';
+                        data = '<a class="general_btn btn_1 ml-2" href="laws/1/deActivate" >' + "حذف" + '</a>';
                         return data;
                     }
                 },
