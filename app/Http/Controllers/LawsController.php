@@ -290,7 +290,6 @@ class LawsController extends Controller
         $articleID->save();
 
         if ($articleID) {
-            $articleID->delete();
             Session::put('notification', [
                 'message' => " تم تعديل المادة بنجاح  ",
                 'alert-type' => 'success',

@@ -73,16 +73,11 @@
                                             <td>{{$article->sectionid}} </td>
                                             <td>{{$article->sectiontitle}} </td>
                                             <td>{{$article->articletitle}} </td>
-
-
                                             <td>
-
                                                 <a href="{{route('editArticle',['articleID'=>$article])}}"
-                                                   class="btn general_btn btn_1"
-                                                >
+                                                   class="btn general_btn btn_1">
                                                     تعديل
                                                     <img src="{{asset('lawSystem/assets/images/edit.svg')}}" alt="">
-
                                                 </a>
                                             </td>
                                             <td>
