@@ -39,8 +39,3 @@ Route::post('/judgments/saveNote/{judgmentID}','JudgmentsController@saveNote')->
 
 
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-

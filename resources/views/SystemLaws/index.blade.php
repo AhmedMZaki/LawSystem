@@ -207,15 +207,15 @@
         }).draw();
 
 
-        table.on("click", "th.select-checkbox2>input", function () {
-            if ($("th.select-checkbox2").hasClass("selected")) {
-                table.rows({page: 'current'}).deselect();
-                $("th.select-checkbox2").removeClass("selected");
-            } else {
-                table.rows({page: 'current'}).select();
-                $("th.select-checkbox2").addClass("selected");
-            }
-        })
+        // table.on("click", "th.select-checkbox2>input", function () {
+        //     if ($("th.select-checkbox2").hasClass("selected")) {
+        //         table.rows({page: 'current'}).deselect();
+        //         $("th.select-checkbox2").removeClass("selected");
+        //     } else {
+        //         table.rows({page: 'current'}).select();
+        //         $("th.select-checkbox2").addClass("selected");
+        //     }
+        // });
 
 
         $(window).on('load', function () {
